@@ -1,0 +1,94 @@
+/*
+ * =============================================================================
+ * 
+ *   Copyright (c) 2008, The OP4J team (http://www.op4j.org)
+ * 
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ * 
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ * 
+ * =============================================================================
+ */
+package org.op4j.operators.intf.%%STRUCTUREPACKAGE%%;
+
+import java.util.Collection;
+import java.util.Comparator;
+%%IMPORT%%
+
+import org.op4j.functions.IFunction;
+import org.op4j.functions.converters.IConverter;
+import org.op4j.functions.evaluators.IEvaluator;
+import org.op4j.operators.qualities.ConvertibleSelectedOperator;
+import org.op4j.operators.qualities.DistinguishableOperator;
+import org.op4j.operators.qualities.EvaluableSelectedOperator;
+import org.op4j.operators.qualities.ExecutableSelectedOperator;
+import org.op4j.operators.qualities.ModifiableCollectionOperator;
+import org.op4j.operators.qualities.NavigableCollectionOperator;
+import org.op4j.operators.qualities.SelectedOperator;
+import org.op4j.operators.qualities.SortableOperator;
+import org.op4j.operators.qualities.UniqOperator;
+/**
+ * 
+ * @since 1.0
+ * 
+ * @author Daniel Fern&aacute;ndez
+ *
+ */
+public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>
+        extends UniqOperator<%%TARGETTYPE%%>,
+                NavigableCollectionOperator<%%TARGETELEMENTINLEVEL%%>,
+                DistinguishableOperator,
+                SortableOperator<%%TARGETELEMENTINLEVEL%%>,
+                ModifiableCollectionOperator<%%TARGETELEMENTINLEVEL%%>,
+                ExecutableSelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                ConvertibleSelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                SelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                EvaluableSelectedOperator<%%TARGETTYPEINLEVEL%%> {
+
+
+
+    public Level0%%STRUCTURE%%Operator<%%TARGETELEMENT%%> endIf();
+
+
+
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> forEach();
+
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> distinct();
+    
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> sort();
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> sort(final Comparator<? super %%TARGETELEMENTINLEVEL%%> comparator);
+
+
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> add(final %%TARGETELEMENTINLEVEL%%... newElements);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> insert(final int position, final %%TARGETELEMENTINLEVEL%%... newElements);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> addAll(final Collection<%%TARGETELEMENTINLEVEL%%> collection);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeIndexes(final int... indices);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeEquals(final %%TARGETELEMENTINLEVEL%%... values);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeNotMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeNullOrNotMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeNotNullNotMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeNotNullMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeNullOrMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeIndexesNot(final int... indices);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeNulls();
+
+
+
+    
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%TARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
+    
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%TARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
+
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%TARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+
+    
+}
