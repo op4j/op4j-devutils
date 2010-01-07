@@ -384,6 +384,16 @@ public class ImplFile {
     }
     
     
+    public boolean hasEndIf() {
+        return this.methodNames.contains("endIf");
+    }
+    
+    
+    public boolean hasEndOn() {
+        return this.methodNames.contains("endOn");
+    }
+    
+    
     public String getPackageName() {
         return this.packageName;
     }
@@ -554,9 +564,9 @@ public class ImplFile {
         
         String fileContents = strBuilder.toString();
         if (isArrayTypeRequired()) {
-            fileContents = MethodImplementor.processArray(fileContents, getCurrentLevel(), getCurrentLevelStructure(), getPreviousLevelStructure(), getCurrentLevelType(), getCurrentLevelElement());
+            fileContents = MethodImplementor.processArray(fileContents, getCurrentLevel(), getCurrentLevelStructure(), getPreviousLevelStructure(), getCurrentLevelType(), getCurrentLevelElement(), hasEndIf(), hasEndOn());
         } else {
-            fileContents = MethodImplementor.processNonArray(fileContents, getCurrentLevel(), getCurrentLevelStructure(), getPreviousLevelStructure(), getCurrentLevelType(), getCurrentLevelElement());
+            fileContents = MethodImplementor.processNonArray(fileContents, getCurrentLevel(), getCurrentLevelStructure(), getPreviousLevelStructure(), getCurrentLevelType(), getCurrentLevelElement(), hasEndIf(), hasEndOn());
         }
         return fileContents;
     }
