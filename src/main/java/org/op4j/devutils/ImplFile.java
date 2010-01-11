@@ -543,12 +543,12 @@ public class ImplFile {
         if (isArrayTypeRequired()) {
             strBuilder.append("\n\n");
             final String arrayLetter = (this.className.contains("MapOfArray")? "V" : "T");
-            strBuilder.append("    private final Type<? super " + arrayLetter + "> arrayOf;\n");
+            strBuilder.append("    private final Type<" + arrayLetter + "> arrayOf;\n");
         }
         strBuilder.append("\n\n");
         if (isArrayTypeRequired()) {
             final String arrayLetter = (this.className.contains("MapOfArray")? "V" : "T");
-            strBuilder.append("    public " + StringUtils.substringBefore(this.className, "<") + "(final Type<? super " + arrayLetter + "> arrayOf, final Target target) {\n");
+            strBuilder.append("    public " + StringUtils.substringBefore(this.className, "<") + "(final Type<" + arrayLetter + "> arrayOf, final Target target) {\n");
             strBuilder.append("        super(target);\n");
             strBuilder.append("        this.arrayOf = arrayOf;\n");
         } else {

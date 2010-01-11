@@ -41,9 +41,11 @@ import org.apache.commons.lang.StringUtils;
 public class SelectedInterfaceFileCreator {
 
     private static final String REP_STRUCTURE = "%%STRUCTURE%%";
+    private static final String REP_EQUIVALENTSTRUCTURE = "%%EQUIVALENTSTRUCTURE%%";
     private static final String REP_STRUCTUREPACKAGE = "%%STRUCTUREPACKAGE%%";
     private static final String REP_TARGETTYPE = "%%TARGETTYPE%%";
     private static final String REP_TARGETTYPEINLEVEL = "%%TARGETTYPEINLEVEL%%";
+    private static final String REP_FLEXIBLETARGETTYPEINLEVEL = "%%FLEXIBLETARGETTYPEINLEVEL%%";
     private static final String REP_TARGETELEMENTINLEVEL = "%%TARGETELEMENTINLEVEL%%";
     private static final String REP_TARGETELEMENT = "%%TARGETELEMENT%%";
     private static final String REP_TARGETELEMENTKEY = "%%TARGETELEMENTKEY%%";
@@ -57,10 +59,17 @@ public class SelectedInterfaceFileCreator {
     
     private static final String[][] ONE_LEVEL_STRUCTURES =
     	{ 
-    		new String[] {"Array", "T[]", "T"}, 
-    		new String[] {"List", "List<T>", "T"}, 
-    		new String[] {"Set", "Set<T>", "T"} 
+    		new String[] {"Array", "T[]", "T", "T[]"}, 
+    		new String[] {"List", "List<T>", "T", "List<? extends T>"}, 
+    		new String[] {"Set", "Set<T>", "T", "Set<? extends T>"} 
     	};
+    
+    private static final String[][] ONE_LEVEL_STRUCTURE_EQUIVALENCES =
+        { 
+            new String[] {"Array", ""}, 
+            new String[] {"List", ""}, 
+            new String[] {"Set", ""} 
+        };
     
     private static final String[] ONE_LEVEL_STRUCTURES_IMPORT =
     	{ 
@@ -93,6 +102,14 @@ public class SelectedInterfaceFileCreator {
     		2
     	};
 
+    private static final int[] ONE_LEVEL_STRUCTURE_FLEXIBLETARGETTYPE_IN_LEVEL_INDEXES =
+        {
+            3,
+            2,
+            2,
+            2
+        };
+
     private static final int[] ONE_LEVEL_STRUCTURE_TARGETELEMENT_IN_LEVEL_INDEXES =
     	{
     		2,
@@ -109,16 +126,29 @@ public class SelectedInterfaceFileCreator {
     
     private static final String[][] TWO_LEVEL_STRUCTURES =
     	{ 
-    		new String[] {"ArrayOfArray", "T[][]", "T[]", "T"}, 
-    		new String[] {"ArrayOfList", "List<T>[]", "List<T>", "T"}, 
-    		new String[] {"ArrayOfSet", "Set<T>[]", "Set<T>", "T"}, 
-    		new String[] {"ListOfArray", "List<T[]>", "T[]", "T"}, 
-    		new String[] {"ListOfList", "List<List<T>>", "List<T>", "T"}, 
-    		new String[] {"ListOfSet", "List<Set<T>>", "Set<T>", "T"}, 
-    		new String[] {"SetOfArray", "Set<T[]>", "T[]", "T"}, 
-    		new String[] {"SetOfList", "Set<List<T>>", "List<T>", "T"}, 
-    		new String[] {"SetOfSet", "Set<Set<T>>", "Set<T>", "T"} 
+    		new String[] {"ArrayOfArray", "T[][]", "T[]", "T", "T[][]", "T[]"}, 
+    		new String[] {"ArrayOfList", "List<T>[]", "List<T>", "T", "List<? extends T>[]", "List<? extends T>"}, 
+    		new String[] {"ArrayOfSet", "Set<T>[]", "Set<T>", "T", "Set<? extends T>[]", "Set<? extends T>"}, 
+    		new String[] {"ListOfArray", "List<T[]>", "T[]", "T", "List<? extends T[]>", "T[]"}, 
+    		new String[] {"ListOfList", "List<List<T>>", "List<T>", "T", "List<? extends List<? extends T>>", "List<? extends T>"}, 
+    		new String[] {"ListOfSet", "List<Set<T>>", "Set<T>", "T", "List<? extends Set<? extends T>>", "Set<? extends T>"}, 
+    		new String[] {"SetOfArray", "Set<T[]>", "T[]", "T", "Set<? extends T[]>", "T[]"}, 
+    		new String[] {"SetOfList", "Set<List<T>>", "List<T>", "T", "Set<? extends List<? extends T>>", "List<? extends T>"}, 
+    		new String[] {"SetOfSet", "Set<Set<T>>", "Set<T>", "T", "Set<? extends Set<? extends T>>", "Set<? extends T>"} 
     	};
+    
+    private static final String[][] TWO_LEVEL_STRUCTURE_EQUIVALENCES =
+        { 
+            new String[] {"ArrayOfArray", "Array", ""}, 
+            new String[] {"ArrayOfList", "List", ""}, 
+            new String[] {"ArrayOfSet", "Set", ""}, 
+            new String[] {"ListOfArray", "Array", ""}, 
+            new String[] {"ListOfList", "List", ""}, 
+            new String[] {"ListOfSet", "Set", ""}, 
+            new String[] {"SetOfArray", "Array", ""}, 
+            new String[] {"SetOfList", "List", ""}, 
+            new String[] {"SetOfSet", "Set", ""} 
+        };
     
     private static final String[] TWO_LEVEL_STRUCTURES_IMPORT =
     	{ 
@@ -178,6 +208,21 @@ public class SelectedInterfaceFileCreator {
     		3
     	};
 
+    private static final int[] TWO_LEVEL_STRUCTURE_FLEXIBLETARGETTYPE_IN_LEVEL_INDEXES =
+    	{
+    		4,
+    		5,
+    		5,
+    		5,
+    		3,
+    		3,
+    		3,
+    		3,
+    		3,
+    		3,
+    		3
+    	};
+
     private static final int[] TWO_LEVEL_STRUCTURE_TARGETELEMENT_IN_LEVEL_INDEXES =
     	{
     		2,
@@ -198,9 +243,16 @@ public class SelectedInterfaceFileCreator {
     
     private static final String[][] TWO_LEVEL_MAP_STRUCTURES =
         { 
-            new String[] {"ArrayOfMap", "Map<K,V>[]", "K", "V", "Map<K,V>", "Map.Entry<K,V>", "K", "V"}, 
-            new String[] {"ListOfMap", "List<Map<K,V>>", "K", "V", "Map<K,V>", "Map.Entry<K,V>", "K", "V"}, 
-            new String[] {"SetOfMap", "Set<Map<K,V>>", "K", "V", "Map<K,V>", "Map.Entry<K,V>", "K", "V"}, 
+            new String[] {"ArrayOfMap", "Map<K,V>[]", "K", "V", "Map<K,V>", "Map.Entry<K,V>", "K", "V", "Map<? extends K,? extends V>[]", "Map<? extends K,? extends V>", "Map.Entry<? extends K,? extends V>"}, 
+            new String[] {"ListOfMap", "List<Map<K,V>>", "K", "V", "Map<K,V>", "Map.Entry<K,V>", "K", "V", "List<? extends Map<? extends K,? extends V>>", "Map<? extends K,? extends V>", "Map.Entry<? extends K,? extends V>"}, 
+            new String[] {"SetOfMap", "Set<Map<K,V>>", "K", "V", "Map<K,V>", "Map.Entry<K,V>", "K", "V", "Set<? extends Map<? extends K,? extends V>>", "Map<? extends K,? extends V>", "Map.Entry<? extends K,? extends V>"}, 
+        };
+    
+    private static final String[][] TWO_LEVEL_MAP_STRUCTURE_EQUIVALENCES =
+        { 
+            new String[] {"ArrayOfMap", "Map", "MapEntry", ""}, 
+            new String[] {"ListOfMap", "Map", "MapEntry", ""}, 
+            new String[] {"SetOfMap", "Map", "MapEntry", ""}, 
         };
     
     private static final String[] TWO_LEVEL_MAP_STRUCTURES_IMPORT =
@@ -345,6 +397,51 @@ public class SelectedInterfaceFileCreator {
             7
         };
 
+    private static final int[] TWO_LEVEL_MAP_STRUCTURE_FLEXIBLETARGETTYPE_IN_LEVEL_INDEXES =
+        {
+            8,
+            9,
+            9,
+            9,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            6,
+            6,
+            6,
+            7,
+            7,
+            7,
+            6,
+            6,
+            6,
+            6,
+            7,
+            7,
+            7,
+            7,
+            6,
+            6,
+            6,
+            6,
+            7,
+            7,
+            7,
+            7,
+            6,
+            6,
+            6,
+            6,
+            7,
+            7,
+            7,
+            7
+        };
+
     private static final int[] TWO_LEVEL_MAP_STRUCTURE_TARGETELEMENT_IN_LEVEL_INDEXES =
         {
             4,
@@ -405,7 +502,12 @@ public class SelectedInterfaceFileCreator {
     
     private static final String[][] ONE_LEVEL_MAP_STRUCTURES =
         { 
-            new String[] {"Map", "Map<K,V>", "K", "V", "Map.Entry<K,V>", "K", "V"}, 
+            new String[] {"Map", "Map<K,V>", "K", "V", "Map.Entry<K,V>", "K", "V", "Map<? extends K,? extends V>", "Map.Entry<? extends K,? extends V>"}, 
+        };
+    
+    private static final String[][] ONE_LEVEL_MAP_STRUCTURE_EQUIVALENCES =
+        { 
+            new String[] {"Map", "MapEntry", ""}, 
         };
     
     private static final String[] ONE_LEVEL_MAP_STRUCTURES_IMPORT =
@@ -479,6 +581,28 @@ public class SelectedInterfaceFileCreator {
             6
         };
 
+    private static final int[] ONE_LEVEL_MAP_STRUCTURE_FLEXIBLETARGETTYPE_IN_LEVEL_INDEXES =
+        {
+            7,
+            8,
+            8,
+            8,
+            5,
+            5,
+            5,
+            6,
+            6,
+            6,
+            5,
+            5,
+            5,
+            5,
+            6,
+            6,
+            6,
+            6
+        };
+
     private static final int[] ONE_LEVEL_MAP_STRUCTURE_TARGETELEMENT_IN_LEVEL_INDEXES =
         {
             4,
@@ -519,9 +643,16 @@ public class SelectedInterfaceFileCreator {
     
     private static final String[][] TWO_LEVEL_MAP_OF_STRUCTURES =
         { 
-            new String[] {"MapOfArray", "Map<K,V[]>", "K", "V", "Map.Entry<K,V[]>", "V[]", "K", "V[]", "V"}, 
-            new String[] {"MapOfList", "Map<K,List<V>>", "K", "V", "Map.Entry<K,List<V>>", "List<V>", "K", "List<V>", "V"}, 
-            new String[] {"MapOfSet", "Map<K,Set<V>>", "K", "V", "Map.Entry<K,Set<V>>", "Set<V>", "K", "Set<V>", "V"} 
+            new String[] {"MapOfArray", "Map<K,V[]>", "K", "V", "Map.Entry<K,V[]>", "V[]", "K", "V[]", "V", "Map<? extends K,? extends V[]>", "Map.Entry<? extends K,? extends V[]>", "V[]"}, 
+            new String[] {"MapOfList", "Map<K,List<V>>", "K", "V", "Map.Entry<K,List<V>>", "List<V>", "K", "List<V>", "V", "Map<? extends K,? extends List<? extends V>>", "Map.Entry<? extends K,? extends List<? extends V>>", "List<? extends V>"}, 
+            new String[] {"MapOfSet", "Map<K,Set<V>>", "K", "V", "Map.Entry<K,Set<V>>", "Set<V>", "K", "Set<V>", "V", "Map<? extends K,? extends Set<? extends V>>", "Map.Entry<? extends K,? extends Set<? extends V>>", "Set<? extends V>"} 
+        };
+    
+    private static final String[][] TWO_LEVEL_MAP_OF_STRUCTURE_EQUIVALENCES =
+        { 
+            new String[] {"MapOfArray", "MapOfArrayEntry", "Array", ""}, 
+            new String[] {"MapOfList", "MapOfListEntry", "List", ""}, 
+            new String[] {"MapOfSet", "MapOfSetEntry", "Set", ""} 
         };
     
     private static final String[] TWO_LEVEL_MAP_OF_STRUCTURES_IMPORT =
@@ -621,6 +752,41 @@ public class SelectedInterfaceFileCreator {
             7,
             7,
             7,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8
+        };
+
+    private static final int[] TWO_LEVEL_MAP_OF_STRUCTURE_FLEXIBLETARGETTYPE_IN_LEVEL_INDEXES =
+        {
+            9,
+            10,
+            10,
+            10,
+            6,
+            6,
+            6,
+            11,
+            11,
+            11,
+            6,
+            6,
+            6,
+            6,
+            11,
+            11,
+            11,
+            11,
             8,
             8,
             8,
@@ -740,16 +906,18 @@ public class SelectedInterfaceFileCreator {
     
 
     private static String replacePlaceholders(final String line,
-    		final String structureName, final String targetType, 
-    		final String targetTypeInLevel,
+    		final String structureName, final String equivalentStructure, final String targetType, 
+    		final String targetTypeInLevel, final String flexibleTargetTypeInLevel,
     		final String targetElement, final String targetElementKey, final String targetElementValue, final String targetElementInLevel, final String targetElementValueInLevel, 
     		final String structureImport) {
     	
 		return line.
 				replaceAll(REP_STRUCTURE, structureName).
+                replaceAll(REP_EQUIVALENTSTRUCTURE, equivalentStructure).
                 replaceAll(REP_STRUCTUREPACKAGE, structureName.toLowerCase()).
 				replaceAll(REP_TARGETTYPE, targetType).
 				replaceAll(REP_TARGETTYPEINLEVEL, targetTypeInLevel).
+				replaceAll(REP_FLEXIBLETARGETTYPEINLEVEL, flexibleTargetTypeInLevel).
 				replaceAll(REP_TARGETELEMENTINLEVEL, targetElementInLevel).
 				replaceAll(REP_TARGETELEMENT, targetElement).
                 replaceAll(REP_TARGETELEMENTKEY, targetElementKey).
@@ -763,7 +931,7 @@ public class SelectedInterfaceFileCreator {
     
 	private static void createFile(
 			final String templateName, final String resultFileName,
-			final String structureName, final String targetType, final String targetTypeInLevel, 
+			final String structureName, final String equivalentStructure, final String targetType, final String targetTypeInLevel, final String flexibleTargetTypeInLevel,  
 			final String targetElement, final String targetElementKey, final String targetElementValue, final String targetElementInLevel, final String targetElementValueInLevel,
 			final String structureImport) 
 			throws Exception {
@@ -794,7 +962,7 @@ public class SelectedInterfaceFileCreator {
 		final StringBuilder contentBuilder = new StringBuilder();
 		while ((line = reader.readLine()) != null) {
 			String newLine = 
-				replacePlaceholders(line, structureName, targetType, targetTypeInLevel, targetElement, targetElementKey, targetElementValue, targetElementInLevel, targetElementValueInLevel, structureImport);
+				replacePlaceholders(line, structureName, equivalentStructure, targetType, targetTypeInLevel, flexibleTargetTypeInLevel, targetElement, targetElementKey, targetElementValue, targetElementInLevel, targetElementValueInLevel, structureImport);
 			contentBuilder.append(newLine + "\n");
 		}
 		
@@ -848,13 +1016,20 @@ public class SelectedInterfaceFileCreator {
     		final String structureImport = ONE_LEVEL_STRUCTURES_IMPORT[i];
 
     		for (int j = 0; j < ONE_LEVEL_STRUCTURE_TEMPLATES.length; j++) {
-        		
+
+    		    final String resultsFileName = 
+    		        ONE_LEVEL_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName);
+    		    final int level =
+    		        Integer.valueOf(resultsFileName.substring(5, 6));
+    		    
     			createFile(
     					ONE_LEVEL_STRUCTURE_TEMPLATES[j],
-    					ONE_LEVEL_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName),
+    					resultsFileName,
     					structureName, 
+                        ONE_LEVEL_STRUCTURE_EQUIVALENCES[i][level],
     					firstLevelTargetType, 
     					structure[ONE_LEVEL_STRUCTURE_TARGETTYPE_IN_LEVEL_INDEXES[j]], 
+                        structure[ONE_LEVEL_STRUCTURE_FLEXIBLETARGETTYPE_IN_LEVEL_INDEXES[j]], 
     					lastLevelTargetType,
     					null,
     					null,
@@ -883,13 +1058,20 @@ public class SelectedInterfaceFileCreator {
     		final String structureImport = TWO_LEVEL_STRUCTURES_IMPORT[i];
 
     		for (int j = 0; j < TWO_LEVEL_STRUCTURE_TEMPLATES.length; j++) {
+
+                final String resultsFileName = 
+                    TWO_LEVEL_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName);
+                final int level =
+                    Integer.valueOf(resultsFileName.substring(5, 6));
         		
     			createFile(
     					TWO_LEVEL_STRUCTURE_TEMPLATES[j],
-    					TWO_LEVEL_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName),
+    					resultsFileName,
     					structureName, 
+                        TWO_LEVEL_STRUCTURE_EQUIVALENCES[i][level],
     					firstLevelTargetType, 
     					structure[TWO_LEVEL_STRUCTURE_TARGETTYPE_IN_LEVEL_INDEXES[j]], 
+    					structure[TWO_LEVEL_STRUCTURE_FLEXIBLETARGETTYPE_IN_LEVEL_INDEXES[j]], 
     					lastLevelTargetType,
     					null,
     					null,
@@ -922,12 +1104,19 @@ public class SelectedInterfaceFileCreator {
 
             for (int j = 0; j < TWO_LEVEL_MAP_STRUCTURE_TEMPLATES.length; j++) {
                 
+                final String resultsFileName = 
+                    TWO_LEVEL_MAP_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName);
+                final int level =
+                    Integer.valueOf(resultsFileName.substring(5, 6));
+                
                 createFile(
                         TWO_LEVEL_MAP_STRUCTURE_TEMPLATES[j],
-                        TWO_LEVEL_MAP_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName),
+                        resultsFileName,
                         structureName, 
+                        TWO_LEVEL_MAP_STRUCTURE_EQUIVALENCES[i][level],
                         firstLevelTargetType, 
                         structure[TWO_LEVEL_MAP_STRUCTURE_TARGETTYPE_IN_LEVEL_INDEXES[j]], 
+                        structure[TWO_LEVEL_MAP_STRUCTURE_FLEXIBLETARGETTYPE_IN_LEVEL_INDEXES[j]], 
                         null,
                         lastLevelTargetTypeKey,
                         lastLevelTargetTypeValue,
@@ -962,12 +1151,19 @@ public class SelectedInterfaceFileCreator {
 
             for (int j = 0; j < ONE_LEVEL_MAP_STRUCTURE_TEMPLATES.length; j++) {
                 
+                final String resultsFileName = 
+                    ONE_LEVEL_MAP_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName);
+                final int level =
+                    Integer.valueOf(resultsFileName.substring(5, 6));
+                
                 createFile(
                         ONE_LEVEL_MAP_STRUCTURE_TEMPLATES[j],
-                        ONE_LEVEL_MAP_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName),
+                        resultsFileName,
                         structureName, 
+                        ONE_LEVEL_MAP_STRUCTURE_EQUIVALENCES[i][level],
                         firstLevelTargetType, 
                         structure[ONE_LEVEL_MAP_STRUCTURE_TARGETTYPE_IN_LEVEL_INDEXES[j]], 
+                        structure[ONE_LEVEL_MAP_STRUCTURE_FLEXIBLETARGETTYPE_IN_LEVEL_INDEXES[j]], 
                         null,
                         lastLevelTargetTypeKey,
                         lastLevelTargetTypeValue,
@@ -1004,12 +1200,24 @@ public class SelectedInterfaceFileCreator {
 
             for (int j = 0; j < TWO_LEVEL_MAP_OF_STRUCTURE_TEMPLATES.length; j++) {
                 
+                final String resultsFileName = 
+                    TWO_LEVEL_MAP_OF_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName);
+                int level =
+                    Integer.valueOf(resultsFileName.substring(5, 6));
+                if (level == 2) {
+                    if (resultsFileName.contains("Key")) {
+                        level++; // this for example selects "" instead of "Array" in Map<K,V[]> level 2
+                    }
+                }
+                
                 createFile(
                 		TWO_LEVEL_MAP_OF_STRUCTURE_TEMPLATES[j],
-                		TWO_LEVEL_MAP_OF_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName),
+                		resultsFileName,
                         structureName, 
+                        TWO_LEVEL_MAP_OF_STRUCTURE_EQUIVALENCES[i][level],
                         firstLevelTargetType, 
                         structure[TWO_LEVEL_MAP_OF_STRUCTURE_TARGETTYPE_IN_LEVEL_INDEXES[j]], 
+                        structure[TWO_LEVEL_MAP_OF_STRUCTURE_FLEXIBLETARGETTYPE_IN_LEVEL_INDEXES[j]], 
                         null,
                         lastLevelTargetTypeKey,
                         lastLevelTargetTypeValue,
