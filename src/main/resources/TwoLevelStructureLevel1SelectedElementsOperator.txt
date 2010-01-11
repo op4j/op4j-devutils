@@ -26,10 +26,8 @@ import java.util.Comparator;
 import org.op4j.functions.IFunction;
 import org.op4j.functions.converters.IConverter;
 import org.op4j.functions.evaluators.IEvaluator;
-import org.op4j.operators.qualities.ConvertibleSelectedOperator;
 import org.op4j.operators.qualities.DistinguishableOperator;
-import org.op4j.operators.qualities.EvaluableSelectedOperator;
-import org.op4j.operators.qualities.ExecutableSelectedOperator;
+import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
 import org.op4j.operators.qualities.ModifiableCollectionOperator;
 import org.op4j.operators.qualities.NavigableCollectionOperator;
 import org.op4j.operators.qualities.NavigatingCollectionOperator;
@@ -48,9 +46,7 @@ public interface Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%>
                 NavigableCollectionOperator<%%TARGETELEMENTINLEVEL%%>,
     	        DistinguishableOperator,
 		        SortableOperator<%%TARGETELEMENTINLEVEL%%>,
-                ExecutableSelectedOperator<%%TARGETTYPEINLEVEL%%>,
-                ConvertibleSelectedOperator<%%TARGETTYPEINLEVEL%%>,
-                EvaluableSelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>,
                 NavigatingCollectionOperator<%%TARGETTYPEINLEVEL%%>,
                 ModifiableCollectionOperator<%%TARGETELEMENTINLEVEL%%>,
                 SelectableOperator<%%TARGETTYPEINLEVEL%%> {
@@ -95,11 +91,11 @@ public interface Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%>
     public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> removeNulls();
     
     
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%TARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
     
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%TARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
 
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%TARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
 		            
 }

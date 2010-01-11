@@ -27,10 +27,8 @@ import java.util.Map;
 import org.op4j.functions.IFunction;
 import org.op4j.functions.converters.IConverter;
 import org.op4j.functions.evaluators.IEvaluator;
-import org.op4j.operators.qualities.ConvertibleSelectedOperator;
 import org.op4j.operators.qualities.DistinguishableOperator;
-import org.op4j.operators.qualities.EvaluableSelectedOperator;
-import org.op4j.operators.qualities.ExecutableSelectedOperator;
+import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
 import org.op4j.operators.qualities.ModifiableCollectionOperator;
 import org.op4j.operators.qualities.NavigableCollectionOperator;
 import org.op4j.operators.qualities.SelectedOperator;
@@ -48,9 +46,7 @@ public interface Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGE
                 NavigableCollectionOperator<%%TARGETELEMENTVALUE%%>,
 		        DistinguishableOperator,
 		        SortableOperator<%%TARGETELEMENTINLEVEL%%>,
-                ExecutableSelectedOperator<%%TARGETTYPEINLEVEL%%>,
-                ConvertibleSelectedOperator<%%TARGETTYPEINLEVEL%%>,
-                EvaluableSelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENTVALUE%%>,
                 ModifiableCollectionOperator<%%TARGETELEMENTVALUE%%>,
                 SelectedOperator<%%TARGETTYPEINLEVEL%%> {
 
@@ -82,11 +78,11 @@ public interface Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGE
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeNulls();
 
     
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> convert(final IConverter<? extends %%TARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
     
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> eval(final IEvaluator<? extends %%TARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
 
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%TARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
     
     
