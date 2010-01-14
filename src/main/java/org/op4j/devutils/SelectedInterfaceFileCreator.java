@@ -52,9 +52,12 @@ public class SelectedInterfaceFileCreator {
     private static final String REP_TARGETELEMENTVALUE = "%%TARGETELEMENTVALUE%%";
     private static final String REP_TARGETELEMENTVALUEINLEVEL = "%%TARGETELEMENTVALUEINLEVEL%%";
     private static final String REP_IMPORT = "%%IMPORT%%";
+    private static final String REP_FOREACHELEMENTTYPE = "%%FOREACHELEMENTTYPE%%";
     
     
     private static int filesCreated = 0;
+    
+
     
     
     private static final String[][] ONE_LEVEL_STRUCTURES =
@@ -687,6 +690,8 @@ public class SelectedInterfaceFileCreator {
             "TwoLevelMapOfStructureLevel3EntriesSelectedValueSelectedElementsOperator.txt",
             "TwoLevelMapOfStructureLevel3EntriesSelectedValueSelectedElementsSelectedOperator.txt",
             "TwoLevelMapOfStructureLevel3EntriesValueElementsSelectedOperator.txt",
+            "TwoLevelMapOfStructureLevel3EntriesValueSelectedElementsOperator.txt",
+            "TwoLevelMapOfStructureLevel3EntriesValueSelectedElementsSelectedOperator.txt",
             "TwoLevelMapOfStructureLevel3SelectedEntriesSelectedValueElementsOperator.txt",
             "TwoLevelMapOfStructureLevel3SelectedEntriesSelectedValueElementsSelectedOperator.txt",
             "TwoLevelMapOfStructureLevel3SelectedEntriesSelectedValueSelectedElementsOperator.txt",
@@ -722,6 +727,8 @@ public class SelectedInterfaceFileCreator {
             "Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsOperator.java",
             "Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator.java",
             "Level3%%STRUCTURE%%EntriesValueElementsSelectedOperator.java",
+            "Level3%%STRUCTURE%%EntriesValueSelectedElementsOperator.java",
+            "Level3%%STRUCTURE%%EntriesValueSelectedElementsSelectedOperator.java",
             "Level3%%STRUCTURE%%SelectedEntriesSelectedValueElementsOperator.java",
             "Level3%%STRUCTURE%%SelectedEntriesSelectedValueElementsSelectedOperator.java",
             "Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator.java",
@@ -752,6 +759,8 @@ public class SelectedInterfaceFileCreator {
             7,
             7,
             7,
+            8,
+            8,
             8,
             8,
             8,
@@ -799,6 +808,8 @@ public class SelectedInterfaceFileCreator {
             8,
             8,
             8,
+            8,
+            8,
             8
         };
 
@@ -822,6 +833,8 @@ public class SelectedInterfaceFileCreator {
             8,
             8,
             8,
+            0,
+            0,
             0,
             0,
             0,
@@ -869,6 +882,8 @@ public class SelectedInterfaceFileCreator {
 	        0,
 	        0,
 	        0,
+	        0,
+	        0,
 	        0
         };
     
@@ -884,7 +899,7 @@ public class SelectedInterfaceFileCreator {
     
     
     
-    private static List<String> setFileNamePrefixes = 
+    private static final List<String> setFileNamePrefixes = 
         Arrays.asList(
                 new String[] {
                         "Level0SetOperator",
@@ -895,6 +910,34 @@ public class SelectedInterfaceFileCreator {
                         "Level0SetOf",
                         "Level1SetOfSet",
                 });
+    
+    
+    
+    private static final List<String> navigableArrayPrefixes =
+        Arrays.asList(
+            new String[] { 
+                "Level0ArrayOperator",
+                "Level0ArraySelected",
+                "Level0ArrayOfArray",
+                "Level1ArrayOfArray",
+                "Level1ListOfArray",
+                "Level2MapOfArray",
+                "Level1SetOfArray"
+            });
+    
+    
+    private static final List<String> navigatingArrayPrefixes =
+        Arrays.asList(
+            new String[] { 
+                "Level1ArrayOperator",
+                "Level1ArraySelected",
+                "Level1ArrayElements",
+                "Level1ArrayOfArray",
+                "Level2ArrayOfArray",
+                "Level2ListOfArray",
+                "Level3MapOfArray",
+                "Level2SetOfArray"
+            });
     
     
     
@@ -909,9 +952,10 @@ public class SelectedInterfaceFileCreator {
     		final String structureName, final String equivalentStructure, final String targetType, 
     		final String targetTypeInLevel, final String flexibleTargetTypeInLevel,
     		final String targetElement, final String targetElementKey, final String targetElementValue, final String targetElementInLevel, final String targetElementValueInLevel, 
-    		final String structureImport) {
+    		final String structureImport, final String forEachElementType) {
     	
 		return line.
+		        replaceAll(REP_FOREACHELEMENTTYPE, forEachElementType).
 				replaceAll(REP_STRUCTURE, structureName).
                 replaceAll(REP_EQUIVALENTSTRUCTURE, equivalentStructure).
                 replaceAll(REP_STRUCTUREPACKAGE, structureName.toLowerCase()).
@@ -933,7 +977,7 @@ public class SelectedInterfaceFileCreator {
 			final String templateName, final String resultFileName,
 			final String structureName, final String equivalentStructure, final String targetType, final String targetTypeInLevel, final String flexibleTargetTypeInLevel,  
 			final String targetElement, final String targetElementKey, final String targetElementValue, final String targetElementInLevel, final String targetElementValueInLevel,
-			final String structureImport) 
+			String structureImport) 
 			throws Exception {
 		
 		final URL templateFileURL = Thread.currentThread().getContextClassLoader().getResource(templateName);
@@ -957,12 +1001,26 @@ public class SelectedInterfaceFileCreator {
 		final FileWriter writer = new FileWriter(resultFile);
 		
 		final boolean isSetFile = isSetFile(resultFileName);
-		
+		final boolean isNavigableArray = isNavigableArrayFile(resultFileName);
+        final boolean isNavigatingArray = isNavigatingArrayFile(resultFileName);
+
+        if (isNavigableArray) {
+            structureImport += "import org.javaruntype.type.Type;\n";
+        }
+        
+		String forEachElementType = "";
 		String line = null;
 		final StringBuilder contentBuilder = new StringBuilder();
 		while ((line = reader.readLine()) != null) {
+		    if (isNavigableArray) {
+		        line = line.replaceAll("NavigableCollectionOperator", "NavigableArrayOperator");
+                forEachElementType = "final Type<%%TARGETELEMENTINLEVEL%%> elementType";
+		    }
+            if (isNavigatingArray) {
+                line = line.replaceAll("NavigatingCollectionOperator", "NavigatingArrayOperator");
+            }
 			String newLine = 
-				replacePlaceholders(line, structureName, equivalentStructure, targetType, targetTypeInLevel, flexibleTargetTypeInLevel, targetElement, targetElementKey, targetElementValue, targetElementInLevel, targetElementValueInLevel, structureImport);
+				replacePlaceholders(line, structureName, equivalentStructure, targetType, targetTypeInLevel, flexibleTargetTypeInLevel, targetElement, targetElementKey, targetElementValue, targetElementInLevel, targetElementValueInLevel, structureImport, forEachElementType);
 			contentBuilder.append(newLine + "\n");
 		}
 		
@@ -992,7 +1050,32 @@ public class SelectedInterfaceFileCreator {
 	    }
 	    return false;
 	}
+
+
 	
+	
+    private static boolean isNavigableArrayFile(final String resultFileName) {
+        for (final String navigableArrayFileNamePrefix : navigableArrayPrefixes) {
+            if (resultFileName.startsWith(navigableArrayFileNamePrefix)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
+    
+    private static boolean isNavigatingArrayFile(final String resultFileName) {
+        for (final String navigatingArrayFileNamePrefix : navigatingArrayPrefixes) {
+            if (resultFileName.startsWith(navigatingArrayFileNamePrefix)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    
     private static String applySetFileDeletions(final String line) {
         String newLine = line;
         for (final String pattern : deletablePatternsForSets) {

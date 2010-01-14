@@ -55,7 +55,7 @@ public interface Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGE
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endIf();
 
     
-    public Level3%%STRUCTURE%%SelectedEntriesValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> forEach();
+    public Level3%%STRUCTURE%%SelectedEntriesValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> forEach(%%FOREACHELEMENTTYPE%%);
 
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> distinct();
     

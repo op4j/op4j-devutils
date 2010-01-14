@@ -51,7 +51,7 @@ public class ImplFile {
     
     
     static {
-        
+    	
         paramNames = new HashMap<String, String[]>();
         paramNames.put("ifIndex", new String[] {"indices"});
         paramNames.put("ifMatching", new String[] {"eval"});
@@ -86,6 +86,7 @@ public class ImplFile {
         paramNames.put("put", new String[] {"newKey","newValue"});
         paramNames.put("putAll", new String[] {"map"});
         paramNames.put("getAsArray", new String[] {"type"});
+        paramNames.put("forEach", new String[] {"elementType"});
 
         varargsPositions = new HashSet<String>();
         varargsPositions.add("removeIndexes$0");
@@ -101,24 +102,25 @@ public class ImplFile {
         varargsPositions.add("ifKeyNotEquals$0");
 
         arrayTypeRequired = new HashSet<String>();
-        arrayTypeRequired.add("Level0ArrayOperator");
-        arrayTypeRequired.add("Level0ArrayElements");
-        arrayTypeRequired.add("Level0ArraySelected");
+// Commented out when changing the use of the "elementType" variable        
+//        arrayTypeRequired.add("Level0ArrayOperator");
+//        arrayTypeRequired.add("Level0ArrayElements");
+//        arrayTypeRequired.add("Level0ArraySelected");
         arrayTypeRequired.add("Level1ArrayOperator");
         arrayTypeRequired.add("Level1ArrayElements");
         arrayTypeRequired.add("Level1ArraySelected");
-        arrayTypeRequired.add("Level0ArrayOfArray");
+//        arrayTypeRequired.add("Level0ArrayOfArray");
         arrayTypeRequired.add("Level1ArrayOfArray");
         arrayTypeRequired.add("Level2ArrayOfArray");
-        arrayTypeRequired.add("Level0ListOfArray");
-        arrayTypeRequired.add("Level1ListOfArray");
+//        arrayTypeRequired.add("Level0ListOfArray");
+//        arrayTypeRequired.add("Level1ListOfArray");
         arrayTypeRequired.add("Level2ListOfArray");
-        arrayTypeRequired.add("Level0MapOfArray");
-        arrayTypeRequired.add("Level1MapOfArray");
-        arrayTypeRequired.add("Level2MapOfArray");
+//        arrayTypeRequired.add("Level0MapOfArray");
+//        arrayTypeRequired.add("Level1MapOfArray");
+//        arrayTypeRequired.add("Level2MapOfArray");
         arrayTypeRequired.add("Level3MapOfArray");
-        arrayTypeRequired.add("Level0SetOfArray");
-        arrayTypeRequired.add("Level1SetOfArray");
+//        arrayTypeRequired.add("Level0SetOfArray");
+//        arrayTypeRequired.add("Level1SetOfArray");
         arrayTypeRequired.add("Level2SetOfArray");
 
         currentLevelsByPrefix = new HashMap<String, LevelStructure>();
@@ -542,15 +544,15 @@ public class ImplFile {
         strBuilder.append("public class " + this.className + " extends AbstractOperatorImpl implements " + this.interfaceTypeRep.getStringRep() + " {\n");
         if (isArrayTypeRequired()) {
             strBuilder.append("\n\n");
-            final String arrayLetter = (this.className.contains("MapOfArray")? "V" : "T");
-            strBuilder.append("    private final Type<" + arrayLetter + "> arrayOf;\n");
+            final String arrayLetter = (this.className.contains("MapOfArray")? "V" : this.className.contains("Level1ArrayOfArray")? "T[]" : "T");
+            strBuilder.append("    private final Type<" + arrayLetter + "> type;\n");
         }
         strBuilder.append("\n\n");
         if (isArrayTypeRequired()) {
-            final String arrayLetter = (this.className.contains("MapOfArray")? "V" : "T");
-            strBuilder.append("    public " + StringUtils.substringBefore(this.className, "<") + "(final Type<" + arrayLetter + "> arrayOf, final Target target) {\n");
+            final String arrayLetter = (this.className.contains("MapOfArray")? "V" : this.className.contains("Level1ArrayOfArray")? "T[]" : "T");
+            strBuilder.append("    public " + StringUtils.substringBefore(this.className, "<") + "(final Type<" + arrayLetter + "> type, final Target target) {\n");
             strBuilder.append("        super(target);\n");
-            strBuilder.append("        this.arrayOf = arrayOf;\n");
+            strBuilder.append("        this.type = type;\n");
         } else {
             strBuilder.append("    public " + StringUtils.substringBefore(this.className, "<") + "(final Target target) {\n");
             strBuilder.append("        super(target);\n");
