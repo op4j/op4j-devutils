@@ -56,6 +56,16 @@ public class MethodImplementor {
         methods.put(
                 "public (.*?)<(.*?)> ifKeyNotEquals\\(final (.*?)\\.\\.\\. keys\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> ifKeyNotEquals(final $3\\.\\.\\. keys) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectMapKeysNot(keys));\n    }");
+
+        methods.put(
+                "public Level0GenericMulti(.*?)<(.*?)> exec\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public Level0GenericMulti$1<$2> exec(final IFunction<? extends $3,? super $4> function) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate().execute(function).endIterate(org.op4j.target.Target.Structure.LIST, null));\n    }");
+        methods.put(
+                "public Level0GenericMulti(.*?)<(.*?)> eval\\(final IEvaluator<\\? extends (.*?),\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public Level0GenericMulti$1<$2> eval(final IEvaluator<? extends $3,? super $4> eval) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate().execute(eval).endIterate(org.op4j.target.Target.Structure.LIST, null));\n    }");
+        methods.put(
+                "public Level0GenericMulti(.*?)<(.*?)> convert\\(final IConverter<\\? extends (.*?),\\? super (.*?)> converter\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public Level0GenericMulti$1<$2> convert(final IConverter<? extends $3,? super $4> converter) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate().execute(converter).endIterate(org.op4j.target.Target.Structure.LIST, null));\n    }");
         
         methods.put(
                 "public (.*?)<(.*?)> exec\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
