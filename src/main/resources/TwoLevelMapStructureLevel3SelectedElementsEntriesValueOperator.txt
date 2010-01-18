@@ -47,15 +47,15 @@ public interface Level3%%STRUCTURE%%SelectedElementsEntriesValueOperator<%%TARGE
 
 
     public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indices);
-    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
-    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
-    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrNotMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
-    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullNotMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
+    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
+    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
+    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
+    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
     public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNull();
-    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
+    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
     public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indices);
     public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNull();
-    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
+    public Level3%%STRUCTURE%%SelectedElementsEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTVALUE%%> eval);
 
             
     public Level2%%STRUCTURE%%SelectedElementsEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endOn();

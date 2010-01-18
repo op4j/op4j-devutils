@@ -49,15 +49,15 @@ public interface Level2%%STRUCTURE%%SelectedElementsSelectedElementsOperator<%%T
 
 
     public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifIndex(final int... indices);
-    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifMatching(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotMatching(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNullOrNotMatching(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNullNotMatching(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
     public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNull();
-    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNullOrMatching(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
     public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifIndexNot(final int... indices);
     public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNull();
-    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNullMatching(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
 
     
     public Level2%%STRUCTURE%%SelectedElementsSelectedElementsOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);

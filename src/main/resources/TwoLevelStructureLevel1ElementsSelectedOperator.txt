@@ -65,16 +65,16 @@ public interface Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%>
     public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> add(final %%TARGETELEMENTINLEVEL%%... newElements);
     public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> insert(final int position, final %%TARGETELEMENTINLEVEL%%... newElements);
     public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> addAll(final Collection<%%TARGETELEMENTINLEVEL%%> collection);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeIndexes(final int... indices);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeEquals(final %%TARGETELEMENTINLEVEL%%... values);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeNotMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeNullOrNotMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeNotNullNotMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeNotNullMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeNullOrMatching(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeIndexesNot(final int... indices);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeNulls();
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllIndexes(final int... indices);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllEqual(final %%TARGETELEMENTINLEVEL%%... values);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllIndexesNot(final int... indices);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNull();
     
     
     public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);

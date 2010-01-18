@@ -25,7 +25,9 @@ import org.op4j.functions.SetFuncs;
 import org.op4j.operators.impl.AbstractOperatorImpl;
 import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.target.Target;
+import org.op4j.target.Target.Normalization;
 import org.op4j.target.Target.Structure;
+import org.op4j.util.NormalizationUtils;
 
 public class ImplFile {
     
@@ -54,13 +56,13 @@ public class ImplFile {
     	
         paramNames = new HashMap<String, String[]>();
         paramNames.put("ifIndex", new String[] {"indices"});
-        paramNames.put("ifMatching", new String[] {"eval"});
-        paramNames.put("ifNotMatching", new String[] {"eval"});
-        paramNames.put("ifNullOrNotMatching", new String[] {"eval"});
-        paramNames.put("ifNotNullNotMatching", new String[] {"eval"});
-        paramNames.put("ifNullOrMatching", new String[] {"eval"});
+        paramNames.put("ifTrue", new String[] {"eval"});
+        paramNames.put("ifFalse", new String[] {"eval"});
+        paramNames.put("ifNullOrFalse", new String[] {"eval"});
+        paramNames.put("ifNotNullAndFalse", new String[] {"eval"});
+        paramNames.put("ifNullOrTrue", new String[] {"eval"});
         paramNames.put("ifIndexNot", new String[] {"indices"});
-        paramNames.put("ifNotNullMatching", new String[] {"eval"});
+        paramNames.put("ifNotNullAndTrue", new String[] {"eval"});
         paramNames.put("ifKeyEquals", new String[] {"keys"});
         paramNames.put("ifKeyNotEquals", new String[] {"keys"});
         paramNames.put("add", new String[] {"newElements"});
@@ -68,17 +70,17 @@ public class ImplFile {
         paramNames.put("insert%3", new String[] {"position","newKey","newValue"});
         paramNames.put("insertAll", new String[] {"position","map"});
         paramNames.put("addAll", new String[] {"collection"});
-        paramNames.put("removeIndexes", new String[] {"indices"});
-        paramNames.put("removeEquals", new String[] {"values"});
-        paramNames.put("removeMatching", new String[] {"eval"});
-        paramNames.put("removeNotMatching", new String[] {"eval"});
-        paramNames.put("removeNullOrNotMatching", new String[] {"eval"});
-        paramNames.put("removeNotNullNotMatching", new String[] {"eval"});
-        paramNames.put("removeNotNullMatching", new String[] {"eval"});
-        paramNames.put("removeNullOrMatching", new String[] {"eval"});
-        paramNames.put("removeIndexesNot", new String[] {"indices"});
-        paramNames.put("removeKeys", new String[] {"keys"});
-        paramNames.put("removeKeysNot", new String[] {"keys"});
+        paramNames.put("removeAllIndexes", new String[] {"indices"});
+        paramNames.put("removeAllEqual", new String[] {"values"});
+        paramNames.put("removeAllTrue", new String[] {"eval"});
+        paramNames.put("removeAllFalse", new String[] {"eval"});
+        paramNames.put("removeAllNullOrFalse", new String[] {"eval"});
+        paramNames.put("removeAllNotNullAndFalse", new String[] {"eval"});
+        paramNames.put("removeAllNotNullAndTrue", new String[] {"eval"});
+        paramNames.put("removeAllNullOrTrue", new String[] {"eval"});
+        paramNames.put("removeAllIndexesNot", new String[] {"indices"});
+        paramNames.put("removeAllKeys", new String[] {"keys"});
+        paramNames.put("removeAllKeysNot", new String[] {"keys"});
         paramNames.put("convert", new String[] {"converter"});
         paramNames.put("eval", new String[] {"eval"});
         paramNames.put("exec", new String[] {"function"});
@@ -89,11 +91,11 @@ public class ImplFile {
         paramNames.put("forEach", new String[] {"elementType"});
 
         varargsPositions = new HashSet<String>();
-        varargsPositions.add("removeIndexes$0");
-        varargsPositions.add("removeIndexesNot$0");
-        varargsPositions.add("removeEquals$0");
-        varargsPositions.add("removeKeys$0");
-        varargsPositions.add("removeKeysNot$0");
+        varargsPositions.add("removeAllIndexes$0");
+        varargsPositions.add("removeAllIndexesNot$0");
+        varargsPositions.add("removeAllEqual$0");
+        varargsPositions.add("removeAllKeys$0");
+        varargsPositions.add("removeAllKeysNot$0");
         varargsPositions.add("add$0");
         varargsPositions.add("insert$1");
         varargsPositions.add("ifIndex$0");
@@ -102,25 +104,13 @@ public class ImplFile {
         varargsPositions.add("ifKeyNotEquals$0");
 
         arrayTypeRequired = new HashSet<String>();
-// Commented out when changing the use of the "elementType" variable        
-//        arrayTypeRequired.add("Level0ArrayOperator");
-//        arrayTypeRequired.add("Level0ArrayElements");
-//        arrayTypeRequired.add("Level0ArraySelected");
         arrayTypeRequired.add("Level1ArrayOperator");
         arrayTypeRequired.add("Level1ArrayElements");
         arrayTypeRequired.add("Level1ArraySelected");
-//        arrayTypeRequired.add("Level0ArrayOfArray");
         arrayTypeRequired.add("Level1ArrayOfArray");
         arrayTypeRequired.add("Level2ArrayOfArray");
-//        arrayTypeRequired.add("Level0ListOfArray");
-//        arrayTypeRequired.add("Level1ListOfArray");
         arrayTypeRequired.add("Level2ListOfArray");
-//        arrayTypeRequired.add("Level0MapOfArray");
-//        arrayTypeRequired.add("Level1MapOfArray");
-//        arrayTypeRequired.add("Level2MapOfArray");
         arrayTypeRequired.add("Level3MapOfArray");
-//        arrayTypeRequired.add("Level0SetOfArray");
-//        arrayTypeRequired.add("Level1SetOfArray");
         arrayTypeRequired.add("Level2SetOfArray");
 
         currentLevelsByPrefix = new HashMap<String, LevelStructure>();
@@ -519,6 +509,8 @@ public class ImplFile {
             this.imports.add(org.javaruntype.type.Type.class.getName());
         }
         this.imports.add(Target.class.getName());
+        this.imports.add(NormalizationUtils.class.getName());
+        this.imports.add(Normalization.class.getName().replace("$", "."));
         switch(getCurrentLevelStructure()) {
             case ARRAY : this.imports.add(ArrayFuncs.class.getName()); break; 
             case LIST : this.imports.add(ListFuncs.class.getName()); break; 
