@@ -276,6 +276,10 @@ public class MethodImplementor {
                 "public (.*?) getAsList\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1 getAsList() {\n        return endIf().buildList().get();\n    }");
         
+        methods.put(
+                "public (.*?)<(.*?)> replaceBy\\(final (.*?) replacement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> replaceBy(final $3 replacement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().replaceBy(replacement));\n    }");
+
     }
     
     

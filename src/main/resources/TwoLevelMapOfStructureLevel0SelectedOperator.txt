@@ -32,6 +32,7 @@ import org.op4j.operators.qualities.NavigableMapOperator;
 import org.op4j.operators.qualities.SelectedOperator;
 import org.op4j.operators.qualities.SortableOperator;
 import org.op4j.operators.qualities.UniqOperator;
+import org.op4j.operators.qualities.ReplaceableOperator;
 /**
  * 
  * @since 1.0
@@ -45,6 +46,7 @@ public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARG
 		        SortableOperator<%%TARGETELEMENTINLEVEL%%>,
 		        ModifiableMapOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUEINLEVEL%%>,
                 Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>,
+                ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
                 SelectedOperator<%%TARGETTYPEINLEVEL%%> {
 
 
@@ -71,6 +73,8 @@ public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARG
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
     
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
+
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceBy(final %%TARGETTYPEINLEVEL%% replacement);
 
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     

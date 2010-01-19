@@ -29,6 +29,7 @@ import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOpe
 import org.op4j.operators.qualities.NavigatingMapEntryOperator;
 import org.op4j.operators.qualities.SelectableOperator;
 import org.op4j.operators.qualities.UniqOperator;
+import org.op4j.operators.qualities.ReplaceableOperator;
 
 
 /**
@@ -41,7 +42,8 @@ import org.op4j.operators.qualities.UniqOperator;
 public interface Level3%%STRUCTURE%%ElementsSelectedEntriesSelectedKeyOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>
         extends UniqOperator<%%TARGETTYPE%%>,
                 NavigatingMapEntryOperator,
-                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETTYPEINLEVEL%%>, 
+                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
                 SelectableOperator<%%TARGETTYPEINLEVEL%%> {
 
 
@@ -59,6 +61,8 @@ public interface Level3%%STRUCTURE%%ElementsSelectedEntriesSelectedKeyOperator<%
 
 		    
     public Level2%%STRUCTURE%%ElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endOn();
+
+    public Level3%%STRUCTURE%%ElementsSelectedEntriesSelectedKeyOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceBy(final %%TARGETTYPEINLEVEL%% replacement);
 
     public Level3%%STRUCTURE%%ElementsSelectedEntriesSelectedKeyOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     

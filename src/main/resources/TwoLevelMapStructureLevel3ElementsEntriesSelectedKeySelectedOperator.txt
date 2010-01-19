@@ -28,6 +28,7 @@ import org.op4j.functions.evaluators.IEvaluator;
 import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
 import org.op4j.operators.qualities.SelectedOperator;
 import org.op4j.operators.qualities.UniqOperator;
+import org.op4j.operators.qualities.ReplaceableOperator;
 
 
 /**
@@ -39,7 +40,8 @@ import org.op4j.operators.qualities.UniqOperator;
  */
 public interface Level3%%STRUCTURE%%ElementsEntriesSelectedKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>
         extends UniqOperator<%%TARGETTYPE%%>,
-                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETTYPEINLEVEL%%>, 
+                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
                 SelectedOperator<%%TARGETTYPEINLEVEL%%> {
 
 
@@ -47,6 +49,8 @@ public interface Level3%%STRUCTURE%%ElementsEntriesSelectedKeySelectedOperator<%
     public Level3%%STRUCTURE%%ElementsEntriesSelectedKeyOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endIf();
 
     
+    public Level3%%STRUCTURE%%ElementsEntriesSelectedKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceBy(final %%TARGETTYPEINLEVEL%% replacement);
+
     public Level3%%STRUCTURE%%ElementsEntriesSelectedKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
     public Level3%%STRUCTURE%%ElementsEntriesSelectedKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);

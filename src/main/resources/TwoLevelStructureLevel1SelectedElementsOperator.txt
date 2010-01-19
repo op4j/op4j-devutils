@@ -34,6 +34,7 @@ import org.op4j.operators.qualities.NavigatingCollectionOperator;
 import org.op4j.operators.qualities.SelectableOperator;
 import org.op4j.operators.qualities.SortableOperator;
 import org.op4j.operators.qualities.UniqOperator;
+import org.op4j.operators.qualities.ReplaceableOperator;
 /**
  * 
  * @since 1.0
@@ -47,6 +48,7 @@ public interface Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%>
     	        DistinguishableOperator,
 		        SortableOperator<%%TARGETELEMENTINLEVEL%%>,
                 Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>,
+                ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
                 NavigatingCollectionOperator<%%TARGETTYPEINLEVEL%%>,
                 ModifiableCollectionOperator<%%TARGETELEMENTINLEVEL%%>,
                 SelectableOperator<%%TARGETTYPEINLEVEL%%> {
@@ -94,6 +96,8 @@ public interface Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%>
     public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
     
     public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
+
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> replaceBy(final %%TARGETTYPEINLEVEL%% replacement);
 
     public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
