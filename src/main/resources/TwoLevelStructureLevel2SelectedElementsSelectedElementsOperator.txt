@@ -66,7 +66,7 @@ public interface Level2%%STRUCTURE%%SelectedElementsSelectedElementsOperator<%%T
     
     public Level2%%STRUCTURE%%SelectedElementsSelectedElementsOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
 
-    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsOperator<%%TARGETELEMENT%%> replaceBy(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedElementsOperator<%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
     public Level2%%STRUCTURE%%SelectedElementsSelectedElementsOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
 

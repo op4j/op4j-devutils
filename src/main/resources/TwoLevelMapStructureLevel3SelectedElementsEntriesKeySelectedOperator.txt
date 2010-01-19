@@ -49,7 +49,7 @@ public interface Level3%%STRUCTURE%%SelectedElementsEntriesKeySelectedOperator<%
     public Level3%%STRUCTURE%%SelectedElementsEntriesKeyOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endIf();
 
     
-    public Level3%%STRUCTURE%%SelectedElementsEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceBy(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level3%%STRUCTURE%%SelectedElementsEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
     public Level3%%STRUCTURE%%SelectedElementsEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     

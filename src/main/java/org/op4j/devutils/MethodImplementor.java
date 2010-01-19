@@ -111,22 +111,38 @@ public class MethodImplementor {
         methods.put(
                 "public (.*?)<(.*?)> endOn\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> endOn() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().endIterate(Structure.MAP_ENTRY, null));\n    }");
+
+        methods.put(
+                "public (.*?)<(.*?)> add\\(final T\\[\\] newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> add(final T[] newElement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeArray(newElement))));\n    }");
+        methods.put(
+                "public (.*?)<(.*?)> add\\(final List<T> newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> add(final List<T> newElement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeList(newElement))));\n    }");
+        methods.put(
+                "public (.*?)<(.*?)> add\\(final Map<K,V> newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> add(final Map<K,V> newElement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeMap(newElement))));\n    }");
+        methods.put(
+                "public (.*?)<(.*?)> add\\(final Set<T> newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> add(final Set<T> newElement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeSet(newElement))));\n    }");
+        methods.put(
+                "public (.*?)<(.*?)> add\\(final (.*?) newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> add(final $3 newElement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(newElement)));\n    }");
         
         methods.put(
-                "public (.*?)<(.*?)> add\\(final T\\[\\]\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> add(final T[]... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeArrays(newElements))));\n    }");
+                "public (.*?)<(.*?)> addAll\\(final T\\[\\]\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> addAll(final T[]... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeArrays(newElements))));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> add\\(final List<T>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> add(final List<T>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeLists(newElements))));\n    }");
+                "public (.*?)<(.*?)> addAll\\(final List<T>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> addAll(final List<T>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeLists(newElements))));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> add\\(final Map<K,V>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> add(final Map<K,V>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeMaps(newElements))));\n    }");
+                "public (.*?)<(.*?)> addAll\\(final Map<K,V>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> addAll(final Map<K,V>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeMaps(newElements))));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> add\\(final Set<T>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> add(final Set<T>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeSets(newElements))));\n    }");
+                "public (.*?)<(.*?)> addAll\\(final Set<T>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> addAll(final Set<T>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(NormalizationUtils.normalizeSets(newElements))));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> add\\(final (.*?)\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> add(final $3... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(newElements)));\n    }");
+                "public (.*?)<(.*?)> addAll\\(final (.*?)\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> addAll(final $3... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Add<%%CURRENTLEVELELEMENT%%>(newElements)));\n    }");
         
         methods.put(
                 "public (.*?)<(.*?)> addAll\\(final Collection<T\\[\\]> collection\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
@@ -144,21 +160,39 @@ public class MethodImplementor {
                 "public (.*?)<(.*?)> addAll\\(final Collection<(.*?)> collection\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> addAll(final Collection<$3> collection) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.AddAll<%%CURRENTLEVELELEMENT%%>(collection)));\n    }");
         
+        
         methods.put(
-                "public (.*?)<(.*?)> insert\\(final int position, final T\\[\\]\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> insert(final int position, final T[]... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeArrays(newElements))));\n    }");
+                "public (.*?)<(.*?)> insert\\(final int position, final T\\[\\] newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> insert(final int position, final T[] newElement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeArray(newElement))));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> insert\\(final int position, final List<T>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> insert(final int position, final List<T>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeLists(newElements))));\n    }");
+                "public (.*?)<(.*?)> insert\\(final int position, final List<T> newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> insert(final int position, final List<T> newElement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeList(newElement))));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> insert\\(final int position, final Map<K,V>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> insert(final int position, final Map<K,V>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeMaps(newElements))));\n    }");
+                "public (.*?)<(.*?)> insert\\(final int position, final Map<K,V> newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> insert(final int position, final Map<K,V> newElement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeMap(newElement))));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> insert\\(final int position, final Set<T>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> insert(final int position, final Set<T>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeSets(newElements))));\n    }");
+                "public (.*?)<(.*?)> insert\\(final int position, final Set<T> newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> insert(final int position, final Set<T> newElement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeSet(newElement))));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> insert\\(final int position, final (.*?)\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> insert(final int position, final $3... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, newElements)));\n    }");
+                "public (.*?)<(.*?)> insert\\(final int position, final (.*?) newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> insert(final int position, final $3 newElement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, newElement)));\n    }");
+
+        
+        methods.put(
+                "public (.*?)<(.*?)> insertAll\\(final int position, final T\\[\\]\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> insertAll(final int position, final T[]... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeArrays(newElements))));\n    }");
+        methods.put(
+                "public (.*?)<(.*?)> insertAll\\(final int position, final List<T>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> insertAll(final int position, final List<T>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeLists(newElements))));\n    }");
+        methods.put(
+                "public (.*?)<(.*?)> insertAll\\(final int position, final Map<K,V>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> insertAll(final int position, final Map<K,V>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeMaps(newElements))));\n    }");
+        methods.put(
+                "public (.*?)<(.*?)> insertAll\\(final int position, final Set<T>\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> insertAll(final int position, final Set<T>... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, NormalizationUtils.normalizeSets(newElements))));\n    }");
+        methods.put(
+                "public (.*?)<(.*?)> insertAll\\(final int position, final (.*?)\\.\\.\\. newElements\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> insertAll(final int position, final $3... newElements) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Insert<%%CURRENTLEVELELEMENT%%>(position, newElements)));\n    }");
 
         
         methods.put(
@@ -277,8 +311,8 @@ public class MethodImplementor {
                 "public $1 getAsList() {\n        return endIf().buildList().get();\n    }");
         
         methods.put(
-                "public (.*?)<(.*?)> replaceBy\\(final (.*?) replacement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> replaceBy(final $3 replacement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().replaceBy(replacement));\n    }");
+                "public (.*?)<(.*?)> replaceWith\\(final (.*?) replacement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> replaceWith(final $3 replacement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().replaceWith(replacement));\n    }");
 
     }
     

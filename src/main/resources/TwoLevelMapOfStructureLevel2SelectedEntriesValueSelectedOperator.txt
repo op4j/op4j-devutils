@@ -65,8 +65,10 @@ public interface Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGE
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> sort(final Comparator<? super %%TARGETELEMENTINLEVEL%%> comparator);
     
         
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> add(final %%TARGETELEMENTVALUE%%... newElements);
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> insert(final int position, final %%TARGETELEMENTVALUE%%... newElements);
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> add(final %%TARGETELEMENTVALUE%% newElement);
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> addAll(final %%TARGETELEMENTVALUE%%... newElements);
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> insert(final int position, final %%TARGETELEMENTVALUE%% newElement);
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> insertAll(final int position, final %%TARGETELEMENTVALUE%%... newElements);
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> addAll(final Collection<%%TARGETELEMENTVALUE%%> collection);
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllIndexes(final int... indices);
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllEqual(final %%TARGETELEMENTVALUE%%... values);
@@ -84,7 +86,7 @@ public interface Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGE
     
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
 
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceBy(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     

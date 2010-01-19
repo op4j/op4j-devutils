@@ -65,11 +65,13 @@ public class ImplFile {
         paramNames.put("ifNotNullAndTrue", new String[] {"eval"});
         paramNames.put("ifKeyEquals", new String[] {"keys"});
         paramNames.put("ifKeyNotEquals", new String[] {"keys"});
-        paramNames.put("add", new String[] {"newElements"});
-        paramNames.put("insert", new String[] {"position","newElements"});
+        paramNames.put("add", new String[] {"newElement"});
+        paramNames.put("addAll", new String[] {"newElements"});
+        paramNames.put("insert", new String[] {"position","newElement"});
+        paramNames.put("insertAll", new String[] {"position","newElements"});
         paramNames.put("insert%3", new String[] {"position","newKey","newValue"});
-        paramNames.put("insertAll", new String[] {"position","map"});
-        paramNames.put("addAll", new String[] {"collection"});
+        paramNames.put("insertAll%int,Map", new String[] {"position","map"});
+        paramNames.put("addAll%Collection", new String[] {"collection"});
         paramNames.put("removeAllIndexes", new String[] {"indices"});
         paramNames.put("removeAllEqual", new String[] {"values"});
         paramNames.put("removeAllTrue", new String[] {"eval"});
@@ -89,7 +91,7 @@ public class ImplFile {
         paramNames.put("putAll", new String[] {"map"});
         paramNames.put("getAsArray", new String[] {"type"});
         paramNames.put("forEach", new String[] {"elementType"});
-        paramNames.put("replaceBy", new String[] {"replacement"});
+        paramNames.put("replaceWith", new String[] {"replacement"});
 
         varargsPositions = new HashSet<String>();
         varargsPositions.add("removeAllIndexes$0");
@@ -97,8 +99,8 @@ public class ImplFile {
         varargsPositions.add("removeAllEqual$0");
         varargsPositions.add("removeAllKeys$0");
         varargsPositions.add("removeAllKeysNot$0");
-        varargsPositions.add("add$0");
-        varargsPositions.add("insert$1");
+        varargsPositions.add("addAll$0");
+        varargsPositions.add("insertAll$1");
         varargsPositions.add("ifIndex$0");
         varargsPositions.add("ifIndexNot$0");
         varargsPositions.add("ifKeyEquals$0");
@@ -460,28 +462,29 @@ public class ImplFile {
             
             final StringBuilder parameterStrBuilder = new StringBuilder();
             parameterStrBuilder.append("(");
-            
-            String[] paramNamesForMethod = paramNames.get(methodName + "%" + parameterTypes.length);
-            if (paramNamesForMethod == null) {
-                paramNamesForMethod = paramNames.get(methodName);
+
+            List<String> normalizedParamTypes = new ArrayList<String>();
+            List<String> normalizedRawParamTypes = new ArrayList<String>();
+            for (int j = 0; j < parameterTypes.length; j++) {
+                normalizedParamTypes.add(getNormalizedParamType(parameterTypes[j], methodName, j));
+                normalizedRawParamTypes.add(StringUtils.substringBefore(getNormalizedParamType(parameterTypes[j], methodName, j),"<"));
             }
             
-            for (int j = 0; j < parameterTypes.length; j++) {
+            String[] paramNamesForMethod = paramNames.get(methodName + "%" + StringUtils.join(normalizedRawParamTypes, ","));
+            if (paramNamesForMethod == null) {
+                paramNamesForMethod = paramNames.get(methodName + "%" + parameterTypes.length);
+                if (paramNamesForMethod == null) {
+                    paramNamesForMethod = paramNames.get(methodName);
+                }
+            }
+            
+            for (int j = 0; j < normalizedParamTypes.size(); j++) {
                 
                 if (j > 0) {
                     parameterStrBuilder.append(", ");
                 }
-                
-                final TypeRep paramTypeRep = new TypeRep(parameterTypes[j]);
-                
-                String paramType = paramTypeRep.getStringRep();
-                if (paramType.endsWith("[]")) {
-                    if (varargsPositions.contains(methodName + "$" + j)) {
-                        paramType = StringUtils.substringBeforeLast(paramType,"[]") + "...";
-                    }
-                }
                         
-                parameterStrBuilder.append("final " + paramType + " ");
+                parameterStrBuilder.append("final " + normalizedParamTypes.get(j) + " ");
                 
                 if (paramNamesForMethod == null) {
                     throw new RuntimeException("No name for parameter " + j + " of method " + methodName + " in interface " + this.interfaceTypeRep.getStringRep());
@@ -500,6 +503,20 @@ public class ImplFile {
             
         }
         
+    }
+
+    
+    private String getNormalizedParamType(Type parameterType, String methodName, int index) {
+        final TypeRep paramTypeRep = new TypeRep(parameterType);
+        
+        String paramType = paramTypeRep.getStringRep();
+        if (paramType.endsWith("[]")) {
+            if (varargsPositions.contains(methodName + "$" + index)) {
+                paramType = StringUtils.substringBeforeLast(paramType,"[]") + "...";
+            }
+        }
+        
+        return paramType;
     }
     
     

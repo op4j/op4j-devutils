@@ -65,8 +65,10 @@ public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> sort(final Comparator<? super %%TARGETELEMENTINLEVEL%%> comparator);
 
 
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> add(final %%TARGETELEMENTINLEVEL%%... newElements);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> insert(final int position, final %%TARGETELEMENTINLEVEL%%... newElements);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> add(final %%TARGETELEMENTINLEVEL%% newElement);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> addAll(final %%TARGETELEMENTINLEVEL%%... newElements);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> insert(final int position, final %%TARGETELEMENTINLEVEL%% newElement);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> insertAll(final int position, final %%TARGETELEMENTINLEVEL%%... newElements);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> addAll(final Collection<%%TARGETELEMENTINLEVEL%%> collection);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllIndexes(final int... indices);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllEqual(final %%TARGETELEMENTINLEVEL%%... values);
@@ -86,7 +88,7 @@ public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>
     
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
 
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> replaceBy(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
 
