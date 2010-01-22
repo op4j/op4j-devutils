@@ -893,7 +893,7 @@ public class SelectedInterfaceFileCreator {
         Arrays.asList(
                 new String[] {
                         "import org\\.op4j\\.operators\\.qualities\\.DistinguishableOperator;\\s*\\n\\s*",
-                        "DistinguishableOperator,\\s*\\n\\s*",
+                        "DistinguishableOperator<I>,\\s*\\n\\s*",
                         "public (.*?) distinct\\(\\);\\s*\\n\\s*"
                 });
     

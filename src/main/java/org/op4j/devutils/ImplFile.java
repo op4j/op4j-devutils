@@ -22,6 +22,7 @@ import org.op4j.functions.ArrayFuncs;
 import org.op4j.functions.ListFuncs;
 import org.op4j.functions.MapFuncs;
 import org.op4j.functions.SetFuncs;
+import org.op4j.operations.Operation;
 import org.op4j.operators.impl.AbstractOperatorImpl;
 import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.target.Target;
@@ -428,6 +429,7 @@ public class ImplFile {
         
         try {
             interfaceMethods.add(interfaceClass.getMethod("get"));
+            interfaceMethods.add(interfaceClass.getMethod("createOperation"));
         } catch (NoSuchMethodException e) {
             // nothing to do
         }
@@ -437,10 +439,12 @@ public class ImplFile {
             final String methodName = interfaceMethod.getName();
             this.methodNames.add(methodName);
             
-            final TypeRep returnType =
+            final String returnTypeStr =
                 (methodName.equals("get")? 
-                        new TypeRep(getReturnType) :
-                        new TypeRep(interfaceMethod.getGenericReturnType()));
+                        new TypeRep(getReturnType).getStringRep() :
+                        (methodName.equals("createOperation")?
+                                "Operation<" + new TypeRep(getReturnType).getStringRep() + ",I>" :
+                                new TypeRep(interfaceMethod.getGenericReturnType()).getStringRep()));
 
             
             final Type[] parameterTypes = interfaceMethod.getGenericParameterTypes();
@@ -495,7 +499,7 @@ public class ImplFile {
             parameterStrBuilder.append(")");
             
             final StringBuilder strBuilder = new StringBuilder();
-            strBuilder.append("    public " + returnType.getStringRep() + " " + methodName + parameterStrBuilder.toString() + " {\n");
+            strBuilder.append("    public " + returnTypeStr + " " + methodName + parameterStrBuilder.toString() + " {\n");
             strBuilder.append("        return null;\n");
             strBuilder.append("    }\n");
             
@@ -527,6 +531,7 @@ public class ImplFile {
             this.imports.add(org.javaruntype.type.Type.class.getName());
         }
         this.imports.add(Target.class.getName());
+        this.imports.add(Operation.class.getName());
         this.imports.add(NormalizationUtils.class.getName());
         this.imports.add(Normalization.class.getName().replace("$", "."));
         switch(getCurrentLevelStructure()) {

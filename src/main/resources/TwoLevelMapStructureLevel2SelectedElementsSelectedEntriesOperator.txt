@@ -40,34 +40,34 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> 
-		extends UniqOperator<%%TARGETTYPE%%>,
-		        NavigableMapEntryOperator,
-                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>,
-                ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
-                SelectableMapEntryOperator<%%TARGETELEMENTKEY%%, %%TARGETELEMENTVALUE%%>,
-                NavigatingMapOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> {
+public interface Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> 
+		extends UniqOperator<%%TARGETTYPE%%,I>,
+		        NavigableMapEntryOperator<I>,
+                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I>,
+                ReplaceableOperator<%%TARGETTYPEINLEVEL%%,I>,
+                SelectableMapEntryOperator<%%TARGETELEMENTKEY%%, %%TARGETELEMENTVALUE%%,I>,
+                NavigatingMapOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> {
 
 
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indices);
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifTrue(final IEvaluator<Boolean, ? super Map.Entry<%%TARGETELEMENTKEY%%, %%TARGETELEMENTVALUE%%>> eval);
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifFalse(final IEvaluator<Boolean, ? super Map.Entry<%%TARGETELEMENTKEY%%, %%TARGETELEMENTVALUE%%>> eval);
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indices);
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifKeyEquals(final %%TARGETELEMENTKEY%%... keys);
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifKeyNotEquals(final %%TARGETELEMENTKEY%%... keys);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifIndex(final int... indices);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifTrue(final IEvaluator<Boolean, ? super Map.Entry<%%TARGETELEMENTKEY%%, %%TARGETELEMENTVALUE%%>> eval);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifFalse(final IEvaluator<Boolean, ? super Map.Entry<%%TARGETELEMENTKEY%%, %%TARGETELEMENTVALUE%%>> eval);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifIndexNot(final int... indices);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifKeyEquals(final %%TARGETELEMENTKEY%%... keys);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifKeyNotEquals(final %%TARGETELEMENTKEY%%... keys);
 		    
     
-    public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeyOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> onKey();
-    public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> onValue();
+    public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeyOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> onKey();
+    public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> onValue();
     
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endFor();
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> endFor();
     
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
     
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
                                     
 }
