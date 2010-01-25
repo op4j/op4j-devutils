@@ -103,14 +103,14 @@ public class MethodImplementor {
                 "public $1<$2> forEachEntry() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate());\n    }");
         methods.put(
                 "public (.*?)<(.*?)> onKey\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> onKey() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate().selectIndex(0));\n    }");
+                "public $1<$2> onKey() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().onKey());\n    }");
         methods.put(
                 "public (.*?)<(.*?)> onValue\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> onValue() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate().selectIndex(1));\n    }");
+                "public $1<$2> onValue() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().onValue());\n    }");
         
         methods.put(
                 "public (.*?)<(.*?)> endOn\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> endOn() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().endIterate(Structure.MAP_ENTRY, null));\n    }");
+                "public $1<$2> endOn() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().endOn());\n    }");
 
         methods.put(
                 "public (.*?)<(.*?)> add\\(final T\\[\\] newElement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
