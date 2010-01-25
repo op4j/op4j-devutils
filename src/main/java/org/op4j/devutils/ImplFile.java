@@ -22,7 +22,6 @@ import org.op4j.functions.ArrayFuncs;
 import org.op4j.functions.ListFuncs;
 import org.op4j.functions.MapFuncs;
 import org.op4j.functions.SetFuncs;
-import org.op4j.operations.Operation;
 import org.op4j.operators.impl.AbstractOperatorImpl;
 import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.target.Target;
@@ -531,7 +530,6 @@ public class ImplFile {
             this.imports.add(org.javaruntype.type.Type.class.getName());
         }
         this.imports.add(Target.class.getName());
-        this.imports.add(Operation.class.getName());
         this.imports.add(NormalizationUtils.class.getName());
         this.imports.add(Normalization.class.getName().replace("$", "."));
         switch(getCurrentLevelStructure()) {

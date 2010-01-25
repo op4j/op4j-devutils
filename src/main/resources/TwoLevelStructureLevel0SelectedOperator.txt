@@ -41,56 +41,56 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I>
-        extends UniqOperator<%%TARGETTYPE%%,I>,
-                NavigableCollectionOperator<%%TARGETELEMENTINLEVEL%%,I>,
-                DistinguishableOperator<I>,
-                SortableOperator<%%TARGETELEMENTINLEVEL%%,I>,
-                ModifiableCollectionOperator<%%TARGETELEMENTINLEVEL%%,I>,
-                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I>,
-                ReplaceableOperator<%%TARGETTYPEINLEVEL%%,I>,
-                SelectedOperator<%%TARGETTYPEINLEVEL%%,I> {
+public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>
+        extends UniqOperator<%%TARGETTYPE%%>,
+                NavigableCollectionOperator<%%TARGETELEMENTINLEVEL%%>,
+                DistinguishableOperator,
+                SortableOperator<%%TARGETELEMENTINLEVEL%%>,
+                ModifiableCollectionOperator<%%TARGETELEMENTINLEVEL%%>,
+                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>,
+                ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
+                SelectedOperator<%%TARGETTYPEINLEVEL%%> {
 
 
 
-    public Level0%%STRUCTURE%%Operator<%%TARGETELEMENT%%,I> endIf();
+    public Level0%%STRUCTURE%%Operator<%%TARGETELEMENT%%> endIf();
 
 
 
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%,I> forEach(%%FOREACHELEMENTTYPE%%);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> forEach(%%FOREACHELEMENTTYPE%%);
 
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> distinct();
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> distinct();
     
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> sort();
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> sort(final Comparator<? super %%TARGETELEMENTINLEVEL%%> comparator);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> sort();
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> sort(final Comparator<? super %%TARGETELEMENTINLEVEL%%> comparator);
 
 
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> add(final %%TARGETELEMENTINLEVEL%% newElement);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> addAll(final %%TARGETELEMENTINLEVEL%%... newElements);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> insert(final int position, final %%TARGETELEMENTINLEVEL%% newElement);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> insertAll(final int position, final %%TARGETELEMENTINLEVEL%%... newElements);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> addAll(final Collection<%%TARGETELEMENTINLEVEL%%> collection);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> removeAllIndexes(final int... indices);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> removeAllEqual(final %%TARGETELEMENTINLEVEL%%... values);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> removeAllTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> removeAllFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> removeAllNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> removeAllNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> removeAllNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> removeAllNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> removeAllIndexesNot(final int... indices);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> removeAllNull();
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> add(final %%TARGETELEMENTINLEVEL%% newElement);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> addAll(final %%TARGETELEMENTINLEVEL%%... newElements);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> insert(final int position, final %%TARGETELEMENTINLEVEL%% newElement);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> insertAll(final int position, final %%TARGETELEMENTINLEVEL%%... newElements);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> addAll(final Collection<%%TARGETELEMENTINLEVEL%%> collection);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllIndexes(final int... indices);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllEqual(final %%TARGETELEMENTINLEVEL%%... values);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllIndexesNot(final int... indices);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllNull();
 
 
 
     
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
     
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
 
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
 
     
 }

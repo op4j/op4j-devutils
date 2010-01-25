@@ -38,24 +38,24 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I>
-        extends UniqOperator<%%TARGETTYPE%%,I>,
-        		Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETTYPEINLEVEL%%,I>,
-                ReplaceableOperator<%%TARGETTYPEINLEVEL%%,I>,
-                SelectedOperator<%%TARGETTYPEINLEVEL%%,I> {
+public interface Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>
+        extends UniqOperator<%%TARGETTYPE%%>,
+        		Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
+                SelectedOperator<%%TARGETTYPEINLEVEL%%> {
 
 
 
-    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> endIf();
+    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endIf();
 
     
-    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
+    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
     
-    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
 
-    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
         
 }

@@ -39,36 +39,36 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I>
-        extends UniqOperator<%%TARGETTYPE%%,I>,
-                NavigatingCollectionOperator<%%TARGETELEMENTVALUE%%,I>,
-        		Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETTYPEINLEVEL%%,I>,
-                ReplaceableOperator<%%TARGETTYPEINLEVEL%%,I>,
-                SelectableOperator<%%TARGETTYPEINLEVEL%%,I> {
+public interface Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>
+        extends UniqOperator<%%TARGETTYPE%%>,
+                NavigatingCollectionOperator<%%TARGETELEMENTVALUE%%>,
+        		Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
+                SelectableOperator<%%TARGETTYPEINLEVEL%%> {
 
 
 
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifIndex(final int... indices);
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifNull();
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifIndexNot(final int... indices);
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifNotNull();
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> ifNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indices);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNull();
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indices);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNull();
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
 
     
-    public Level2%%STRUCTURE%%SelectedEntriesSelectedValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> endFor();
+    public Level2%%STRUCTURE%%SelectedEntriesSelectedValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endFor();
     
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
     
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
 
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level3%%STRUCTURE%%SelectedEntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
         
 }

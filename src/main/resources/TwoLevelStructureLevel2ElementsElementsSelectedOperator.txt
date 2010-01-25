@@ -37,24 +37,24 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level2%%STRUCTURE%%ElementsElementsSelectedOperator<%%TARGETELEMENT%%,I>
-        extends UniqOperator<%%TARGETTYPE%%,I>,
-        		Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I>,
-                ReplaceableOperator<%%TARGETTYPEINLEVEL%%,I>,
-                SelectedOperator<%%TARGETTYPEINLEVEL%%,I> {
+public interface Level2%%STRUCTURE%%ElementsElementsSelectedOperator<%%TARGETELEMENT%%>
+        extends UniqOperator<%%TARGETTYPE%%>,
+        		Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>,
+                ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
+                SelectedOperator<%%TARGETTYPEINLEVEL%%> {
 
 
 
-    public Level2%%STRUCTURE%%ElementsElementsOperator<%%TARGETELEMENT%%,I> endIf();
+    public Level2%%STRUCTURE%%ElementsElementsOperator<%%TARGETELEMENT%%> endIf();
 
     
-    public Level2%%STRUCTURE%%ElementsElementsSelectedOperator<%%TARGETELEMENT%%,I> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
+    public Level2%%STRUCTURE%%ElementsElementsSelectedOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
     
-    public Level2%%STRUCTURE%%ElementsElementsSelectedOperator<%%TARGETELEMENT%%,I> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level2%%STRUCTURE%%ElementsElementsSelectedOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
 
-    public Level2%%STRUCTURE%%ElementsElementsSelectedOperator<%%TARGETELEMENT%%,I> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level2%%STRUCTURE%%ElementsElementsSelectedOperator<%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level2%%STRUCTURE%%ElementsElementsSelectedOperator<%%TARGETELEMENT%%,I> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level2%%STRUCTURE%%ElementsElementsSelectedOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
 
     
 }

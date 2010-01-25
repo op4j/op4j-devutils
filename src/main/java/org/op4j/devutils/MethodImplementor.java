@@ -387,16 +387,6 @@ public class MethodImplementor {
         final String delegator = (hasEndIf? "endIf()" : (hasEndOn? "endOn()" : "endFor()"));
         return "public $1 get() {\n        return " + delegator + ".get();\n    }"; 
     }
-
-    
-    private static String getCreateOperationDeclaration() {
-        return "public (.*?) createOperation\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}";
-    }
-    
-    private static String getCreateOperationImpl(final boolean hasEndIf, final boolean hasEndOn) {
-        final String delegator = (hasEndIf? "endIf()" : (hasEndOn? "endOn()" : "endFor()"));
-        return "public $1 createOperation() {\n        return " + delegator + ".createOperation();\n    }"; 
-    }
     
 
     
@@ -474,7 +464,6 @@ public class MethodImplementor {
             newFileContents = newFileContents.replaceAll(implementation.getKey(), impl);
         }
         newFileContents = newFileContents.replaceAll(getGetDeclaration(), getGetImpl(hasEndIf, hasEndOn));
-        newFileContents = newFileContents.replaceAll(getCreateOperationDeclaration(), getCreateOperationImpl(hasEndIf, hasEndOn));
         newFileContents = newFileContents.replaceAll(getEndForDeclaration(), getEndForImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", ""));
         return newFileContents;
     }
@@ -494,7 +483,6 @@ public class MethodImplementor {
             newFileContents = newFileContents.replaceAll(implementation.getKey(), impl);
         }
         newFileContents = newFileContents.replaceAll(getGetDeclaration(), getGetImpl(hasEndIf, hasEndOn));
-        newFileContents = newFileContents.replaceAll(getCreateOperationDeclaration(), getCreateOperationImpl(hasEndIf, hasEndOn));
         newFileContents = newFileContents.replaceAll(getEndForDeclaration(), getEndForImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", "this.type, "));
         return newFileContents;
     }

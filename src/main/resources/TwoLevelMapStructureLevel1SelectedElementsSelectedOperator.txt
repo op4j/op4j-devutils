@@ -40,47 +40,47 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I>
-        extends UniqOperator<%%TARGETTYPE%%,I>,
-                NavigableMapOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I>,
-		        SortableOperator<%%TARGETELEMENTINLEVEL%%,I>,
-                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I>,
-                ReplaceableOperator<%%TARGETTYPEINLEVEL%%,I>,
-                SelectedOperator<%%TARGETTYPEINLEVEL%%,I>,
-                ModifiableMapOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> {
+public interface Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>
+        extends UniqOperator<%%TARGETTYPE%%>,
+                NavigableMapOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>,
+		        SortableOperator<%%TARGETELEMENTINLEVEL%%>,
+                Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>,
+                ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
+                SelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                ModifiableMapOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> {
 
 
 
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> endIf();
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endIf();
 
 
     
-    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> forEachEntry();
+    public Level2%%STRUCTURE%%SelectedElementsSelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> forEachEntry();
     
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> sort();
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> sort(final Comparator<? super %%TARGETELEMENTINLEVEL%%> comparator);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> sort();
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> sort(final Comparator<? super %%TARGETELEMENTINLEVEL%%> comparator);
     
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> put(final %%TARGETELEMENTKEY%% newKey, final %%TARGETELEMENTVALUE%% newValue);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> insert(final int position, final %%TARGETELEMENTKEY%% newKey, final %%TARGETELEMENTVALUE%% newValue);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> putAll(final Map<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> map);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> insertAll(final int position, final Map<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> map);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> removeAllKeys(final %%TARGETELEMENTKEY%%... keys);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> removeAllTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> removeAllFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> removeAllKeysNot(final %%TARGETELEMENTKEY%%... keys);
-    
-    
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> put(final %%TARGETELEMENTKEY%% newKey, final %%TARGETELEMENTVALUE%% newValue);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> insert(final int position, final %%TARGETELEMENTKEY%% newKey, final %%TARGETELEMENTVALUE%% newValue);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> putAll(final Map<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> map);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> insertAll(final int position, final Map<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> map);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllKeys(final %%TARGETELEMENTKEY%%... keys);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllKeysNot(final %%TARGETELEMENTKEY%%... keys);
     
     
     
     
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
     
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
+    
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
+    
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
 
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
     
 }
