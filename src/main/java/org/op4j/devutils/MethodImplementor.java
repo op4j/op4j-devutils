@@ -305,7 +305,7 @@ public class MethodImplementor {
 
         methods.put(
                 "public (.*?) getAsArray\\(final Type<(.*?)> type\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1 getAsArray(final Type<$2> type) {\n        return endIf().buildArray(type).get();\n    }");
+                "public $1 getAsArray(final Type<$2> type) {\n        return endIf().buildArrayOf(type).get();\n    }");
         methods.put(
                 "public (.*?) getAsList\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1 getAsList() {\n        return endIf().buildList().get();\n    }");
