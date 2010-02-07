@@ -59,13 +59,13 @@ public class MethodImplementor {
 
         methods.put(
                 "public Level0GenericMulti(.*?)<(.*?)> exec\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public Level0GenericMulti$1<$2> exec(final IFunction<? extends $3,? super $4> function) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate(org.op4j.target.Target.Structure.LIST).execute(function, Normalisation.NONE).endIterate(null));\n    }");
+                "public Level0GenericMulti$1<$2> exec(final IFunction<? extends $3,? super $4> function) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(function, Normalisation.NONE));\n    }");
         methods.put(
                 "public Level0GenericMulti(.*?)<(.*?)> eval\\(final IEvaluator<\\? extends (.*?),\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public Level0GenericMulti$1<$2> eval(final IEvaluator<? extends $3,? super $4> eval) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate(org.op4j.target.Target.Structure.LIST).execute(eval, Normalisation.NONE).endIterate(null));\n    }");
+                "public Level0GenericMulti$1<$2> eval(final IEvaluator<? extends $3,? super $4> eval) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(eval, Normalisation.NONE));\n    }");
         methods.put(
                 "public Level0GenericMulti(.*?)<(.*?)> convert\\(final IConverter<\\? extends (.*?),\\? super (.*?)> converter\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public Level0GenericMulti$1<$2> convert(final IConverter<? extends $3,? super $4> converter) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate(org.op4j.target.Target.Structure.LIST).execute(converter, Normalisation.NONE).endIterate(null));\n    }");
+                "public Level0GenericMulti$1<$2> convert(final IConverter<? extends $3,? super $4> converter) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(converter, Normalisation.NONE));\n    }");
         
         methods.put(
                 "public (.*?)<(.*?)> exec\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
