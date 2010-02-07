@@ -25,9 +25,9 @@ import org.op4j.functions.SetFuncs;
 import org.op4j.operators.impl.AbstractOperatorImpl;
 import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.target.Target;
-import org.op4j.target.Target.Normalization;
+import org.op4j.target.Target.Normalisation;
 import org.op4j.target.Target.Structure;
-import org.op4j.util.NormalizationUtils;
+import org.op4j.util.NormalisationUtils;
 
 public class ImplFile {
     
@@ -466,14 +466,14 @@ public class ImplFile {
             final StringBuilder parameterStrBuilder = new StringBuilder();
             parameterStrBuilder.append("(");
 
-            List<String> normalizedParamTypes = new ArrayList<String>();
-            List<String> normalizedRawParamTypes = new ArrayList<String>();
+            List<String> normalisedParamTypes = new ArrayList<String>();
+            List<String> normalisedRawParamTypes = new ArrayList<String>();
             for (int j = 0; j < parameterTypes.length; j++) {
-                normalizedParamTypes.add(getNormalizedParamType(parameterTypes[j], methodName, j));
-                normalizedRawParamTypes.add(StringUtils.substringBefore(getNormalizedParamType(parameterTypes[j], methodName, j),"<"));
+                normalisedParamTypes.add(getNormalisedParamType(parameterTypes[j], methodName, j));
+                normalisedRawParamTypes.add(StringUtils.substringBefore(getNormalisedParamType(parameterTypes[j], methodName, j),"<"));
             }
             
-            String[] paramNamesForMethod = paramNames.get(methodName + "%" + StringUtils.join(normalizedRawParamTypes, ","));
+            String[] paramNamesForMethod = paramNames.get(methodName + "%" + StringUtils.join(normalisedRawParamTypes, ","));
             if (paramNamesForMethod == null) {
                 paramNamesForMethod = paramNames.get(methodName + "%" + parameterTypes.length);
                 if (paramNamesForMethod == null) {
@@ -481,13 +481,13 @@ public class ImplFile {
                 }
             }
             
-            for (int j = 0; j < normalizedParamTypes.size(); j++) {
+            for (int j = 0; j < normalisedParamTypes.size(); j++) {
                 
                 if (j > 0) {
                     parameterStrBuilder.append(", ");
                 }
                         
-                parameterStrBuilder.append("final " + normalizedParamTypes.get(j) + " ");
+                parameterStrBuilder.append("final " + normalisedParamTypes.get(j) + " ");
                 
                 if (paramNamesForMethod == null) {
                     throw new RuntimeException("No name for parameter " + j + " of method " + methodName + " in interface " + this.interfaceTypeRep.getStringRep());
@@ -509,7 +509,7 @@ public class ImplFile {
     }
 
     
-    private String getNormalizedParamType(Type parameterType, String methodName, int index) {
+    private String getNormalisedParamType(Type parameterType, String methodName, int index) {
         final TypeRep paramTypeRep = new TypeRep(parameterType);
         
         String paramType = paramTypeRep.getStringRep();
@@ -530,8 +530,8 @@ public class ImplFile {
             this.imports.add(org.javaruntype.type.Type.class.getName());
         }
         this.imports.add(Target.class.getName());
-        this.imports.add(NormalizationUtils.class.getName());
-        this.imports.add(Normalization.class.getName().replace("$", "."));
+        this.imports.add(NormalisationUtils.class.getName());
+        this.imports.add(Normalisation.class.getName().replace("$", "."));
         switch(getCurrentLevelStructure()) {
             case ARRAY : this.imports.add(ArrayFuncs.class.getName()); break; 
             case LIST : this.imports.add(ListFuncs.class.getName()); break; 
@@ -539,7 +539,7 @@ public class ImplFile {
             case SET : this.imports.add(SetFuncs.class.getName()); break;
             default :
         }
-        if (this.methodNames.contains("endFor") || this.methodNames.contains("endOn")) {
+        if (this.methodNames.contains("forEach") || this.methodNames.contains("forEachEntry")) {
             this.imports.add(Structure.class.getName().replace("$", "."));
             if (getCurrentLevelStructure().equals(LevelStructure.ARRAY) && getPreviousLevelStructure().equals(LevelStructure.ARRAY)) {
                 this.imports.add(Array.class.getName());
