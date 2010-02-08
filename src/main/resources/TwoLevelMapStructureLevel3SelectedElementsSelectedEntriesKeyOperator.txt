@@ -48,14 +48,14 @@ public interface Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeyOperator<%
 
 
 
-    public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indices);
+    public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indexes);
     public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTKEY%%> eval);
     public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTKEY%%> eval);
     public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTKEY%%> eval);
     public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTKEY%%> eval);
     public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNull();
     public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTKEY%%> eval);
-    public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indices);
+    public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indexes);
     public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNull();
     public Level3%%STRUCTURE%%SelectedElementsSelectedEntriesKeySelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTKEY%%> eval);
 

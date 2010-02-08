@@ -53,14 +53,14 @@ public interface Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENTKEY%
 
 
 
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indices);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indexes);
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifTrue(final IEvaluator<Boolean, ? super Map<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>> eval);
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifFalse(final IEvaluator<Boolean, ? super Map<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>> eval);
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrFalse(final IEvaluator<Boolean, ? super Map<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>> eval);
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndFalse(final IEvaluator<Boolean, ? super Map<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>> eval);
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNull();
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrTrue(final IEvaluator<Boolean, ? super Map<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indices);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indexes);
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNull();
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndTrue(final IEvaluator<Boolean, ? super Map<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>> eval);
 

@@ -55,13 +55,13 @@ public class ImplFile {
     static {
     	
         paramNames = new HashMap<String, String[]>();
-        paramNames.put("ifIndex", new String[] {"indices"});
+        paramNames.put("ifIndex", new String[] {"indexes"});
         paramNames.put("ifTrue", new String[] {"eval"});
         paramNames.put("ifFalse", new String[] {"eval"});
         paramNames.put("ifNullOrFalse", new String[] {"eval"});
         paramNames.put("ifNotNullAndFalse", new String[] {"eval"});
         paramNames.put("ifNullOrTrue", new String[] {"eval"});
-        paramNames.put("ifIndexNot", new String[] {"indices"});
+        paramNames.put("ifIndexNot", new String[] {"indexes"});
         paramNames.put("ifNotNullAndTrue", new String[] {"eval"});
         paramNames.put("ifKeyEquals", new String[] {"keys"});
         paramNames.put("ifKeyNotEquals", new String[] {"keys"});
@@ -72,7 +72,7 @@ public class ImplFile {
         paramNames.put("insert%3", new String[] {"position","newKey","newValue"});
         paramNames.put("insertAll%int,Map", new String[] {"position","map"});
         paramNames.put("addAll%Collection", new String[] {"collection"});
-        paramNames.put("removeAllIndexes", new String[] {"indices"});
+        paramNames.put("removeAllIndexes", new String[] {"indexes"});
         paramNames.put("removeAllEqual", new String[] {"values"});
         paramNames.put("removeAllTrue", new String[] {"eval"});
         paramNames.put("removeAllFalse", new String[] {"eval"});
@@ -80,7 +80,7 @@ public class ImplFile {
         paramNames.put("removeAllNotNullAndFalse", new String[] {"eval"});
         paramNames.put("removeAllNotNullAndTrue", new String[] {"eval"});
         paramNames.put("removeAllNullOrTrue", new String[] {"eval"});
-        paramNames.put("removeAllIndexesNot", new String[] {"indices"});
+        paramNames.put("removeAllIndexesNot", new String[] {"indexes"});
         paramNames.put("removeAllKeys", new String[] {"keys"});
         paramNames.put("removeAllKeysNot", new String[] {"keys"});
         paramNames.put("convert", new String[] {"converter"});

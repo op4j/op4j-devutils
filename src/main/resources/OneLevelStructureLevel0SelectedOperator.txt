@@ -69,7 +69,7 @@ public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> insert(final int position, final %%TARGETELEMENTINLEVEL%% newElement);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> insertAll(final int position, final %%TARGETELEMENTINLEVEL%%... newElements);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> addAll(final Collection<%%TARGETELEMENTINLEVEL%%> collection);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllIndexes(final int... indices);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllIndexes(final int... indexes);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllEqual(final %%TARGETELEMENTINLEVEL%%... values);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
@@ -77,7 +77,7 @@ public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllIndexesNot(final int... indices);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllIndexesNot(final int... indexes);
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> removeAllNull();
     
     

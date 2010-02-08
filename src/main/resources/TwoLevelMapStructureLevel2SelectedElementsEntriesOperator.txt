@@ -49,10 +49,10 @@ public interface Level2%%STRUCTURE%%SelectedElementsEntriesOperator<%%TARGETELEM
                 NavigatingMapOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> {
 
 
-    public Level2%%STRUCTURE%%SelectedElementsEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indices);
+    public Level2%%STRUCTURE%%SelectedElementsEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indexes);
     public Level2%%STRUCTURE%%SelectedElementsEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifTrue(final IEvaluator<Boolean, ? super Map.Entry<%%TARGETELEMENTKEY%%, %%TARGETELEMENTVALUE%%>> eval);
     public Level2%%STRUCTURE%%SelectedElementsEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifFalse(final IEvaluator<Boolean, ? super Map.Entry<%%TARGETELEMENTKEY%%, %%TARGETELEMENTVALUE%%>> eval);
-    public Level2%%STRUCTURE%%SelectedElementsEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indices);
+    public Level2%%STRUCTURE%%SelectedElementsEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indexes);
     public Level2%%STRUCTURE%%SelectedElementsEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifKeyEquals(final %%TARGETELEMENTKEY%%... keys);
     public Level2%%STRUCTURE%%SelectedElementsEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifKeyNotEquals(final %%TARGETELEMENTKEY%%... keys);
 		    

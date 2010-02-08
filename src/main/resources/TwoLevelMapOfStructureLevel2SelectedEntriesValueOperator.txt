@@ -56,14 +56,14 @@ public interface Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENT
 
 
 
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indices);
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indexes);
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNull();
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indices);
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indexes);
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNull();
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
 
@@ -83,7 +83,7 @@ public interface Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENT
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> insert(final int position, final %%TARGETELEMENTVALUE%% newElement);
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> insertAll(final int position, final %%TARGETELEMENTVALUE%%... newElements);
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> addAll(final Collection<%%TARGETELEMENTVALUE%%> collection);
-    public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllIndexes(final int... indices);
+    public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllIndexes(final int... indexes);
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllEqual(final %%TARGETELEMENTVALUE%%... values);
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
@@ -91,7 +91,7 @@ public interface Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENT
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllIndexesNot(final int... indices);
+    public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllIndexesNot(final int... indexes);
     public Level2%%STRUCTURE%%SelectedEntriesValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> removeAllNull();
 
     

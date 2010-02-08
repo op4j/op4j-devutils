@@ -21,11 +21,11 @@ public class MethodImplementor {
 
         
         methods.put(
-                "public (.*?)<(.*?)> ifIndex\\(final int\\.\\.\\. indices\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> ifIndex(final int... indices) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectIndex(indices));\n    }");
+                "public (.*?)<(.*?)> ifIndex\\(final int\\.\\.\\. indexes\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> ifIndex(final int... indexes) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectIndex(indexes));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> ifIndexNot\\(final int\\.\\.\\. indices\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> ifIndexNot(final int... indices) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectIndexNot(indices));\n    }");
+                "public (.*?)<(.*?)> ifIndexNot\\(final int\\.\\.\\. indexes\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> ifIndexNot(final int... indexes) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectIndexNot(indexes));\n    }");
         methods.put(
                 "public (.*?)<(.*?)> ifTrue\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> ifTrue(final IEvaluator<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectMatching(eval));\n    }");
@@ -261,11 +261,11 @@ public class MethodImplementor {
                 "public $1<$2> putAll(final Map<$3> map) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.PutAll<$3>(map)));\n    }");
 
         methods.put(
-                "public (.*?)<(.*?)> removeAllIndexes\\(final int\\.\\.\\. indices\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> removeAllIndexes(final int... indices) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllIndexes<%%CURRENTLEVELELEMENT%%>(indices)));\n    }");
+                "public (.*?)<(.*?)> removeAllIndexes\\(final int\\.\\.\\. indexes\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> removeAllIndexes(final int... indexes) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllIndexes<%%CURRENTLEVELELEMENT%%>(indexes)));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> removeAllIndexesNot\\(final int\\.\\.\\. indices\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> removeAllIndexesNot(final int... indices) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllIndexesNot<%%CURRENTLEVELELEMENT%%>(indices)));\n    }");
+                "public (.*?)<(.*?)> removeAllIndexesNot\\(final int\\.\\.\\. indexes\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> removeAllIndexesNot(final int... indexes) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllIndexesNot<%%CURRENTLEVELELEMENT%%>(indexes)));\n    }");
         methods.put(
                 "public (.*?)<(.*?)> removeAllEqual\\(final (.*?)\\.\\.\\. values\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> removeAllEqual(final $3... values) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllEqual<%%CURRENTLEVELELEMENT%%>(values)));\n    }");
