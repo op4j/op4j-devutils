@@ -68,14 +68,14 @@ public class MethodImplementor {
                 "public Level0GenericMulti$1<$2> convert(final IConverter<? extends $3,? super $4> converter) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(converter, Normalisation.NONE));\n    }");
         
         methods.put(
-                "public (.*?)<(.*?)> exec\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> exec(final IFunction<? extends $3,? super $4> function) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(function, %%NORMALIZATION%%));\n    }");
+                "public (.*?)<(.*?)> exec(.*?)\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> exec$3(final IFunction<? extends $4,? super $5> function) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(function, %%NORMALIZATION%%));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> eval\\(final IEvaluator<\\? extends (.*?),\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> eval(final IEvaluator<? extends $3,? super $4> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(eval, %%NORMALIZATION%%));\n    }");
+                "public (.*?)<(.*?)> eval(.*?)\\(final IEvaluator<\\? extends (.*?),\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> eval$3(final IEvaluator<? extends $4,? super $5> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(eval, %%NORMALIZATION%%));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> convert\\(final IConverter<\\? extends (.*?),\\? super (.*?)> converter\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> convert(final IConverter<? extends $3,? super $4> converter) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(converter, %%NORMALIZATION%%));\n    }");
+                "public (.*?)<(.*?)> convert(.*?)\\(final IConverter<\\? extends (.*?),\\? super (.*?)> converter\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> convert$3(final IConverter<? extends $4,? super $5> converter) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(converter, %%NORMALIZATION%%));\n    }");
         
         methods.put(
                 "public (.*?)<(.*?)> endIf\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 

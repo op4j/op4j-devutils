@@ -84,13 +84,13 @@ public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>
 
 
     
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> convertAs%%EQUIVALENTSTRUCTURE%%(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
     
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> evalAs%%EQUIVALENTSTRUCTURE%%(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
 
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> execAs%%EQUIVALENTSTRUCTURE%%(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
 
     
 }

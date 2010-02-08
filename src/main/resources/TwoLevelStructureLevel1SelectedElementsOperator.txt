@@ -95,13 +95,13 @@ public interface Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%>
     public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> removeAllNull();
     
     
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> convertAs%%EQUIVALENTSTRUCTURE%%(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
     
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> evalAs%%EQUIVALENTSTRUCTURE%%(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
 
     public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> execAs%%EQUIVALENTSTRUCTURE%%(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
 		            
 }
