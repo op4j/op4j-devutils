@@ -403,17 +403,17 @@ public class MethodImplementor {
         if (currentLevelType.equals("T") || currentLevelType.equals("K") || currentLevelType.equals("V") || currentLevelType.equals("K1") || currentLevelType.equals("K2")) {
             return "Normalisation.NONE";
         } else if (currentLevelType.equals("T[]") || currentLevelType.equals("V[]")) {
-            return "Normalisation.ARRAY";
+            return "Normalisation.ARRAY(this.type.getRawClass())";
         } else if (currentLevelType.equals("List<T>") || currentLevelType.equals("List<V>")) {
             return "Normalisation.LIST";
         } else if (currentLevelType.equals("Map<K,V>") || currentLevelType.equals("Map<K2,V>")) {
             return "Normalisation.MAP";
         } else if (currentLevelType.equals("Entry<K,V>") | currentLevelType.equals("Entry<K2,V>")) {
-            return "Normalisation.MAPENTRY";
+            return "Normalisation.MAP_ENTRY";
         } else if (currentLevelType.equals("Set<T>") || currentLevelType.equals("Set<V>")) {
             return "Normalisation.SET";
         } else if (currentLevelType.equals("T[][]")) {
-            return "Normalisation.ARRAY_OF_ARRAY";
+            return "Normalisation.ARRAY_OF_ARRAY(this.type.getRawClass())";
         } else if (currentLevelType.equals("List<T>[]")) {
             return "Normalisation.ARRAY_OF_LIST";
         } else if (currentLevelType.equals("Map<K,V>[]")) {
@@ -421,7 +421,7 @@ public class MethodImplementor {
         } else if (currentLevelType.equals("Set<T>[]")) {
             return "Normalisation.ARRAY_OF_SET";
         } else if (currentLevelType.equals("List<T[]>")) {
-            return "Normalisation.LIST_OF_ARRAY";
+            return "Normalisation.LIST_OF_ARRAY(this.type.getRawClass())";
         } else if (currentLevelType.equals("List<List<T>>")) {
             return "Normalisation.LIST_OF_LIST";
         } else if (currentLevelType.equals("List<Map<K,V>>")) {
@@ -429,7 +429,7 @@ public class MethodImplementor {
         } else if (currentLevelType.equals("List<Set<T>>")) {
             return "Normalisation.LIST_OF_SET";
         } else if (currentLevelType.equals("Set<T[]>")) {
-            return "Normalisation.SET_OF_ARRAY";
+            return "Normalisation.SET_OF_ARRAY(this.type.getRawClass())";
         } else if (currentLevelType.equals("Set<List<T>>")) {
             return "Normalisation.SET_OF_LIST";
         } else if (currentLevelType.equals("Set<Map<K,V>>")) {
@@ -437,7 +437,7 @@ public class MethodImplementor {
         } else if (currentLevelType.equals("Set<Set<T>>")) {
             return "Normalisation.SET_OF_SET";
         } else if (currentLevelType.equals("Map<K,V[]>")) {
-            return "Normalisation.MAP_OF_ARRAY";
+            return "Normalisation.MAP_OF_ARRAY(this.type.getRawClass())";
         } else if (currentLevelType.equals("Map<K,List<V>>")) {
             return "Normalisation.MAP_OF_LIST";
         } else if (currentLevelType.equals("Map<K1,Map<K2,V>>")) {
@@ -445,13 +445,13 @@ public class MethodImplementor {
         } else if (currentLevelType.equals("Map<K,Set<V>>")) {
             return "Normalisation.MAP_OF_SET";
         } else if (currentLevelType.equals("Entry<K,V[]>")) {
-            return "Normalisation.MAPENTRY_OF_ARRAY";
+            return "Normalisation.MAP_OF_ARRAY_ENTRY(this.type.getRawClass())";
         } else if (currentLevelType.equals("Entry<K,List<V>>")) {
-            return "Normalisation.MAPENTRY_OF_LIST";
+            return "Normalisation.MAP_OF_LIST_ENTRY";
         } else if (currentLevelType.equals("Entry<K1,Map<K2,V>>")) {
-            return "Normalisation.MAPENTRY_OF_MAP";
+            return "Normalisation.MAP_OF_MAP_ENTRY";
         } else if (currentLevelType.equals("Entry<K,Set<V>>")) {
-            return "Normalisation.MAPENTRY_OF_SET";
+            return "Normalisation.MAP_OF_SET_ENTRY";
         }
         System.out.println(currentLevelType);
         return "Normalisation.NONE";

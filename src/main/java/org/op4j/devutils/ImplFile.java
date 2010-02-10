@@ -643,12 +643,12 @@ public class ImplFile {
         if (isArrayTypeRequired()) {
             strBuilder.append("\n\n");
             final String arrayLetter = (this.className.contains("MapOfArray")? "V" : "T");
-            strBuilder.append("    private final Type<? extends " + arrayLetter + "> type;\n");
+            strBuilder.append("    private final Type<" + arrayLetter + "> type;\n");
         }
         strBuilder.append("\n\n");
         if (isArrayTypeRequired()) {
             final String arrayLetter = (this.className.contains("MapOfArray")? "V" : "T");
-            strBuilder.append("    public " + StringUtils.substringBefore(this.className, "<") + "(final Type<? extends " + arrayLetter + "> type, final Target target) {\n");
+            strBuilder.append("    public " + StringUtils.substringBefore(this.className, "<") + "(final Type<" + arrayLetter + "> type, final Target target) {\n");
             strBuilder.append("        super(target);\n");
             strBuilder.append("        this.type = type;\n");
         } else {
