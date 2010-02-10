@@ -1012,6 +1012,10 @@ public class SelectedInterfaceFileCreator {
 		String line = null;
 		final StringBuilder contentBuilder = new StringBuilder();
 		while ((line = reader.readLine()) != null) {
+/*
+ * These lines are commented out while testing the removal of the Type parameter in forEach()
+ */
+/*
 		    if (isNavigableArray) {
 		        line = line.replaceAll("NavigableCollectionOperator", "NavigableArrayOperator");
                 forEachElementType = "final Type<%%TARGETELEMENTINLEVEL%%> elementType";
@@ -1019,6 +1023,7 @@ public class SelectedInterfaceFileCreator {
             if (isNavigatingArray) {
                 line = line.replaceAll("NavigatingCollectionOperator", "NavigatingArrayOperator");
             }
+*/
 			String newLine = 
 				replacePlaceholders(line, structureName, equivalentStructure, targetType, targetTypeInLevel, flexibleTargetTypeInLevel, targetElement, targetElementKey, targetElementValue, targetElementInLevel, targetElementValueInLevel, structureImport, forEachElementType);
 			contentBuilder.append(newLine + "\n");

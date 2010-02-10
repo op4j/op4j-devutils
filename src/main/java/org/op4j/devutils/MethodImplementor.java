@@ -91,13 +91,17 @@ public class MethodImplementor {
         methods.put(
                 "public (.*?)<(.*?)> distinct\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> distinct() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Distinct<%%CURRENTLEVELELEMENT%%>()));\n    }");
-        
+
+/*
+ * Commented while testing forEach() in arrays without Type
+ * 
         methods.put(
                 "public (.*?)<(.*?)> forEach\\(final Type<(.*?)> elementType\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> forEach(final Type<$3> elementType) {\n        return new $1Impl<$2>(elementType, getTarget().iterate(Structure.%%CURRENTLEVELSTRUCTURE%%));\n    }");
+*/
         methods.put(
                 "public (.*?)<(.*?)> forEach\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> forEach() {\n        return new $1Impl<$2>(getTarget().iterate(Structure.%%CURRENTLEVELSTRUCTURE%%));\n    }");
+                "public $1<$2> forEach() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate(Structure.%%CURRENTLEVELSTRUCTURE%%));\n    }");
         methods.put(
                 "public (.*?)<(.*?)> forEachEntry\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> forEachEntry() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate(Structure.%%CURRENTLEVELSTRUCTURE%%));\n    }");
@@ -355,14 +359,19 @@ public class MethodImplementor {
     }
     
     private static String getEndForImpl(final LevelStructure previousLevelStructure, final LevelStructure currentLevelStructure, final int currentLevel, final String fileContents) {
-        String previousLevelType = "";
+        String previousLevelType = "%%ELEMENTTYPE%%";
         String secondArgument = "null";
         if (previousLevelStructure.equals(LevelStructure.ARRAY)) {
             switch (currentLevelStructure) {
                 case ELEMENTS :
+/*
+ *
+ * Commented while testing forEach(Type) without Type parameter
+ *                     
                     if (fileContents.contains("public class Level2ArrayOfArray")) {
                         previousLevelType = "org.javaruntype.type.Types.arrayOf(this.type), ";
                     }
+*/
                     secondArgument = "this.type.getRawClass()";
                     break;
                 case LIST : secondArgument = "List.class";break;

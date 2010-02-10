@@ -182,13 +182,23 @@ public class ImplFile {
         varargsPositions.add("ifKeyNotEquals$0");
 
         arrayTypeRequired = new HashSet<String>();
+        arrayTypeRequired.add("Level0ArrayOperator");
+        arrayTypeRequired.add("Level0ArraySelectedOperator");
         arrayTypeRequired.add("Level1ArrayOperator");
         arrayTypeRequired.add("Level1ArrayElements");
         arrayTypeRequired.add("Level1ArraySelected");
+        arrayTypeRequired.add("Level0ArrayOfArray");
         arrayTypeRequired.add("Level1ArrayOfArray");
         arrayTypeRequired.add("Level2ArrayOfArray");
+        arrayTypeRequired.add("Level0ListOfArray");
+        arrayTypeRequired.add("Level1ListOfArray");
         arrayTypeRequired.add("Level2ListOfArray");
+        arrayTypeRequired.add("Level0MapOfArray");
+        arrayTypeRequired.add("Level1MapOfArray");
+        arrayTypeRequired.add("Level2MapOfArray");
         arrayTypeRequired.add("Level3MapOfArray");
+        arrayTypeRequired.add("Level0SetOfArray");
+        arrayTypeRequired.add("Level1SetOfArray");
         arrayTypeRequired.add("Level2SetOfArray");
 
         currentLevelsByPrefix = new HashMap<String, LevelStructure>();
@@ -632,12 +642,12 @@ public class ImplFile {
         strBuilder.append("public class " + this.className + " extends AbstractOperatorImpl implements " + this.interfaceTypeRep.getStringRep() + " {\n");
         if (isArrayTypeRequired()) {
             strBuilder.append("\n\n");
-            final String arrayLetter = (this.className.contains("MapOfArray")? "V" : this.className.contains("Level1ArrayOfArray")? "T[]" : "T");
+            final String arrayLetter = (this.className.contains("MapOfArray")? "V" : "T");
             strBuilder.append("    private final Type<? extends " + arrayLetter + "> type;\n");
         }
         strBuilder.append("\n\n");
         if (isArrayTypeRequired()) {
-            final String arrayLetter = (this.className.contains("MapOfArray")? "V" : this.className.contains("Level1ArrayOfArray")? "T[]" : "T");
+            final String arrayLetter = (this.className.contains("MapOfArray")? "V" : "T");
             strBuilder.append("    public " + StringUtils.substringBefore(this.className, "<") + "(final Type<? extends " + arrayLetter + "> type, final Target target) {\n");
             strBuilder.append("        super(target);\n");
             strBuilder.append("        this.type = type;\n");
