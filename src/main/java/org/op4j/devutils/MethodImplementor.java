@@ -316,7 +316,7 @@ public class MethodImplementor {
         
         methods.put(
                 "public (.*?)<(.*?)> replaceWith\\(final (.*?) replacement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> replaceWith(final $3 replacement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().replaceWith(replacement));\n    }");
+                "public $1<$2> replaceWith(final $3 replacement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().replaceWith(replacement, %%NORMALIZATION%%));\n    }");
 
     }
     
