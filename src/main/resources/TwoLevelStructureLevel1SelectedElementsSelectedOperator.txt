@@ -89,5 +89,9 @@ public interface Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELE
 
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> execAs%%EQUIVALENTSTRUCTURE%%(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
+
+
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> map(final IFunction<? extends %%TARGETELEMENTINLEVEL%%, ? super %%TARGETELEMENTINLEVEL%%> function);
+
 		            
 }

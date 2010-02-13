@@ -92,13 +92,6 @@ public class MethodImplementor {
                 "public (.*?)<(.*?)> distinct\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> distinct() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.Distinct<%%CURRENTLEVELELEMENT%%>()));\n    }");
 
-/*
- * Commented while testing forEach() in arrays without Type
- * 
-        methods.put(
-                "public (.*?)<(.*?)> forEach\\(final Type<(.*?)> elementType\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> forEach(final Type<$3> elementType) {\n        return new $1Impl<$2>(elementType, getTarget().iterate(Structure.%%CURRENTLEVELSTRUCTURE%%));\n    }");
-*/
         methods.put(
                 "public (.*?)<(.*?)> forEach\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> forEach() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().iterate(Structure.%%CURRENTLEVELSTRUCTURE%%));\n    }");
@@ -363,17 +356,7 @@ public class MethodImplementor {
         String secondArgument = "null";
         if (previousLevelStructure.equals(LevelStructure.ARRAY)) {
             switch (currentLevelStructure) {
-                case ELEMENTS :
-/*
- *
- * Commented while testing forEach(Type) without Type parameter
- *                     
-                    if (fileContents.contains("public class Level2ArrayOfArray")) {
-                        previousLevelType = "org.javaruntype.type.Types.arrayOf(this.type), ";
-                    }
-*/
-                    secondArgument = "this.type.getRawClass()";
-                    break;
+                case ELEMENTS : secondArgument = "this.type.getRawClass()"; break;
                 case LIST : secondArgument = "List.class";break;
                 case SET : secondArgument = "Set.class";break;
                 case MAP : secondArgument = "Map.class";break;
@@ -385,6 +368,19 @@ public class MethodImplementor {
         }
         return "public $1<$2> endFor() {\n" + 
                 "        return new $1Impl<$2>(" + previousLevelType + "getTarget().endIterate(" + secondArgument + "));\n    }"; 
+    }
+    
+    private static String getMapDeclaration() {
+        return "public (.*?)<(.*?)> map\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}";
+    }
+    
+    private static String getMapImpl(final LevelStructure previousLevelStructure, final LevelStructure currentLevelStructure, final int currentLevel, final String fileContents) {
+        String arrayComponentClass = "null";
+        if (currentLevelStructure.equals(LevelStructure.ARRAY)) {
+            arrayComponentClass = "this.type.getRawClass()";
+        }
+        return "public $1<$2> map(final IFunction<? extends $3,? super $4> function) {\n" + 
+                "        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().map(Structure.%%CURRENTLEVELSTRUCTURE%%, function, " + arrayComponentClass + "));\n    }"; 
     }
 
     
@@ -475,6 +471,7 @@ public class MethodImplementor {
         }
         newFileContents = newFileContents.replaceAll(getGetDeclaration(), getGetImpl(hasEndIf, hasEndOn));
         newFileContents = newFileContents.replaceAll(getEndForDeclaration(), getEndForImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", ""));
+        newFileContents = newFileContents.replaceAll(getMapDeclaration(), getMapImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", "")).replace("%%CURRENTLEVELSTRUCTURE%%", currentLevelStructure.name());
         return newFileContents;
     }
     
@@ -495,6 +492,7 @@ public class MethodImplementor {
         }
         newFileContents = newFileContents.replaceAll(getGetDeclaration(), getGetImpl(hasEndIf, hasEndOn));
         newFileContents = newFileContents.replaceAll(getEndForDeclaration(), getEndForImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", "this.type, "));
+        newFileContents = newFileContents.replaceAll(getMapDeclaration(), getMapImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", "this.type, ")).replace("%%CURRENTLEVELSTRUCTURE%%", currentLevelStructure.name());
         return newFileContents;
     }
     

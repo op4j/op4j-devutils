@@ -167,6 +167,7 @@ public class ImplFile {
         paramNames.put("getAsArray", new String[] {"type"});
         paramNames.put("forEach", new String[] {"elementType"});
         paramNames.put("replaceWith", new String[] {"replacement"});
+        paramNames.put("map", new String[] {"function"});
 
         varargsPositions = new HashSet<String>();
         varargsPositions.add("removeAllIndexes$0");

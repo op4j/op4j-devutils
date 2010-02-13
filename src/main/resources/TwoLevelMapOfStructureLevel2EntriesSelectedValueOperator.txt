@@ -103,6 +103,8 @@ public interface Level2%%STRUCTURE%%EntriesSelectedValueOperator<%%TARGETELEMENT
 
     public Level2%%STRUCTURE%%EntriesSelectedValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> execAs%%EQUIVALENTSTRUCTURE%%(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
     
+
+    public Level2%%STRUCTURE%%EntriesSelectedValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> map(final IFunction<? extends %%TARGETELEMENTINLEVEL%%, ? super %%TARGETELEMENTINLEVEL%%> function);
     
     
 }
