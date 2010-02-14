@@ -310,6 +310,10 @@ public class MethodImplementor {
         methods.put(
                 "public (.*?)<(.*?)> replaceWith\\(final (.*?) replacement\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> replaceWith(final $3 replacement) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().replaceWith(replacement, %%NORMALIZATION%%));\n    }");
+        
+        methods.put(
+                "public (.*?)<(.*?)> mapMap\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> mapMap(final IFunction<? extends $3,? super $4> function) {\n        return forEach().map(function).endFor();\n    }");
 
     }
     

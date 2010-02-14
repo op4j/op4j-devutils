@@ -168,6 +168,7 @@ public class ImplFile {
         paramNames.put("forEach", new String[] {"elementType"});
         paramNames.put("replaceWith", new String[] {"replacement"});
         paramNames.put("map", new String[] {"function"});
+        paramNames.put("mapMap", new String[] {"function"});
 
         varargsPositions = new HashSet<String>();
         varargsPositions.add("removeAllIndexes$0");
@@ -640,7 +641,7 @@ public class ImplFile {
             }
         }
         strBuilder.append("\n\n");
-        strBuilder.append("public class " + this.className + " extends AbstractOperatorImpl implements " + this.interfaceTypeRep.getStringRep() + " {\n");
+        strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements " + this.interfaceTypeRep.getStringRep() + " {\n");
         if (isArrayTypeRequired()) {
             strBuilder.append("\n\n");
             final String arrayLetter = (this.className.contains("MapOfArray")? "V" : "T");
