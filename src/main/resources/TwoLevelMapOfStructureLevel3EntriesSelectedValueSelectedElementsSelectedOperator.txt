@@ -23,8 +23,6 @@ import java.util.Map;
 %%IMPORT%%
 
 import org.op4j.functions.IFunction;
-import org.op4j.functions.converters.IConverter;
-import org.op4j.functions.evaluators.IEvaluator;
 import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
 import org.op4j.operators.qualities.SelectedOperator;
 import org.op4j.operators.qualities.UniqOperator;
@@ -49,9 +47,7 @@ public interface Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelected
     public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endIf();
 
     
-    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> converter);
-    
-    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> execIfNotNull(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
 
     public Level3%%STRUCTURE%%EntriesSelectedValueSelectedElementsSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 

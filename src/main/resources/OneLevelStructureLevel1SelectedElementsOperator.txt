@@ -22,8 +22,6 @@ package org.op4j.operators.intf.%%STRUCTUREPACKAGE%%;
 %%IMPORT%%
 
 import org.op4j.functions.IFunction;
-import org.op4j.functions.converters.IConverter;
-import org.op4j.functions.evaluators.IEvaluator;
 import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
 import org.op4j.operators.qualities.NavigatingCollectionOperator;
 import org.op4j.operators.qualities.SelectableOperator;
@@ -48,23 +46,21 @@ public interface Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%>
 
 
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifIndex(final int... indexes);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifTrue(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifFalse(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNullOrFalse(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNullAndFalse(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNull();
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNullOrTrue(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifIndexNot(final int... indexes);
     public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNull();
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNullAndTrue(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
 
 
 		    
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> endFor();
     
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> convert(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
-    
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> eval(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> execIfNotNull(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> function);
 
     public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 

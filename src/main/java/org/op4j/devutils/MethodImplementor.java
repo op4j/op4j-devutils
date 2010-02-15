@@ -27,11 +27,11 @@ public class MethodImplementor {
                 "public (.*?)<(.*?)> ifIndexNot\\(final int\\.\\.\\. indexes\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> ifIndexNot(final int... indexes) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectIndexNot(indexes));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> ifTrue\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> ifTrue(final IEvaluator<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectMatching(eval));\n    }");
+                "public (.*?)<(.*?)> ifTrue\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> ifTrue(final IFunction<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectMatching(eval));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> ifFalse\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> ifFalse(final IEvaluator<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNotMatching(eval));\n    }");
+                "public (.*?)<(.*?)> ifFalse\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> ifFalse(final IFunction<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNotMatching(eval));\n    }");
         methods.put(
                 "public (.*?)<(.*?)> ifNull\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> ifNull() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNull());\n    }");
@@ -39,17 +39,17 @@ public class MethodImplementor {
                 "public (.*?)<(.*?)> ifNotNull\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> ifNotNull() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNotNull());\n    }");
         methods.put(
-                "public (.*?)<(.*?)> ifNotNullAndTrue\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> ifNotNullAndTrue(final IEvaluator<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNotNullAndMatching(eval));\n    }");
+                "public (.*?)<(.*?)> ifNotNullAndTrue\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> ifNotNullAndTrue(final IFunction<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNotNullAndMatching(eval));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> ifNotNullAndFalse\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> ifNotNullAndFalse(final IEvaluator<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNotNullAndNotMatching(eval));\n    }");
+                "public (.*?)<(.*?)> ifNotNullAndFalse\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> ifNotNullAndFalse(final IFunction<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNotNullAndNotMatching(eval));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> ifNullOrTrue\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> ifNullOrTrue(final IEvaluator<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNullOrMatching(eval));\n    }");
+                "public (.*?)<(.*?)> ifNullOrTrue\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> ifNullOrTrue(final IFunction<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNullOrMatching(eval));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> ifNullOrFalse\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> ifNullOrFalse(final IEvaluator<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNullOrNotMatching(eval));\n    }");
+                "public (.*?)<(.*?)> ifNullOrFalse\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> ifNullOrFalse(final IFunction<Boolean, ? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectNullOrNotMatching(eval));\n    }");
         methods.put(
                 "public (.*?)<(.*?)> ifKeyEquals\\(final (.*?)\\.\\.\\. keys\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> ifKeyEquals(final $3\\.\\.\\. keys) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().selectMapKeys(keys));\n    }");
@@ -61,21 +61,15 @@ public class MethodImplementor {
                 "public Level0GenericMulti(.*?)<(.*?)> exec\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public Level0GenericMulti$1<$2> exec(final IFunction<? extends $3,? super $4> function) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(function, Normalisation.NONE));\n    }");
         methods.put(
-                "public Level0GenericMulti(.*?)<(.*?)> eval\\(final IEvaluator<\\? extends (.*?),\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public Level0GenericMulti$1<$2> eval(final IEvaluator<? extends $3,? super $4> eval) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(eval, Normalisation.NONE));\n    }");
-        methods.put(
-                "public Level0GenericMulti(.*?)<(.*?)> convert\\(final IConverter<\\? extends (.*?),\\? super (.*?)> converter\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public Level0GenericMulti$1<$2> convert(final IConverter<? extends $3,? super $4> converter) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(converter, Normalisation.NONE));\n    }");
+                "public Level0GenericMulti(.*?)<(.*?)> execIfNotNull\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public Level0GenericMulti$1<$2> execIfNotNull(final IFunction<? extends $3,? super $4> function) {\n        return new Level0GenericMulti$1Impl<$2>(%%ELEMENTTYPE%%getTarget().executeIfNotNull(function, Normalisation.NONE));\n    }");
         
+        methods.put(
+                "public (.*?)<(.*?)> execIfNotNull(.*?)\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> execIfNotNull$3(final IFunction<? extends $4,? super $5> function) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().executeIfNotNull(function, %%NORMALIZATION%%));\n    }");
         methods.put(
                 "public (.*?)<(.*?)> exec(.*?)\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> exec$3(final IFunction<? extends $4,? super $5> function) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(function, %%NORMALIZATION%%));\n    }");
-        methods.put(
-                "public (.*?)<(.*?)> eval(.*?)\\(final IEvaluator<\\? extends (.*?),\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> eval$3(final IEvaluator<? extends $4,? super $5> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(eval, %%NORMALIZATION%%));\n    }");
-        methods.put(
-                "public (.*?)<(.*?)> convert(.*?)\\(final IConverter<\\? extends (.*?),\\? super (.*?)> converter\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> convert$3(final IConverter<? extends $4,? super $5> converter) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(converter, %%NORMALIZATION%%));\n    }");
         
         methods.put(
                 "public (.*?)<(.*?)> endIf\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
@@ -270,29 +264,29 @@ public class MethodImplementor {
                 "public (.*?)<(.*?)> removeAllNull\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> removeAllNull() {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllNull<%%CURRENTLEVELELEMENT%%>()));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> removeAllTrue\\(final IEvaluator<Boolean,\\? super Entry<(.*?)>> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> removeAllTrue(final IEvaluator<Boolean,? super Entry<$3>> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllTrue<$3>(eval)));\n    }");
+                "public (.*?)<(.*?)> removeAllTrue\\(final IFunction<Boolean,\\? super Entry<(.*?)>> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> removeAllTrue(final IFunction<Boolean,? super Entry<$3>> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllTrue<$3>(eval)));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> removeAllFalse\\(final IEvaluator<Boolean,\\? super Entry<(.*?)>> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> removeAllFalse(final IEvaluator<Boolean,? super Entry<$3>> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllFalse<$3>(eval)));\n    }");
+                "public (.*?)<(.*?)> removeAllFalse\\(final IFunction<Boolean,\\? super Entry<(.*?)>> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> removeAllFalse(final IFunction<Boolean,? super Entry<$3>> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllFalse<$3>(eval)));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> removeAllTrue\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> removeAllTrue(final IEvaluator<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllTrue<$3>(eval)));\n    }");
+                "public (.*?)<(.*?)> removeAllTrue\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> removeAllTrue(final IFunction<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllTrue<$3>(eval)));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> removeAllFalse\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> removeAllFalse(final IEvaluator<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllFalse<$3>(eval)));\n    }");
+                "public (.*?)<(.*?)> removeAllFalse\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> removeAllFalse(final IFunction<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllFalse<$3>(eval)));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> removeAllNullOrTrue\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> removeAllNullOrTrue(final IEvaluator<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllNullOrTrue<$3>(eval)));\n    }");
+                "public (.*?)<(.*?)> removeAllNullOrTrue\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> removeAllNullOrTrue(final IFunction<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllNullOrTrue<$3>(eval)));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> removeAllNullOrFalse\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> removeAllNullOrFalse(final IEvaluator<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllNullOrFalse<$3>(eval)));\n    }");
+                "public (.*?)<(.*?)> removeAllNullOrFalse\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> removeAllNullOrFalse(final IFunction<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllNullOrFalse<$3>(eval)));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> removeAllNotNullAndTrue\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> removeAllNotNullAndTrue(final IEvaluator<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllNotNullAndTrue<$3>(eval)));\n    }");
+                "public (.*?)<(.*?)> removeAllNotNullAndTrue\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> removeAllNotNullAndTrue(final IFunction<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllNotNullAndTrue<$3>(eval)));\n    }");
         methods.put(
-                "public (.*?)<(.*?)> removeAllNotNullAndFalse\\(final IEvaluator<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1<$2> removeAllNotNullAndFalse(final IEvaluator<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllNotNullAndFalse<$3>(eval)));\n    }");
+                "public (.*?)<(.*?)> removeAllNotNullAndFalse\\(final IFunction<Boolean,\\? super (.*?)> eval\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1<$2> removeAllNotNullAndFalse(final IFunction<Boolean,? super $3> eval) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllNotNullAndFalse<$3>(eval)));\n    }");
         methods.put(
                 "public (.*?)<(.*?)> removeAllKeys\\(final (.*?)\\.\\.\\. keys\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1<$2> removeAllKeys(final $3... keys) {\n        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllKeys<%%CURRENTLEVELENTRYELEMENT%%>(keys)));\n    }");

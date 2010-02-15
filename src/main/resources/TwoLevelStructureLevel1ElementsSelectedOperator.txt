@@ -24,8 +24,6 @@ import java.util.Comparator;
 %%IMPORT%%
 
 import org.op4j.functions.IFunction;
-import org.op4j.functions.converters.IConverter;
-import org.op4j.functions.evaluators.IEvaluator;
 import org.op4j.operators.qualities.DistinguishableOperator;
 import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
 import org.op4j.operators.qualities.ModifiableCollectionOperator;
@@ -71,19 +69,17 @@ public interface Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%>
     public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> addAll(final Collection<%%TARGETELEMENTINLEVEL%%> collection);
     public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllIndexes(final int... indexes);
     public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllEqual(final %%TARGETELEMENTINLEVEL%%... values);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNullOrFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNotNullAndFalse(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNotNullAndTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNullOrTrue(final IEvaluator<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllTrue(final IFunction<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllFalse(final IFunction<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNullOrFalse(final IFunction<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNotNullAndFalse(final IFunction<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNotNullAndTrue(final IFunction<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNullOrTrue(final IFunction<Boolean, ? super %%TARGETELEMENTINLEVEL%%> eval);
     public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllIndexesNot(final int... indexes);
     public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> removeAllNull();
     
     
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> convertAs%%EQUIVALENTSTRUCTURE%%(final IConverter<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> converter);
-    
-    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> evalAs%%EQUIVALENTSTRUCTURE%%(final IEvaluator<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> execIfNotNullAs%%EQUIVALENTSTRUCTURE%%(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> function);
 
     public Level1%%STRUCTURE%%ElementsSelectedOperator<%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
