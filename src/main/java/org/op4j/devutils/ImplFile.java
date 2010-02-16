@@ -18,10 +18,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
-import org.op4j.functions.ArrayFuncs;
-import org.op4j.functions.ListFuncs;
-import org.op4j.functions.MapFuncs;
-import org.op4j.functions.SetFuncs;
+import org.op4j.functions.structures.ArrayFuncs;
+import org.op4j.functions.structures.ListFuncs;
+import org.op4j.functions.structures.MapFuncs;
+import org.op4j.functions.structures.SetFuncs;
 import org.op4j.operators.impl.AbstractOperatorImpl;
 import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.target.Target;
