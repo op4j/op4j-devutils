@@ -380,6 +380,19 @@ public class MethodImplementor {
         return "public $1<$2> map(final IFunction<? extends $3,? super $4> function) {\n" + 
                 "        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().map(Structure.%%CURRENTLEVELSTRUCTURE%%, function, " + arrayComponentClass + "));\n    }"; 
     }
+    
+    private static String getMapIfNotNullDeclaration() {
+        return "public (.*?)<(.*?)> mapIfNotNull\\(final IFunction<\\? extends (.*?),\\? super (.*?)> function\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}";
+    }
+    
+    private static String getMapIfNotNullImpl(final LevelStructure previousLevelStructure, final LevelStructure currentLevelStructure, final int currentLevel, final String fileContents) {
+        String arrayComponentClass = "null";
+        if (currentLevelStructure.equals(LevelStructure.ARRAY)) {
+            arrayComponentClass = "this.type.getRawClass()";
+        }
+        return "public $1<$2> mapIfNotNull(final IFunction<? extends $3,? super $4> function) {\n" + 
+                "        return new $1Impl<$2>(%%ELEMENTTYPE%%getTarget().mapIfNotNull(Structure.%%CURRENTLEVELSTRUCTURE%%, function, " + arrayComponentClass + "));\n    }"; 
+    }
 
     
     private static String getGetDeclaration() {
@@ -470,6 +483,7 @@ public class MethodImplementor {
         newFileContents = newFileContents.replaceAll(getGetDeclaration(), getGetImpl(hasEndIf, hasEndOn));
         newFileContents = newFileContents.replaceAll(getEndForDeclaration(), getEndForImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", ""));
         newFileContents = newFileContents.replaceAll(getMapDeclaration(), getMapImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", "")).replace("%%CURRENTLEVELSTRUCTURE%%", currentLevelStructure.name());
+        newFileContents = newFileContents.replaceAll(getMapIfNotNullDeclaration(), getMapIfNotNullImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", "")).replace("%%CURRENTLEVELSTRUCTURE%%", currentLevelStructure.name());
         return newFileContents;
     }
     
@@ -491,6 +505,7 @@ public class MethodImplementor {
         newFileContents = newFileContents.replaceAll(getGetDeclaration(), getGetImpl(hasEndIf, hasEndOn));
         newFileContents = newFileContents.replaceAll(getEndForDeclaration(), getEndForImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", "this.type, "));
         newFileContents = newFileContents.replaceAll(getMapDeclaration(), getMapImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", "this.type, ")).replace("%%CURRENTLEVELSTRUCTURE%%", currentLevelStructure.name());
+        newFileContents = newFileContents.replaceAll(getMapIfNotNullDeclaration(), getMapIfNotNullImpl(previousLevelStructure, currentLevelStructure, currentLevel, fileContents).replaceAll("%%ELEMENTTYPE%%", "this.type, ")).replace("%%CURRENTLEVELSTRUCTURE%%", currentLevelStructure.name());
         return newFileContents;
     }
     

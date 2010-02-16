@@ -89,5 +89,7 @@ public interface Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGE
     
     public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> map(final IFunction<? extends %%TARGETELEMENTINLEVEL%%, ? super %%TARGETELEMENTINLEVEL%%> function);
     
+    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> mapIfNotNull(final IFunction<? extends %%TARGETELEMENTINLEVEL%%, ? super %%TARGETELEMENTINLEVEL%%> function);
+    
     
 }

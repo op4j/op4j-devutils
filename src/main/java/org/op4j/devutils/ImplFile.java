@@ -142,7 +142,7 @@ public class ImplFile {
         paramNames.put("forEach", new String[] {"elementType"});
         paramNames.put("replaceWith", new String[] {"replacement"});
         paramNames.put("map", new String[] {"function"});
-        paramNames.put("mapMap", new String[] {"function"});
+        paramNames.put("mapIfNotNull", new String[] {"function"});
 
         varargsPositions = new HashSet<String>();
         varargsPositions.add("removeAllIndexes$0");
@@ -163,19 +163,10 @@ public class ImplFile {
         arrayTypeRequired.add("Level1ArrayOperator");
         arrayTypeRequired.add("Level1ArrayElements");
         arrayTypeRequired.add("Level1ArraySelected");
-        arrayTypeRequired.add("Level0ArrayOfArray");
-        arrayTypeRequired.add("Level1ArrayOfArray");
-        arrayTypeRequired.add("Level2ArrayOfArray");
-        arrayTypeRequired.add("Level0ListOfArray");
-        arrayTypeRequired.add("Level1ListOfArray");
-        arrayTypeRequired.add("Level2ListOfArray");
         arrayTypeRequired.add("Level0MapOfArray");
         arrayTypeRequired.add("Level1MapOfArray");
         arrayTypeRequired.add("Level2MapOfArray");
         arrayTypeRequired.add("Level3MapOfArray");
-        arrayTypeRequired.add("Level0SetOfArray");
-        arrayTypeRequired.add("Level1SetOfArray");
-        arrayTypeRequired.add("Level2SetOfArray");
 
         currentLevelsByPrefix = new HashMap<String, LevelStructure>();
         

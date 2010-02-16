@@ -87,6 +87,8 @@ public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>
 
 
     public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> map(final IFunction<? extends %%TARGETELEMENTINLEVEL%%, ? super %%TARGETELEMENTINLEVEL%%> function);
+
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> mapIfNotNull(final IFunction<? extends %%TARGETELEMENTINLEVEL%%, ? super %%TARGETELEMENTINLEVEL%%> function);
     
     
 }
