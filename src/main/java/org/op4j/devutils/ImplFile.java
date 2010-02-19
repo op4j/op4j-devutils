@@ -18,10 +18,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
-import org.op4j.functions.structures.ArrayFuncs;
-import org.op4j.functions.structures.ListFuncs;
-import org.op4j.functions.structures.MapFuncs;
-import org.op4j.functions.structures.SetFuncs;
+import org.op4j.functions.structures.FArray;
+import org.op4j.functions.structures.FList;
+import org.op4j.functions.structures.FMap;
+import org.op4j.functions.structures.FSet;
 import org.op4j.operators.impl.AbstractOperatorImpl;
 import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.target.Target;
@@ -585,10 +585,10 @@ public class ImplFile {
         this.imports.add(NormalisationUtils.class.getName());
         this.imports.add(Normalisation.class.getName().replace("$", "."));
         switch(getCurrentLevelStructure()) {
-            case ARRAY : this.imports.add(ArrayFuncs.class.getName()); break; 
-            case LIST : this.imports.add(ListFuncs.class.getName()); break; 
-            case MAP : this.imports.add(MapFuncs.class.getName()); break; 
-            case SET : this.imports.add(SetFuncs.class.getName()); break;
+            case ARRAY : this.imports.add(FArray.class.getName()); break; 
+            case LIST : this.imports.add(FList.class.getName()); break; 
+            case MAP : this.imports.add(FMap.class.getName()); break; 
+            case SET : this.imports.add(FSet.class.getName()); break;
             default :
         }
         if (this.methodNames.contains("forEach") || this.methodNames.contains("forEachEntry")) {
