@@ -500,7 +500,13 @@ public class ImplFile {
             
             final Type[] parameterTypes = interfaceMethod.getGenericParameterTypes();
 
-            if (methodName.startsWith("exec")) {
+            if (interfaceClass.getName().contains("Level0UnmodifiableArray")) {
+                this.currentLevelType = "T[]";
+                this.currentLevelElement = "T";
+            } else if (interfaceClass.getName().contains("Level1UnmodifiableArray")) {
+                this.currentLevelType = "T";
+                this.currentLevelElement = "%%CURRENTELEMENTSHOULDNOTBEHERE%%";
+            } else if (methodName.startsWith("exec")) {
                 this.currentLevelType = (new TypeRep(((WildcardType)((ParameterizedType)parameterTypes[0]).getActualTypeArguments()[1]).getLowerBounds()[0])).getStringRep();
                 if (this.currentLevelType.endsWith("[]")) {
                     this.currentLevelElement = this.currentLevelType.substring(0, this.currentLevelType.length() - 2);

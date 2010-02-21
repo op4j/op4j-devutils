@@ -140,7 +140,7 @@ public class SelectedImplFileCreator {
 			    
 			    currentClass = clazz;
 			    
-			    if (clazz.getSimpleName().contains("Selected")) {
+			    if (clazz.getSimpleName().contains("Selected") && !clazz.getSimpleName().contains("Unmodifiable")) {
 			        
 	                final ImplFile implFile = new ImplFile(clazz);
 	                createFile(StringUtils.substringAfterLast(implFile.getPackageName(),"."),StringUtils.substringBefore(implFile.getClassName(),"<") + ".java", implFile);

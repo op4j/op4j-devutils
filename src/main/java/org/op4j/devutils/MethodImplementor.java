@@ -314,10 +314,10 @@ public class MethodImplementor {
     
     private static String getStructureFuncs(final LevelStructure currentLevelStructure) {
         switch(currentLevelStructure) {
-            case ARRAY : return "ArrayFuncs";
-            case LIST : return "ListFuncs";
-            case MAP : return "MapFuncs";
-            case SET : return "SetFuncs";
+            case ARRAY : return "FArray";
+            case LIST : return "FList";
+            case MAP : return "FMap";
+            case SET : return "FSet";
             default : return "%%STRUCTUREFUNCS_SHOULD_NOT_BE_HERE%%";
         }
     }
