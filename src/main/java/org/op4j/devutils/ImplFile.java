@@ -22,7 +22,9 @@ import org.op4j.functions.structures.FArray;
 import org.op4j.functions.structures.FList;
 import org.op4j.functions.structures.FMap;
 import org.op4j.functions.structures.FSet;
-import org.op4j.operators.impl.AbstractOperatorImpl;
+import org.op4j.operators.op.impl.AbstractOperatorImpl;
+import org.op4j.operators.qualities.MultiOpOperator;
+import org.op4j.operators.qualities.UniqOpOperator;
 import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.target.Target;
 import org.op4j.target.Target.Normalisation;
@@ -40,6 +42,7 @@ public class ImplFile {
     private final String className;
     private final TypeRep interfaceTypeRep;
     
+    private String element;
     private String currentLevelType;
     private String currentLevelElement;
 
@@ -430,6 +433,10 @@ public class ImplFile {
         return Integer.parseInt(this.className.substring(5, 6));
     }
     
+    public String getElement() {
+        return this.element;
+    }
+    
     
     public boolean hasEndIf() {
         return this.methodNames.contains("endIf");
@@ -480,33 +487,31 @@ public class ImplFile {
         
         try {
             interfaceMethods.add(interfaceClass.getMethod("get"));
-            interfaceMethods.add(interfaceClass.getMethod("createOperation"));
         } catch (NoSuchMethodException e) {
             // nothing to do
+        }
+        
+        if (this.className.contains("Array")) {
+            this.element = "T[]";
+        } else if (this.className.contains("List")) {
+            this.element = "List<T>";
+        } else if (this.className.contains("Set")) {
+            this.element = "Set<T>";
+        } else if (this.className.contains("Map")) {
+            this.element = "Map<K,V>";
+        } else {
+            this.element = "T";
         }
         
         for (final Method interfaceMethod : interfaceMethods) {
             
             final String methodName = interfaceMethod.getName();
             this.methodNames.add(methodName);
-            
-            final String returnTypeStr =
-                (methodName.equals("get")? 
-                        new TypeRep(getReturnType).getStringRep() :
-                        (methodName.equals("createOperation")?
-                                "Operation<" + new TypeRep(getReturnType).getStringRep() + ",I>" :
-                                new TypeRep(interfaceMethod.getGenericReturnType()).getStringRep()));
 
             
             final Type[] parameterTypes = interfaceMethod.getGenericParameterTypes();
 
-            if (interfaceClass.getName().contains("Level0UnmodifiableArray")) {
-                this.currentLevelType = "T[]";
-                this.currentLevelElement = "T";
-            } else if (interfaceClass.getName().contains("Level1UnmodifiableArray")) {
-                this.currentLevelType = "T";
-                this.currentLevelElement = "%%CURRENTELEMENTSHOULDNOTBEHERE%%";
-            } else if (methodName.startsWith("exec")) {
+            if (methodName.startsWith("exec")) {
                 this.currentLevelType = (new TypeRep(((WildcardType)((ParameterizedType)parameterTypes[0]).getActualTypeArguments()[1]).getLowerBounds()[0])).getStringRep();
                 if (this.currentLevelType.endsWith("[]")) {
                     this.currentLevelElement = this.currentLevelType.substring(0, this.currentLevelType.length() - 2);
@@ -520,6 +525,11 @@ public class ImplFile {
                     this.currentLevelElement = "%%CURRENTELEMENTSHOULDNOTBEHERE%%";
                 }
             }
+            
+            final String returnTypeStr =
+                (methodName.equals("get")? 
+                        this.element :
+                        new TypeRep(interfaceMethod.getGenericReturnType()).getStringRep());
             
             final StringBuilder parameterStrBuilder = new StringBuilder();
             parameterStrBuilder.append("(");
@@ -604,6 +614,11 @@ public class ImplFile {
             }
         }
         this.imports.add(AbstractOperatorImpl.class.getName());
+        this.imports.add(UniqOpOperator.class.getName());
+        this.imports.add(MultiOpOperator.class.getName());
+        this.imports.add(List.class.getName());
+        this.imports.add(Map.class.getName());
+        this.imports.add(Set.class.getName());
         final List<String> importList = new ArrayList<String>(this.imports);
         Collections.sort(importList);
         for (final String classImport : importList) {
@@ -613,6 +628,7 @@ public class ImplFile {
         }
         strBuilder.append("\n\n");
         strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements " + this.interfaceTypeRep.getStringRep() + " {\n");
+        
         if (isArrayTypeRequired()) {
             strBuilder.append("\n\n");
             final String arrayLetter = (this.className.contains("MapOfArray")? "V" : "T");

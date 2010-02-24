@@ -135,7 +135,7 @@ public class SelectedImplFileCreator {
 	    Class<?> currentClass = null;
 		try {
 
-			final Class<?>[] classesInPackage = getClasses("org.op4j.operators.intf");
+			final Class<?>[] classesInPackage = getClasses("org.op4j.operators.op.intf");
 			for (Class<?> clazz : classesInPackage) {
 			    
 			    currentClass = clazz;

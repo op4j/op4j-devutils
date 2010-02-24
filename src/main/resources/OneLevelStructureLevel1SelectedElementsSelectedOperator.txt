@@ -17,14 +17,14 @@
  * 
  * =============================================================================
  */
-package org.op4j.operators.intf.%%STRUCTUREPACKAGE%%;
+package org.op4j.operators.op.intf.%%STRUCTUREPACKAGE%%;
 
 %%IMPORT%%
 
 import org.op4j.functions.IFunction;
 import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
 import org.op4j.operators.qualities.SelectedOperator;
-import org.op4j.operators.qualities.UniqOperator;
+import org.op4j.operators.qualities.UniqOpOperator;
 import org.op4j.operators.qualities.ReplaceableOperator;
 
 
@@ -35,22 +35,22 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%>
-        extends UniqOperator<%%TARGETTYPE%%>,
+public interface Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I>
+        extends UniqOpOperator<%%TARGETTYPE%%>,
                 SelectedOperator<%%TARGETTYPEINLEVEL%%>,
                 Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>,
                 ReplaceableOperator<%%TARGETTYPEINLEVEL%%> {
 
 
 
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> endIf();
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%,I> endIf();
 
     
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> execIfNotNull(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> function);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> execIfNotNull(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> function);
 
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
 	
     
 }

@@ -17,7 +17,7 @@
  * 
  * =============================================================================
  */
-package org.op4j.operators.intf.%%STRUCTUREPACKAGE%%;
+package org.op4j.operators.op.intf.%%STRUCTUREPACKAGE%%;
 
 %%IMPORT%%
 
@@ -25,7 +25,7 @@ import org.op4j.functions.IFunction;
 import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
 import org.op4j.operators.qualities.NavigatingCollectionOperator;
 import org.op4j.operators.qualities.SelectableOperator;
-import org.op4j.operators.qualities.UniqOperator;
+import org.op4j.operators.qualities.UniqOpOperator;
 import org.op4j.operators.qualities.ReplaceableOperator;
 
 
@@ -36,8 +36,8 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%>
-        extends UniqOperator<%%TARGETTYPE%%>,
+public interface Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%,I>
+        extends UniqOpOperator<%%TARGETTYPE%%>,
                 NavigatingCollectionOperator<%%TARGETTYPEINLEVEL%%>,
                 SelectableOperator<%%TARGETTYPEINLEVEL%%>,
                 Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>,
@@ -45,26 +45,26 @@ public interface Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%>
 
 
 
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifIndex(final int... indexes);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifTrue(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifFalse(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNullOrFalse(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNullAndFalse(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNull();
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNullOrTrue(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifIndexNot(final int... indexes);
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNull();
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%> ifNotNullAndTrue(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> ifIndex(final int... indexes);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> ifTrue(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> ifFalse(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> ifNullOrFalse(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> ifNotNullAndFalse(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> ifNull();
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> ifNullOrTrue(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> ifIndexNot(final int... indexes);
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> ifNotNull();
+    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I> ifNotNullAndTrue(final IFunction<Boolean, ? super %%TARGETTYPEINLEVEL%%> eval);
 
 
 		    
-    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%> endFor();
+    public Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I> endFor();
     
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> execIfNotNull(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> function);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%,I> execIfNotNull(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%,? super %%TARGETTYPEINLEVEL%%> function);
 
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%,I> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level1%%STRUCTURE%%SelectedElementsOperator<%%TARGETELEMENT%%,I> exec(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
 	
     
 }

@@ -419,46 +419,6 @@ public class MethodImplementor {
             return "Normalisation.MAP_ENTRY";
         } else if (currentLevelType.equals("Set<T>") || currentLevelType.equals("Set<V>")) {
             return "Normalisation.SET";
-        } else if (currentLevelType.equals("T[][]")) {
-            return "Normalisation.ARRAY_OF_ARRAY(this.type.getRawClass())";
-        } else if (currentLevelType.equals("List<T>[]")) {
-            return "Normalisation.ARRAY_OF_LIST";
-        } else if (currentLevelType.equals("Map<K,V>[]")) {
-            return "Normalisation.ARRAY_OF_MAP";
-        } else if (currentLevelType.equals("Set<T>[]")) {
-            return "Normalisation.ARRAY_OF_SET";
-        } else if (currentLevelType.equals("List<T[]>")) {
-            return "Normalisation.LIST_OF_ARRAY(this.type.getRawClass())";
-        } else if (currentLevelType.equals("List<List<T>>")) {
-            return "Normalisation.LIST_OF_LIST";
-        } else if (currentLevelType.equals("List<Map<K,V>>")) {
-            return "Normalisation.LIST_OF_MAP";
-        } else if (currentLevelType.equals("List<Set<T>>")) {
-            return "Normalisation.LIST_OF_SET";
-        } else if (currentLevelType.equals("Set<T[]>")) {
-            return "Normalisation.SET_OF_ARRAY(this.type.getRawClass())";
-        } else if (currentLevelType.equals("Set<List<T>>")) {
-            return "Normalisation.SET_OF_LIST";
-        } else if (currentLevelType.equals("Set<Map<K,V>>")) {
-            return "Normalisation.SET_OF_MAP";
-        } else if (currentLevelType.equals("Set<Set<T>>")) {
-            return "Normalisation.SET_OF_SET";
-        } else if (currentLevelType.equals("Map<K,V[]>")) {
-            return "Normalisation.MAP_OF_ARRAY(this.type.getRawClass())";
-        } else if (currentLevelType.equals("Map<K,List<V>>")) {
-            return "Normalisation.MAP_OF_LIST";
-        } else if (currentLevelType.equals("Map<K1,Map<K2,V>>")) {
-            return "Normalisation.MAP_OF_MAP";
-        } else if (currentLevelType.equals("Map<K,Set<V>>")) {
-            return "Normalisation.MAP_OF_SET";
-        } else if (currentLevelType.equals("Entry<K,V[]>")) {
-            return "Normalisation.MAP_OF_ARRAY_ENTRY(this.type.getRawClass())";
-        } else if (currentLevelType.equals("Entry<K,List<V>>")) {
-            return "Normalisation.MAP_OF_LIST_ENTRY";
-        } else if (currentLevelType.equals("Entry<K1,Map<K2,V>>")) {
-            return "Normalisation.MAP_OF_MAP_ENTRY";
-        } else if (currentLevelType.equals("Entry<K,Set<V>>")) {
-            return "Normalisation.MAP_OF_SET_ENTRY";
         }
         System.out.println(currentLevelType);
         return "Normalisation.NONE";
