@@ -17,7 +17,7 @@
  * 
  * =============================================================================
  */
-package org.op4j.operators.op.intf.%%STRUCTUREPACKAGE%%;
+package org.op4j.operators.intf.%%STRUCTUREPACKAGE%%;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -30,7 +30,7 @@ import org.op4j.operators.qualities.ModifiableCollectionOperator;
 import org.op4j.operators.qualities.NavigableCollectionOperator;
 import org.op4j.operators.qualities.SelectedOperator;
 import org.op4j.operators.qualities.SortableOperator;
-import org.op4j.operators.qualities.UniqOpOperator;
+import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.operators.qualities.ReplaceableOperator;
 /**
  * 
@@ -40,7 +40,7 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  *
  */
 public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENT%%,I>
-        extends UniqOpOperator<%%TARGETTYPE%%>,
+        extends UniqOperator<%%TARGETTYPE%%>,
                 NavigableCollectionOperator<%%TARGETELEMENTINLEVEL%%>,
                 DistinguishableOperator,
                 SortableOperator<%%TARGETELEMENTINLEVEL%%>,

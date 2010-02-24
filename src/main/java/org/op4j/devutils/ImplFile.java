@@ -393,7 +393,7 @@ public class ImplFile {
             this.methodImplementations = new ArrayList<String>();
             this.methodNames = new LinkedHashSet<String>();
             this.interfaceTypeRep = new TypeRep(interfaceClass);
-            this.packageName = interfaceClass.getPackage().getName().replace(".intf.", ".impl.");
+            this.packageName = interfaceClass.getPackage().getName().replace(".intf.", ".op.impl.");
             this.imports.add(interfaceClass.getName());
             
             this.className = 
@@ -486,7 +486,9 @@ public class ImplFile {
         }
         
         try {
-            interfaceMethods.add(interfaceClass.getMethod("get"));
+            if (!this.className.contains("GenericMulti")) {
+                interfaceMethods.add(UniqOpOperator.class.getMethod("get"));
+            }
         } catch (NoSuchMethodException e) {
             // nothing to do
         }
@@ -529,7 +531,7 @@ public class ImplFile {
             final String returnTypeStr =
                 (methodName.equals("get")? 
                         this.element :
-                        new TypeRep(interfaceMethod.getGenericReturnType()).getStringRep());
+                        new TypeRep(interfaceMethod.getGenericReturnType()).getStringRep().replaceAll("Operator<", "OperatorImpl<"));
             
             final StringBuilder parameterStrBuilder = new StringBuilder();
             parameterStrBuilder.append("(");
@@ -627,7 +629,11 @@ public class ImplFile {
             }
         }
         strBuilder.append("\n\n");
-        strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements " + this.interfaceTypeRep.getStringRep() + " {\n");
+        if (this.className.contains("GenericMulti")) {
+            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements MultiOpOperator<" + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
+        } else {
+            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements UniqOpOperator<" + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
+        }
         
         if (isArrayTypeRequired()) {
             strBuilder.append("\n\n");

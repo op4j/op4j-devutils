@@ -17,7 +17,7 @@
  * 
  * =============================================================================
  */
-package org.op4j.operators.op.intf.%%STRUCTUREPACKAGE%%;
+package org.op4j.operators.intf.%%STRUCTUREPACKAGE%%;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -28,7 +28,7 @@ import org.op4j.operators.qualities.ModifiableMapOperator;
 import org.op4j.operators.qualities.NavigableMapOperator;
 import org.op4j.operators.qualities.SelectedOperator;
 import org.op4j.operators.qualities.SortableOperator;
-import org.op4j.operators.qualities.UniqOpOperator;
+import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.operators.qualities.ReplaceableOperator;
 /**
  * 
@@ -38,7 +38,7 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  *
  */
 public interface Level0%%STRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I>
-        extends UniqOpOperator<%%TARGETTYPE%%>,
+        extends UniqOperator<%%TARGETTYPE%%>,
                 NavigableMapOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>,
 		        SortableOperator<%%TARGETELEMENTINLEVEL%%>,
                 Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>,

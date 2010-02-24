@@ -17,14 +17,14 @@
  * 
  * =============================================================================
  */
-package org.op4j.operators.op.intf.%%STRUCTUREPACKAGE%%;
+package org.op4j.operators.intf.%%STRUCTUREPACKAGE%%;
 
 %%IMPORT%%
 
 import org.op4j.functions.IFunction;
 import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
 import org.op4j.operators.qualities.SelectedOperator;
-import org.op4j.operators.qualities.UniqOpOperator;
+import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.operators.qualities.ReplaceableOperator;
 
 
@@ -36,7 +36,7 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  *
  */
 public interface Level1%%STRUCTURE%%SelectedElementsSelectedOperator<%%TARGETELEMENT%%,I>
-        extends UniqOpOperator<%%TARGETTYPE%%>,
+        extends UniqOperator<%%TARGETTYPE%%>,
                 SelectedOperator<%%TARGETTYPEINLEVEL%%>,
                 Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>,
                 ReplaceableOperator<%%TARGETTYPEINLEVEL%%> {
