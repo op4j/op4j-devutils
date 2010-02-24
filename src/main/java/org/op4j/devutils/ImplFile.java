@@ -22,7 +22,7 @@ import org.op4j.functions.structures.FArray;
 import org.op4j.functions.structures.FList;
 import org.op4j.functions.structures.FMap;
 import org.op4j.functions.structures.FSet;
-import org.op4j.operators.op.impl.AbstractOperatorImpl;
+import org.op4j.operators.impl.op.AbstractOperatorImpl;
 import org.op4j.operators.qualities.MultiOpOperator;
 import org.op4j.operators.qualities.UniqOpOperator;
 import org.op4j.operators.qualities.UniqOperator;
@@ -393,7 +393,7 @@ public class ImplFile {
             this.methodImplementations = new ArrayList<String>();
             this.methodNames = new LinkedHashSet<String>();
             this.interfaceTypeRep = new TypeRep(interfaceClass);
-            this.packageName = interfaceClass.getPackage().getName().replace(".intf.", ".op.impl.");
+            this.packageName = interfaceClass.getPackage().getName().replace(".intf.", ".impl.op.");
             this.imports.add(interfaceClass.getName());
             
             this.className = 
@@ -514,7 +514,7 @@ public class ImplFile {
             final Type[] parameterTypes = interfaceMethod.getGenericParameterTypes();
 
             if (methodName.startsWith("exec")) {
-                this.currentLevelType = (new TypeRep(((WildcardType)((ParameterizedType)parameterTypes[0]).getActualTypeArguments()[1]).getLowerBounds()[0])).getStringRep();
+                this.currentLevelType = (new TypeRep(((WildcardType)((ParameterizedType)parameterTypes[0]).getActualTypeArguments()[0]).getLowerBounds()[0])).getStringRep();
                 if (this.currentLevelType.endsWith("[]")) {
                     this.currentLevelElement = this.currentLevelType.substring(0, this.currentLevelType.length() - 2);
                 } else if (this.currentLevelType.startsWith("List<") && this.currentLevelType.endsWith(">")) {
@@ -630,9 +630,9 @@ public class ImplFile {
         }
         strBuilder.append("\n\n");
         if (this.className.contains("GenericMulti")) {
-            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements MultiOpOperator<" + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
+            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements MultiOpOperator<I," + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
         } else {
-            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements UniqOpOperator<" + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
+            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements UniqOpOperator<I," + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
         }
         
         if (isArrayTypeRequired()) {

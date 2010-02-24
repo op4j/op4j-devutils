@@ -36,7 +36,7 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level1%%STRUCTURE%%SelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I>
+public interface Level1%%STRUCTURE%%SelectedEntriesSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>
 		extends UniqOperator<%%TARGETTYPE%%>,
 		        NavigableMapEntryOperator,
                 Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>,
@@ -44,16 +44,16 @@ public interface Level1%%STRUCTURE%%SelectedEntriesSelectedOperator<%%TARGETELEM
                 SelectedMapEntryOperator<%%TARGETELEMENTKEY%%, %%TARGETELEMENTVALUE%%> {
 
 
-    public Level1%%STRUCTURE%%SelectedEntriesOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> endIf();
+    public Level1%%STRUCTURE%%SelectedEntriesOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endIf();
     
 
-    public Level2%%STRUCTURE%%SelectedEntriesSelectedKeyOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> onKey();
-    public Level2%%STRUCTURE%%SelectedEntriesSelectedValueOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> onValue();
+    public Level2%%STRUCTURE%%SelectedEntriesSelectedKeyOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> onKey();
+    public Level2%%STRUCTURE%%SelectedEntriesSelectedValueOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> onValue();
     
-    public Level1%%STRUCTURE%%SelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public Level1%%STRUCTURE%%SelectedEntriesSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level1%%STRUCTURE%%SelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> execAs%%EQUIVALENTSTRUCTURE%%(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level1%%STRUCTURE%%SelectedEntriesSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> execAs%%EQUIVALENTSTRUCTURE%%(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
     
-    public Level1%%STRUCTURE%%SelectedEntriesSelectedOperator<%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%,I> execIfNotNullAs%%EQUIVALENTSTRUCTURE%%(final IFunction<? extends %%FLEXIBLETARGETTYPEINLEVEL%%, ? super %%TARGETTYPEINLEVEL%%> function);
+    public Level1%%STRUCTURE%%SelectedEntriesSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> execIfNotNullAs%%EQUIVALENTSTRUCTURE%%(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
     
     }
