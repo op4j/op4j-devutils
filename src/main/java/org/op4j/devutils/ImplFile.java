@@ -18,12 +18,15 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.op4j.functions.Function;
 import org.op4j.functions.structures.FArray;
 import org.op4j.functions.structures.FList;
 import org.op4j.functions.structures.FMap;
 import org.op4j.functions.structures.FSet;
-import org.op4j.operators.impl.op.AbstractOperatorImpl;
+import org.op4j.operators.impl.AbstractOperatorImpl;
+import org.op4j.operators.qualities.MultiFnOperator;
 import org.op4j.operators.qualities.MultiOpOperator;
+import org.op4j.operators.qualities.UniqFnOperator;
 import org.op4j.operators.qualities.UniqOpOperator;
 import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.target.Target;
@@ -34,6 +37,8 @@ import org.op4j.util.NormalisationUtils;
 public class ImplFile {
     
     public enum LevelStructure { ARRAY, LIST, SET, MAP, MAP_ENTRY, ELEMENTS, LEVEL_DOES_NOT_EXIST }
+    
+    private final ImplType implType;
     
     private final String packageName;
     private final Set<String> imports;
@@ -141,7 +146,7 @@ public class ImplFile {
         paramNames.put("sort", new String[] {"comparator"});
         paramNames.put("put", new String[] {"newKey","newValue"});
         paramNames.put("putAll", new String[] {"map"});
-        paramNames.put("getAsArray", new String[] {"type"});
+        paramNames.put("getAsArrayOf", new String[] {"type"});
         paramNames.put("forEach", new String[] {"elementType"});
         paramNames.put("replaceWith", new String[] {"replacement"});
         paramNames.put("map", new String[] {"function"});
@@ -383,17 +388,18 @@ public class ImplFile {
     }
     
     
-    public ImplFile(final Class<?> interfaceClass){
+    public ImplFile(final ImplType implType, final Class<?> interfaceClass){
         
         super();
         
         try {
             
+            this.implType = implType;
             this.imports = new LinkedHashSet<String>();
             this.methodImplementations = new ArrayList<String>();
             this.methodNames = new LinkedHashSet<String>();
             this.interfaceTypeRep = new TypeRep(interfaceClass);
-            this.packageName = interfaceClass.getPackage().getName().replace(".intf.", ".impl.op.");
+            this.packageName = interfaceClass.getPackage().getName().replace(".intf.", (implType == ImplType.OP? ".impl.op." : ".impl.fn."));
             this.imports.add(interfaceClass.getName());
             
             this.className = 
@@ -401,7 +407,7 @@ public class ImplFile {
                 "Impl<" +
                 StringUtils.substringAfter(this.interfaceTypeRep.getStringRep(), "<");
             
-            computeMethodImplementations(interfaceClass);
+            computeMethodImplementations(implType, interfaceClass);
             
         } catch (final Exception e) {
             throw new RuntimeException(e);
@@ -468,8 +474,12 @@ public class ImplFile {
         return this.currentLevelElement;
     }
 
+    public ImplType getImplType() {
+        return this.implType;
+    }
+    
 
-    public void computeMethodImplementations(final Class<?> interfaceClass) throws Exception {
+    public void computeMethodImplementations(final ImplType implType, final Class<?> interfaceClass) throws Exception {
         
         final List<Method> interfaceMethods = new ArrayList<Method>();
         interfaceMethods.addAll(Arrays.asList(interfaceClass.getDeclaredMethods()));
@@ -488,6 +498,9 @@ public class ImplFile {
         try {
             if (!this.className.contains("GenericMulti")) {
                 interfaceMethods.add(UniqOpOperator.class.getMethod("get"));
+            } else {
+                interfaceMethods.add(MultiOpOperator.class.getMethod("getAsList"));
+                interfaceMethods.add(MultiOpOperator.class.getMethod("getAsArrayOf", org.javaruntype.type.Type.class));
             }
         } catch (NoSuchMethodException e) {
             // nothing to do
@@ -530,8 +543,10 @@ public class ImplFile {
             
             final String returnTypeStr =
                 (methodName.equals("get")? 
-                        this.element :
-                        new TypeRep(interfaceMethod.getGenericReturnType()).getStringRep().replaceAll("Operator<", "OperatorImpl<"));
+                        (implType == ImplType.OP? this.element : "Function<I," + this.element + ">") :
+                        (methodName.equals("getAsArrayOf")? (implType == ImplType.OP? this.element + "[]" : "Function<I," + this.element + "[]>") : 
+                            (methodName.equals("getAsList")? (implType == ImplType.OP? "List<" + this.element + ">" : "Function<I,List<" + this.element + ">>") : 
+                                new TypeRep(interfaceMethod.getGenericReturnType()).getStringRep().replaceAll("Operator<", "OperatorImpl<"))));
             
             final StringBuilder parameterStrBuilder = new StringBuilder();
             parameterStrBuilder.append("(");
@@ -594,6 +609,7 @@ public class ImplFile {
     
     
     public String computeFileContents() {
+        
         final StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("package " + this.packageName + ";\n\n");
         if (isArrayTypeRequired()) {
@@ -601,6 +617,7 @@ public class ImplFile {
         }
         this.imports.add(Target.class.getName());
         this.imports.add(NormalisationUtils.class.getName());
+        this.imports.add(Function.class.getName());
         this.imports.add(Normalisation.class.getName().replace("$", "."));
         switch(getCurrentLevelStructure()) {
             case ARRAY : this.imports.add(FArray.class.getName()); break; 
@@ -618,6 +635,8 @@ public class ImplFile {
         this.imports.add(AbstractOperatorImpl.class.getName());
         this.imports.add(UniqOpOperator.class.getName());
         this.imports.add(MultiOpOperator.class.getName());
+        this.imports.add(UniqFnOperator.class.getName());
+        this.imports.add(MultiFnOperator.class.getName());
         this.imports.add(List.class.getName());
         this.imports.add(Map.class.getName());
         this.imports.add(Set.class.getName());
@@ -629,10 +648,13 @@ public class ImplFile {
             }
         }
         strBuilder.append("\n\n");
+        
         if (this.className.contains("GenericMulti")) {
-            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements MultiOpOperator<I," + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
+            final String operatorInterface = (this.implType == ImplType.OP? "MultiOpOperator" : "MultiFnOperator");
+            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements " + operatorInterface + "<I," + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
         } else {
-            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements UniqOpOperator<I," + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
+            final String operatorInterface = (this.implType == ImplType.OP? "UniqOpOperator" : "UniqFnOperator");
+            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements " + operatorInterface + "<I," + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
         }
         
         if (isArrayTypeRequired()) {
@@ -659,9 +681,9 @@ public class ImplFile {
         
         String fileContents = strBuilder.toString();
         if (isArrayTypeRequired()) {
-            fileContents = MethodImplementor.processArray(fileContents, getCurrentLevel(), getCurrentLevelStructure(), getPreviousLevelStructure(), getCurrentLevelType(), getCurrentLevelElement(), hasEndIf(), hasEndOn());
+            fileContents = MethodImplementor.processArray(implType, fileContents, getCurrentLevel(), getCurrentLevelStructure(), getPreviousLevelStructure(), getCurrentLevelType(), getCurrentLevelElement(), hasEndIf(), hasEndOn());
         } else {
-            fileContents = MethodImplementor.processNonArray(fileContents, getCurrentLevel(), getCurrentLevelStructure(), getPreviousLevelStructure(), getCurrentLevelType(), getCurrentLevelElement(), hasEndIf(), hasEndOn());
+            fileContents = MethodImplementor.processNonArray(implType, fileContents, getCurrentLevel(), getCurrentLevelStructure(), getPreviousLevelStructure(), getCurrentLevelType(), getCurrentLevelElement(), hasEndIf(), hasEndOn());
         }
         return fileContents;
     }

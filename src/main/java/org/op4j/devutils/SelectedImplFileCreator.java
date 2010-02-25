@@ -105,15 +105,22 @@ public class SelectedImplFileCreator {
         final File operatorsFolder = new File(operatorsFolderName);
         operatorsFolder.mkdir();
         
+        final String folderFragment = (implFile.getImplType() == ImplType.OP? "/impl/op/" : "/impl/fn/");
         
         final File implFolder = new File(operatorsFolderName + "/impl");
         implFolder.mkdir();
         
+        final File implFnFolder = new File(operatorsFolderName + "/impl/fn");
+        implFnFolder.mkdir();
         
-        final File structureFolder = new File(operatorsFolderName + "/impl/" + structureName.toLowerCase());
+        final File implOpFolder = new File(operatorsFolderName + "/impl/op");
+        implOpFolder.mkdir();
+        
+        
+        final File structureFolder = new File(operatorsFolderName + folderFragment + structureName.toLowerCase());
         structureFolder.mkdir();
         
-        final File resultFile = new File(operatorsFolderName + "/impl/" + structureName.toLowerCase() + "/" + className);
+        final File resultFile = new File(operatorsFolderName + folderFragment + structureName.toLowerCase() + "/" + className);
         final FileWriter writer = new FileWriter(resultFile);
         
 
@@ -142,8 +149,10 @@ public class SelectedImplFileCreator {
 			    
 			    if (clazz.getSimpleName().contains("Selected") && !clazz.getSimpleName().contains("Unmodifiable")) {
 			        
-	                final ImplFile implFile = new ImplFile(clazz);
-	                createFile(StringUtils.substringAfterLast(implFile.getPackageName(),"."),StringUtils.substringBefore(implFile.getClassName(),"<") + ".java", implFile);
+	                final ImplFile implOpFile = new ImplFile(ImplType.OP, clazz);
+	                createFile(StringUtils.substringAfterLast(implOpFile.getPackageName(),"."),StringUtils.substringBefore(implOpFile.getClassName(),"<") + ".java", implOpFile);
+                    final ImplFile implFnFile = new ImplFile(ImplType.FN, clazz);
+                    createFile(StringUtils.substringAfterLast(implFnFile.getPackageName(),"."),StringUtils.substringBefore(implFnFile.getClassName(),"<") + ".java", implFnFile);
 	                
 			    }
 			    

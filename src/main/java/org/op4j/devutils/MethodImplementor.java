@@ -295,8 +295,8 @@ public class MethodImplementor {
                 "public $1<$2> removeAllKeysNot(final $3... keys) {\n        return new $1<$2>(%%ELEMENTTYPE%%getTarget().execute(new %%STRUCTUREFUNCS%%.RemoveAllKeysNot<%%CURRENTLEVELENTRYELEMENT%%>(keys)));\n    }");
 
         methods.put(
-                "public (.*?) getAsArray\\(final Type<(.*?)> type\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
-                "public $1 getAsArray(final Type<$2> type) {\n        return endIf().buildArrayOf(type).get();\n    }");
+                "public (.*?) getAsArrayOf\\(final Type<(.*?)> type\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "public $1 getAsArrayOf(final Type<$2> type) {\n        return endIf().buildArrayOf(type).get();\n    }");
         methods.put(
                 "public (.*?) getAsList\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "public $1 getAsList() {\n        return endIf().buildList().get();\n    }");
@@ -426,7 +426,7 @@ public class MethodImplementor {
     
     
     
-    public static String processNonArray(final String fileContents, final int currentLevel, final LevelStructure currentLevelStructure, final LevelStructure previousLevelStructure, final String currentLevelType, final String currentLevelElement, final boolean hasEndIf, final boolean hasEndOn) {
+    public static String processNonArray(final ImplType implType, final String fileContents, final int currentLevel, final LevelStructure currentLevelStructure, final LevelStructure previousLevelStructure, final String currentLevelType, final String currentLevelElement, final boolean hasEndIf, final boolean hasEndOn) {
         String newFileContents = fileContents; 
         for (final Map.Entry<String,String> implementation : methods.entrySet()) {
             String impl = implementation.getValue().replaceAll("%%ELEMENTTYPE%%", "");
@@ -448,7 +448,7 @@ public class MethodImplementor {
     }
     
     
-    public static String processArray(final String fileContents, final int currentLevel, final LevelStructure currentLevelStructure, final LevelStructure previousLevelStructure, final String currentLevelType, final String currentLevelElement, final boolean hasEndIf, final boolean hasEndOn) {
+    public static String processArray(final ImplType implType, final String fileContents, final int currentLevel, final LevelStructure currentLevelStructure, final LevelStructure previousLevelStructure, final String currentLevelType, final String currentLevelElement, final boolean hasEndIf, final boolean hasEndOn) {
         String newFileContents = fileContents; 
         for (final Map.Entry<String,String> implementation : methods.entrySet()) {
             String impl = implementation.getValue().replaceAll("%%ELEMENTTYPE%%", "this.type, ");
