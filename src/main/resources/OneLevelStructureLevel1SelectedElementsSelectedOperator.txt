@@ -23,7 +23,7 @@ package org.op4j.operators.intf.%%STRUCTUREPACKAGE%%;
 
 import org.op4j.functions.IFunction;
 import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
-import org.op4j.operators.qualities.SelectedOperator;
+import org.op4j.operators.qualities.SelectedElementsOperator;
 import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.operators.qualities.ReplaceableOperator;
 
@@ -37,7 +37,7 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  */
 public interface Level1%%STRUCTURE%%SelectedElementsSelectedOperator<I,%%TARGETELEMENT%%>
         extends UniqOperator<%%TARGETTYPE%%>,
-                SelectedOperator<%%TARGETTYPEINLEVEL%%>,
+                SelectedElementsOperator<%%TARGETTYPEINLEVEL%%>,
                 Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>,
                 ReplaceableOperator<%%TARGETTYPEINLEVEL%%> {
 
