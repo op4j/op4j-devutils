@@ -18,11 +18,11 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.op4j.functions.FnArray;
+import org.op4j.functions.FnList;
+import org.op4j.functions.FnMap;
+import org.op4j.functions.FnSet;
 import org.op4j.functions.Function;
-import org.op4j.functions.structures.FArray;
-import org.op4j.functions.structures.FList;
-import org.op4j.functions.structures.FMap;
-import org.op4j.functions.structures.FSet;
 import org.op4j.operators.impl.AbstractOperatorImpl;
 import org.op4j.operators.qualities.MultiFnOperator;
 import org.op4j.operators.qualities.MultiOpOperator;
@@ -620,10 +620,10 @@ public class ImplFile {
         this.imports.add(Function.class.getName());
         this.imports.add(Normalisation.class.getName().replace("$", "."));
         switch(getCurrentLevelStructure()) {
-            case ARRAY : this.imports.add(FArray.class.getName()); break; 
-            case LIST : this.imports.add(FList.class.getName()); break; 
-            case MAP : this.imports.add(FMap.class.getName()); break; 
-            case SET : this.imports.add(FSet.class.getName()); break;
+            case ARRAY : this.imports.add(FnArray.class.getName()); break; 
+            case LIST : this.imports.add(FnList.class.getName()); break; 
+            case MAP : this.imports.add(FnMap.class.getName()); break; 
+            case SET : this.imports.add(FnSet.class.getName()); break;
             default :
         }
         if (this.methodNames.contains("forEach") || this.methodNames.contains("forEachEntry")) {
