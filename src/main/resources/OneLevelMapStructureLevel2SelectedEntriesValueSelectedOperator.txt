@@ -35,7 +35,7 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>
+public interface ILevel2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%>
         extends UniqOperator<%%TARGETTYPE%%>,
         		Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETTYPEINLEVEL%%>,
                 ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
@@ -43,14 +43,14 @@ public interface Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TAR
 
 
 
-    public Level2%%STRUCTURE%%SelectedEntriesValueOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endIf();
+    public ILevel2%%STRUCTURE%%SelectedEntriesValueOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endIf();
 
     
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> execIfNotNull(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
+    public ILevel2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> execIfNotNull(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
 
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public ILevel2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
+    public ILevel2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
 
     
 }

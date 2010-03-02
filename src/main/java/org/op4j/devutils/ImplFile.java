@@ -23,7 +23,7 @@ import org.op4j.functions.FnList;
 import org.op4j.functions.FnMap;
 import org.op4j.functions.FnSet;
 import org.op4j.functions.Function;
-import org.op4j.operators.impl.AbstractOperatorImpl;
+import org.op4j.operators.impl.AbstractOperator;
 import org.op4j.operators.qualities.MultiFnOperator;
 import org.op4j.operators.qualities.MultiOpOperator;
 import org.op4j.operators.qualities.UniqFnOperator;
@@ -426,8 +426,8 @@ public class ImplFile {
             this.imports.add(interfaceClass.getName());
             
             this.className = 
-                StringUtils.substringBefore(this.interfaceTypeRep.getStringRep(), "<") +
-                "Impl<" +
+                StringUtils.substringBefore(this.interfaceTypeRep.getStringRep(), "<").substring(1) +
+                "<" +
                 StringUtils.substringAfter(this.interfaceTypeRep.getStringRep(), "<");
             
             computeMethodImplementations(implType, interfaceClass);
@@ -569,7 +569,7 @@ public class ImplFile {
                         (implType == ImplType.OP? this.element : "Function<I," + this.element + ">") :
                         (methodName.equals("getAsArrayOf")? (implType == ImplType.OP? this.element + "[]" : "Function<I," + this.element + "[]>") : 
                             (methodName.equals("getAsList")? (implType == ImplType.OP? "List<" + this.element + ">" : "Function<I,List<" + this.element + ">>") : 
-                                new TypeRep(interfaceMethod.getGenericReturnType()).getStringRep().replaceAll("Operator<", "OperatorImpl<"))));
+                                new TypeRep(interfaceMethod.getGenericReturnType()).getStringRep().replaceAll("ILevel", "Level"))));
             
             final StringBuilder parameterStrBuilder = new StringBuilder();
             parameterStrBuilder.append("(");
@@ -656,7 +656,7 @@ public class ImplFile {
                 this.imports.add(Array.class.getName());
             }
         }
-        this.imports.add(AbstractOperatorImpl.class.getName());
+        this.imports.add(AbstractOperator.class.getName());
         this.imports.add(UniqOpOperator.class.getName());
         this.imports.add(MultiOpOperator.class.getName());
         this.imports.add(UniqFnOperator.class.getName());
@@ -675,10 +675,10 @@ public class ImplFile {
         
         if (this.className.contains("GenericMulti")) {
             final String operatorInterface = (this.implType == ImplType.OP? "MultiOpOperator" : "MultiFnOperator");
-            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements " + operatorInterface + "<I," + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
+            strBuilder.append("public final class " + this.className + " extends AbstractOperator implements " + operatorInterface + "<I," + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
         } else {
             final String operatorInterface = (this.implType == ImplType.OP? "UniqOpOperator" : "UniqFnOperator");
-            strBuilder.append("public final class " + this.className + " extends AbstractOperatorImpl implements " + operatorInterface + "<I," + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
+            strBuilder.append("public final class " + this.className + " extends AbstractOperator implements " + operatorInterface + "<I," + this.element + ">, " + this.interfaceTypeRep.getStringRep() + " {\n");
         }
         
         if (isArrayTypeRequired()) {

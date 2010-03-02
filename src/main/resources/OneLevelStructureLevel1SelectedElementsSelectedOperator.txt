@@ -35,7 +35,7 @@ import org.op4j.operators.qualities.ReplaceableOperator;
  * @author Daniel Fern&aacute;ndez
  *
  */
-public interface Level1%%STRUCTURE%%SelectedElementsSelectedOperator<I,%%TARGETELEMENT%%>
+public interface ILevel1%%STRUCTURE%%SelectedElementsSelectedOperator<I,%%TARGETELEMENT%%>
         extends UniqOperator<%%TARGETTYPE%%>,
                 SelectedElementsOperator<%%TARGETTYPEINLEVEL%%>,
                 Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETELEMENT%%>,
@@ -43,14 +43,14 @@ public interface Level1%%STRUCTURE%%SelectedElementsSelectedOperator<I,%%TARGETE
 
 
 
-    public Level1%%STRUCTURE%%SelectedElementsOperator<I,%%TARGETELEMENT%%> endIf();
+    public ILevel1%%STRUCTURE%%SelectedElementsOperator<I,%%TARGETELEMENT%%> endIf();
 
     
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<I,%%TARGETELEMENT%%> execIfNotNull(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
+    public ILevel1%%STRUCTURE%%SelectedElementsSelectedOperator<I,%%TARGETELEMENT%%> execIfNotNull(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
 
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<I,%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
+    public ILevel1%%STRUCTURE%%SelectedElementsSelectedOperator<I,%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
-    public Level1%%STRUCTURE%%SelectedElementsSelectedOperator<I,%%TARGETELEMENT%%> exec(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
+    public ILevel1%%STRUCTURE%%SelectedElementsSelectedOperator<I,%%TARGETELEMENT%%> exec(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
 	
     
 }

@@ -91,10 +91,10 @@ public class SelectedInterfaceFileCreator {
 
     private static final String[] ONE_LEVEL_STRUCTURE_RESULTS =
     	{
-    		"Level0%%STRUCTURE%%SelectedOperator.java",
-    		"Level1%%STRUCTURE%%ElementsSelectedOperator.java",
-    		"Level1%%STRUCTURE%%SelectedElementsOperator.java",
-    		"Level1%%STRUCTURE%%SelectedElementsSelectedOperator.java"
+    		"ILevel0%%STRUCTURE%%SelectedOperator.java",
+    		"ILevel1%%STRUCTURE%%ElementsSelectedOperator.java",
+    		"ILevel1%%STRUCTURE%%SelectedElementsOperator.java",
+    		"ILevel1%%STRUCTURE%%SelectedElementsSelectedOperator.java"
     	};
 
     private static final int[] ONE_LEVEL_STRUCTURE_TARGETTYPE_IN_LEVEL_INDEXES =
@@ -177,24 +177,24 @@ public class SelectedInterfaceFileCreator {
 
     private static final String[] ONE_LEVEL_MAP_STRUCTURE_RESULTS =
         {
-            "Level0%%STRUCTURE%%SelectedOperator.java",
-            "Level1%%STRUCTURE%%EntriesSelectedOperator.java",
-            "Level1%%STRUCTURE%%SelectedEntriesOperator.java",
-            "Level1%%STRUCTURE%%SelectedEntriesSelectedOperator.java",
-            "Level2%%STRUCTURE%%EntriesKeySelectedOperator.java",
-            "Level2%%STRUCTURE%%EntriesSelectedKeyOperator.java",
-            "Level2%%STRUCTURE%%EntriesSelectedKeySelectedOperator.java",
-            "Level2%%STRUCTURE%%EntriesSelectedValueOperator.java",
-            "Level2%%STRUCTURE%%EntriesSelectedValueSelectedOperator.java",
-            "Level2%%STRUCTURE%%EntriesValueSelectedOperator.java",
-            "Level2%%STRUCTURE%%SelectedEntriesKeyOperator.java",
-            "Level2%%STRUCTURE%%SelectedEntriesKeySelectedOperator.java",
-            "Level2%%STRUCTURE%%SelectedEntriesSelectedKeyOperator.java",
-            "Level2%%STRUCTURE%%SelectedEntriesSelectedKeySelectedOperator.java",
-            "Level2%%STRUCTURE%%SelectedEntriesSelectedValueOperator.java",
-            "Level2%%STRUCTURE%%SelectedEntriesSelectedValueSelectedOperator.java",
-            "Level2%%STRUCTURE%%SelectedEntriesValueOperator.java",
-            "Level2%%STRUCTURE%%SelectedEntriesValueSelectedOperator.java",
+            "ILevel0%%STRUCTURE%%SelectedOperator.java",
+            "ILevel1%%STRUCTURE%%EntriesSelectedOperator.java",
+            "ILevel1%%STRUCTURE%%SelectedEntriesOperator.java",
+            "ILevel1%%STRUCTURE%%SelectedEntriesSelectedOperator.java",
+            "ILevel2%%STRUCTURE%%EntriesKeySelectedOperator.java",
+            "ILevel2%%STRUCTURE%%EntriesSelectedKeyOperator.java",
+            "ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator.java",
+            "ILevel2%%STRUCTURE%%EntriesSelectedValueOperator.java",
+            "ILevel2%%STRUCTURE%%EntriesSelectedValueSelectedOperator.java",
+            "ILevel2%%STRUCTURE%%EntriesValueSelectedOperator.java",
+            "ILevel2%%STRUCTURE%%SelectedEntriesKeyOperator.java",
+            "ILevel2%%STRUCTURE%%SelectedEntriesKeySelectedOperator.java",
+            "ILevel2%%STRUCTURE%%SelectedEntriesSelectedKeyOperator.java",
+            "ILevel2%%STRUCTURE%%SelectedEntriesSelectedKeySelectedOperator.java",
+            "ILevel2%%STRUCTURE%%SelectedEntriesSelectedValueOperator.java",
+            "ILevel2%%STRUCTURE%%SelectedEntriesSelectedValueSelectedOperator.java",
+            "ILevel2%%STRUCTURE%%SelectedEntriesValueOperator.java",
+            "ILevel2%%STRUCTURE%%SelectedEntriesValueSelectedOperator.java",
         };
 
     private static final int[] ONE_LEVEL_MAP_STRUCTURE_TARGETTYPE_IN_LEVEL_INDEXES =
@@ -292,13 +292,13 @@ public class SelectedInterfaceFileCreator {
     private static final List<String> setFileNamePrefixes = 
         Arrays.asList(
                 new String[] {
-                        "Level0SetOperator",
-                        "Level0SetSelected",
-                        "Level1ArrayOfSet",
-                        "Level1ListOfSet",
-                        "Level2MapOfSet",
-                        "Level0SetOf",
-                        "Level1SetOfSet",
+                        "ILevel0SetOperator",
+                        "ILevel0SetSelected",
+                        "ILevel1ArrayOfSet",
+                        "ILevel1ListOfSet",
+                        "ILevel2MapOfSet",
+                        "ILevel0SetOf",
+                        "ILevel1SetOfSet",
                 });
     
     
@@ -306,27 +306,27 @@ public class SelectedInterfaceFileCreator {
     private static final List<String> navigableArrayPrefixes =
         Arrays.asList(
             new String[] { 
-                "Level0ArrayOperator",
-                "Level0ArraySelected",
-                "Level0ArrayOfArray",
-                "Level1ArrayOfArray",
-                "Level1ListOfArray",
-                "Level2MapOfArray",
-                "Level1SetOfArray"
+                "ILevel0ArrayOperator",
+                "ILevel0ArraySelected",
+                "ILevel0ArrayOfArray",
+                "ILevel1ArrayOfArray",
+                "ILevel1ListOfArray",
+                "ILevel2MapOfArray",
+                "ILevel1SetOfArray"
             });
     
     
     private static final List<String> navigatingArrayPrefixes =
         Arrays.asList(
             new String[] { 
-                "Level1ArrayOperator",
-                "Level1ArraySelected",
-                "Level1ArrayElements",
-                "Level1ArrayOfArray",
-                "Level2ArrayOfArray",
-                "Level2ListOfArray",
-                "Level3MapOfArray",
-                "Level2SetOfArray"
+                "ILevel1ArrayOperator",
+                "ILevel1ArraySelected",
+                "ILevel1ArrayElements",
+                "ILevel1ArrayOfArray",
+                "ILevel2ArrayOfArray",
+                "ILevel2ListOfArray",
+                "ILevel3MapOfArray",
+                "ILevel2SetOfArray"
             });
     
     
@@ -498,7 +498,7 @@ public class SelectedInterfaceFileCreator {
     		    final String resultsFileName = 
     		        ONE_LEVEL_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName);
     		    final int level =
-    		        Integer.valueOf(resultsFileName.substring(5, 6));
+    		        Integer.valueOf(resultsFileName.substring(6, 7));
     		    
     			createFile(
     					ONE_LEVEL_STRUCTURE_TEMPLATES[j],
@@ -545,7 +545,7 @@ public class SelectedInterfaceFileCreator {
                 final String resultsFileName = 
                     ONE_LEVEL_MAP_STRUCTURE_RESULTS[j].replaceAll(REP_STRUCTURE, structureName);
                 final int level =
-                    Integer.valueOf(resultsFileName.substring(5, 6));
+                    Integer.valueOf(resultsFileName.substring(6, 7));
                 
                 createFile(
                         ONE_LEVEL_MAP_STRUCTURE_TEMPLATES[j],
