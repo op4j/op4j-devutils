@@ -33,7 +33,7 @@ public class FnsAptFilesGenerator {
 			
 			Pattern pattern = Pattern.compile("(\\/\\*[\\w\\/\\*\\s\\{\\@\\}\\(\\)\\.]*\\*\\/)?" +
 					"\\s*public\\s+static\\s+(?:final)?(?:\\<[a-zA-Z\\,\\s]*\\>){0,1}\\s+((?:\\<[a-zA-Z\\,\\s]+\\>|[a-zA-Z])+)\\s+([a-zA-Z]+)\\s*" +
-					"\\(\\s*((?:.*,?)*)\\)\\s*\\{");
+					"\\(\\s*([a-zA-Z\\<\\>\\,]*)\\)\\s*\\{");
 			
 			Matcher matcher = pattern.matcher(FileUtils
 					.readFileToString(file));
