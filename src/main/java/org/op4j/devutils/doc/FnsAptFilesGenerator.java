@@ -33,7 +33,7 @@ public class FnsAptFilesGenerator {
 			
 			Pattern pattern = Pattern.compile("(\\/\\*[\\w\\/\\*\\s\\{\\@\\}\\(\\)\\.]*\\*\\/)?" +
 					"\\s*public\\s+static\\s+(?:final)?(?:\\<[a-zA-Z\\,\\s]*\\>){0,1}\\s+((?:\\<[a-zA-Z\\,\\s]+\\>|[a-zA-Z])+)\\s+([a-zA-Z]+)\\s*" +
-					"\\(\\s*([a-zA-Z\\<\\>\\,]*)\\)\\s*\\{");
+					"\\(\\s*([a-zA-Z\\<\\>\\,\\s]*)\\)\\s*\\{");
 			
 			Matcher matcher = pattern.matcher(FileUtils
 					.readFileToString(file));
@@ -152,52 +152,52 @@ public class FnsAptFilesGenerator {
 	public static void main(String[] args) {
 		
 		// TODO Use input parameters instead
-		String inputFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\main\\java\\org\\op4j\\functions\\";
-		String outputFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\site\\apt\\";
+		String inputFilePrefix = "C:\\Documents and Settings\\Daniel\\workspace\\op4j\\src\\main\\java\\org\\op4j\\functions\\";
+		String outputFilePrefix = "C:\\Documents and Settings\\Daniel\\workspace\\op4j\\src\\site\\apt\\";
 		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnarray.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnArray.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnboolean.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnBoolean.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fncalendar.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnCalendar.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fndate.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnDate.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnlist.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnList.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnmap.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnMap.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnmath.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnMath.java"
-		}));
-		
+//		generateAllFnsDoc(new File(outputFilePrefix, "fnarray.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnArray.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputFilePrefix, "fnboolean.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnBoolean.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputFilePrefix, "fncalendar.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnCalendar.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputFilePrefix, "fndate.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnDate.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputFilePrefix, "fnlist.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnList.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputFilePrefix, "fnmap.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnMap.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputFilePrefix, "fnmath.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnMath.java"
+//		}));
+//		
 		generateAllFnsDoc(new File(outputFilePrefix, "fnnumber.apt"), Arrays.asList(new String[] {
 				inputFilePrefix + "FnNumber.java"
 		}));
 		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnobject.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnObject.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnset.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnSet.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnstring.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnString.java"
-		}));
+//		generateAllFnsDoc(new File(outputFilePrefix, "fnobject.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnObject.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputFilePrefix, "fnset.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnSet.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputFilePrefix, "fnstring.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnString.java"
+//		}));
 		
 		
 		System.out.println("All apt files have been generated");
