@@ -18,7 +18,7 @@
  * =============================================================================
  */
 
-package org.op4j.devutils;
+package org.op4j.devutils.selected;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,4 +1,4 @@
-package org.op4j.devutils;
+package org.op4j.devutils.selected;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.GenericArrayType;

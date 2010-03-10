@@ -1,9 +1,9 @@
-package org.op4j.devutils;
+package org.op4j.devutils.selected;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.op4j.devutils.ImplFile.LevelStructure;
+import org.op4j.devutils.selected.ImplFile.LevelStructure;
 
 public class MethodImplementor {
 
