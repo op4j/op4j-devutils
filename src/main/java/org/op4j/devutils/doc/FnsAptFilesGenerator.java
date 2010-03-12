@@ -30,9 +30,12 @@ public class FnsAptFilesGenerator {
 		try {
 			System.out.println("Working with file: " + file.getName());
 			
-			Pattern pattern = Pattern.compile("(\\/\\*[\\w\\/\\*\\s\\{\\@\\}\\(\\)\\.]*\\*\\/)?" +
-					"\\s*public\\s+static\\s+(?:final)?(?:\\<[a-zA-Z\\,\\s]*\\>){0,1}\\s+((?:\\<[a-zA-Z\\,\\s\\<\\>]+\\>|[a-zA-Z])+)\\s+([a-zA-Z]+)\\s*" +
-					"\\(\\s*([a-zA-Z\\?\\<\\>\\,\\s]*)\\)\\s*\\{");
+			Pattern pattern = Pattern.compile("[\\{|\\}]\\s*(\\/\\*[\\w\\W]*?\\*\\/)?" +
+					"\\s*public\\s+(?:static|final)?\\s*(?:static|final)?\\s*" + //public static final
+					"(?:\\<[\\w\\,\\?\\s\\[\\]]*\\>){0,1}" + // type parameters
+					"\\s+((?:\\<[\\w\\,\\?\\s\\<\\>\\[\\]]+\\>|[a-zA-Z\\[\\]])+)" + //return type
+					"\\s+([\\w]+)" + //function name
+					"\\s*\\(\\s*([\\w\\?\\<\\>\\,\\s\\[\\]]*)\\)\\s*\\{"); //parameters
 			
 			Matcher matcher = pattern.matcher(FileUtils
 					.readFileToString(file));
@@ -53,14 +56,19 @@ public class FnsAptFilesGenerator {
 	}
 	
 	static List<String> getJavaDocLines(Matcher matcher) {
-		//TODO Remove @link
-		//TODO Params
-		return Arrays.asList(escape(matcher.group(1))
+		if (StringUtils.isEmpty(matcher.group(1))) {
+			return new ArrayList<String>();
+		}
+		return Arrays.asList(StringUtils
+				.substringBefore(StringUtils
+						.substringBefore(escape(matcher.group(1)), "@param"), "@return") 
 			.replaceFirst("\\/\\*\\*", "")
 			.replaceFirst("\\*\\/", "")
 			.replaceAll("\\n\\s*\\*", "\n")
+			.replaceAll("\\{\\@link([\\sa-zA-Z\\.]*)\\}", "$1")
 			.trim()
-			.split("\r\n"));
+			.replaceAll("\r\n", "")
+			.replace("\n", ""));		
 	}
 	static String getReturnType(Matcher matcher) {
 		System.out.println("Return type: " + matcher.group(2));
@@ -235,6 +243,22 @@ public class FnsAptFilesGenerator {
 		
 		generateAllFnsDoc(new File(outputFilePrefix, "team.apt"), Arrays.asList(new String[] {
 				inputFilePrefix + "FnMapOf.java"
+		}));
+		
+		generateAllFnsDoc(new File(outputFilePrefix, "team.apt"), Arrays.asList(new String[] {
+				inputFilePrefix + "FnArrayOf.java"
+		}));
+		
+		generateAllFnsDoc(new File(outputFilePrefix, "team.apt"), Arrays.asList(new String[] {
+				inputFilePrefix + "FnArray.java"
+		}));
+		
+		generateAllFnsDoc(new File(outputFilePrefix, "team.apt"), Arrays.asList(new String[] {
+				inputFilePrefix + "FnMapOf.java"
+		}));
+		
+		generateAllFnsDoc(new File(outputFilePrefix, "team.apt"), Arrays.asList(new String[] {
+				"C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\contrib\\executables\\functions\\conversion\\FnJodaTimeUtils.java"
 		}));
 		
 		System.out.println("All apt files have been generated");
