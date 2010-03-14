@@ -267,134 +267,24 @@ public class FnsAptFilesGenerator {
 		String inputFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\main\\java\\org\\op4j\\functions\\";
 		String outputAptFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\site\\apt\\";
 		String outputXdocFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\site\\xdoc\\";
-				
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnarray.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnArray.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnboolean.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnBoolean.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fncalendar.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnCalendar.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fndate.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnDate.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnlist.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnList.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnmap.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnMap.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnmath.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnMath.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnnumber.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnNumber.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnobject.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnObject.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnset.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnSet.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnstring.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnString.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "team.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnMapOf.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "team.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnArrayOf.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "team.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnArray.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "team.apt"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnMapOf.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputAptFilePrefix, "team.apt"), Arrays.asList(new String[] {
-//				"C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\contrib\\executables\\functions\\conversion\\FnJodaTimeUtils.java"
-//		}));
+			
 		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnArray.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnboolean.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnBoolean.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fncalendar.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnCalendar.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fndate.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnDate.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlist.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnList.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnmap.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnMap.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnmath.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnMath.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnnumber.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnNumber.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnobject.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnObject.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnSet.java"
-//		}));
-//		
+		// Generation
+		
 //		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnstring.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnString.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "team.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnMapOf.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "team.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnArrayOf.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "team.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnArray.java"
-//		}));
-//		
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "team.xml"), Arrays.asList(new String[] {
-//				inputFilePrefix + "FnMapOf.java"
-//		}));
+//				inputFilePrefix + "FnString.java"}));
 		
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "test.xml"), Arrays.asList(new String[] {
-				"C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\contrib\\executables\\functions\\conversion\\FnJodaTimeUtils.java"
-		}));
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnboolean.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnBoolean.java"}));
+		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fncalendar.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnCalendar.java"}));
+		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fndate.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnDate.java"}));
+		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnnumber.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnNumber.java"}));
 		
 		System.out.println("All files have been generated");
 		
