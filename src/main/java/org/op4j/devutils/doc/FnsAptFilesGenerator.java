@@ -15,11 +15,17 @@ import org.apache.commons.lang.StringUtils;
 import org.javaruntype.type.Types;
 import org.op4j.Op;
 import org.op4j.functions.ExecCtx;
+import org.op4j.functions.FnString;
 import org.op4j.functions.IFunction;
 import org.op4j.functions.Ognl;
 
 public class FnsAptFilesGenerator {
 
+	//JavaDoc: will include only data before either @param or @return. Any text after that tokens will be ignored
+	
+	private final static String APT_EXTENSION = "apt";
+	private final static String XDOC_EXTENSION = "xml";
+	
 	static void generateAllFnsDoc(File outputFile, List<String> fileNames) {
 		for (String fileName : fileNames) {
 			generateFnsDoc(outputFile, new File(fileName));
@@ -40,13 +46,27 @@ public class FnsAptFilesGenerator {
 			Matcher matcher = pattern.matcher(FileUtils
 					.readFileToString(file));
 
-			createTableHeader(outputFile);			
-			while (matcher.find()) {				
-				System.out.println("Match: " + matcher.group());
-				
-				addRow(outputFile, matcher);				
-			}			
-			addSeparator(outputFile);
+			if (StringUtils.endsWith(outputFile.getName(), APT_EXTENSION)) {
+				createAptTableHeader(outputFile);			
+				while (matcher.find()) {				
+					System.out.println("Match: " + matcher.group());
+					
+					addAptRow(outputFile, matcher);				
+				}			
+				addAptSeparator(outputFile);
+			} else if (StringUtils.endsWith(outputFile.getName(), XDOC_EXTENSION)) {
+				IOUtils.writeLines(Arrays.asList(new String[] {"\r\n"}), null, new FileOutputStream(outputFile, true));
+				IOUtils.writeLines(Arrays.asList(new String[] {"<table>"}), null, new FileOutputStream(outputFile, true));				
+				createXdocTableHeader(outputFile);
+				IOUtils.writeLines(Arrays.asList(new String[] {"<tbody>"}), null, new FileOutputStream(outputFile, true));
+				while (matcher.find()) {				
+					System.out.println("Match: " + matcher.group());
+					addXdocRow(outputFile, matcher);				
+				}		
+				IOUtils.writeLines(Arrays.asList(new String[] {"</tbody></table>"}), null, new FileOutputStream(outputFile, true));				
+			} else {
+				//TODO Error
+			}
 			
 			System.out.println("done");		
 		} catch (IOException e) {
@@ -55,28 +75,29 @@ public class FnsAptFilesGenerator {
 		}
 	}
 	
-	static List<String> getJavaDocLines(Matcher matcher) {
+	static String getJavaDoc(Matcher matcher) {
 		if (StringUtils.isEmpty(matcher.group(1))) {
-			return new ArrayList<String>();
+			return "";
 		}
-		return Arrays.asList(StringUtils
+		return StringUtils
 				.substringBefore(StringUtils
-						.substringBefore(escape(matcher.group(1)), "@param"), "@return") 
+						.substringBefore(matcher.group(1), "@param"), "@return") 
 			.replaceFirst("\\/\\*\\*", "")
 			.replaceFirst("\\*\\/", "")
 			.replaceAll("\\n\\s*\\*", "\n")
 			.replaceAll("\\{\\@link([\\sa-zA-Z\\.]*)\\}", "$1")
 			.trim()
 			.replaceAll("\r\n", "")
-			.replace("\n", ""));		
+			.replace("\n", "");		
 	}
+	
 	static String getReturnType(Matcher matcher) {
 		System.out.println("Return type: " + matcher.group(2));
-		return escape(matcher.group(2));
+		return matcher.group(2);
 	}
 	static String getFunctionName(Matcher matcher) {
 		System.out.println("Fn name: " + matcher.group(3));
-		return escape(matcher.group(3));
+		return matcher.group(3);
 	}
 	static List<String> getParams(Matcher matcher) {
 		List<String> params = getParams(matcher.group(4));
@@ -119,52 +140,84 @@ public class FnsAptFilesGenerator {
 				public String execute(String object, ExecCtx ctx)
 				throws Exception {
 					if (StringUtils.startsWith(object, "final")) {
-						return escape(StringUtils.substringAfter(object, "final").trim());
+						return StringUtils.substringAfter(object, "final").trim();
 					} 
-					return escape(object);
+					return object;
 				}
 			}).endFor().get();
 	}
 	
-	static String escape(String input) {
+	static String escapeApt(String input) {
 		if (StringUtils.isNotEmpty(input)) {
 			return input.replaceAll("<", "\\\\<")
 				.replaceAll(">", "\\\\>");
 		} 
 		return "";
 	}
+	static List<String> escapeApt(List<String> input) {
+		
+			return Op.on(input).forEach().exec(Ognl.asString("replaceAll(\"<\", \"\\\\<\")"))
+				.exec(Ognl.asString("replaceAll(\">\", \"\\\\>\")")).get();
+		
+	}
+	static String escapeXdoc(String input) {
+		if (StringUtils.isNotEmpty(input)) {
+			return Op.on(input).exec(FnString.escapeHTML()).get();
+		} 
+		return "";
+	}
+	static List<String> escapeXdoc(List<String> input) {
+		return Op.on(input).forEach().exec(FnString.escapeHTML()).endFor().get();
+	}
 	
-	static void createTableHeader(File outputFile) {
+	static void createXdocTableHeader(File outputFile) {
 		try {
-			IOUtils.writeLines(Arrays.asList(new String[] {"\r\n"}), null, new FileOutputStream(outputFile, true));
-			addSeparator(outputFile);
-			IOUtils.writeLines(Arrays.asList(new String[] {"| <<Function name>> | <<Return type>> | <<Params>> | <<Description>> |"}), null,
-					new FileOutputStream(outputFile, true));				
+			IOUtils.writeLines(Arrays.asList(new String[] {
+					"<thead><tr><th>Function name</th>" +
+					"<th>Return type</th>" +
+					"<th width=\"240px\">Params</th>" +
+					"<th>Description</th></tr></thead>"}), null,
+					new FileOutputStream(outputFile, true));			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	static void addRow(File outputFile, Matcher matcher) {
+	static void createAptTableHeader(File outputFile) {
 		try {
-			addSeparator(outputFile);
+			IOUtils.writeLines(Arrays.asList(new String[] {"\r\n"}), null, new FileOutputStream(outputFile, true));
+			addAptSeparator(outputFile);			
+			IOUtils.writeLines(Arrays.asList(new String[] {"| <<Function name>> | <<Return type>> | <<Params>> | <<Description>> |"}), null,
+					new FileOutputStream(outputFile, true));			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	static void addAptRow(File outputFile, Matcher matcher) {
+		
+		//FIXME HTML in JavaDoc (only one line at this time)
+		
+		try {
+			addAptSeparator(outputFile);
 			
 			List<String> params = getParams(matcher);
-			List<String> javadoc = getJavaDocLines(matcher);
+			List<String> javadoc = Arrays.asList(new String[] {escapeApt(getJavaDoc(matcher))});
 			int totalLines = (params.size() > javadoc.size()) ? params.size() : javadoc.size();
 			if (totalLines == 0) {
 				IOUtils.writeLines(Arrays.asList(new String[] {
-						"| " + getFunctionName(matcher) 
-						+ " | " + getReturnType(matcher) 
+						"| " + escapeApt(getFunctionName(matcher)) 
+						+ " | " + escapeApt(getReturnType(matcher)) 
 						+ " |  |  |"}), null, new FileOutputStream(outputFile, true));	
 			} else {
 				for(int currentLine = 0; currentLine < totalLines; currentLine++) {
 					IOUtils.writeLines(Arrays.asList(new String[] {
-							"| " + ((currentLine == 0) ? getFunctionName(matcher) : "") 
-							+ " | " + ((currentLine == 0) ? getReturnType(matcher) : "") 
-							+ " | " + ((currentLine < params.size()) ? params.get(currentLine) : "")
-							+ " | " + ((currentLine < javadoc.size()) ? javadoc.get(currentLine) : "")
+							"| " + ((currentLine == 0) ? escapeApt(getFunctionName(matcher)) : "") 
+							+ " | " + ((currentLine == 0) ? escapeApt(getReturnType(matcher)) : "") 
+							+ " | " + ((currentLine < params.size()) ? escapeApt(params.get(currentLine)) : "")
+							+ " | " + ((currentLine < javadoc.size()) ? escapeApt(javadoc.get(currentLine)) : "")
 							+ " |"}), null, new FileOutputStream(outputFile, true));
 				}
 			}	
@@ -174,7 +227,23 @@ public class FnsAptFilesGenerator {
 		}
 	}
 	
-	static void addSeparator(File outputFile) {
+	static void addXdocRow(File outputFile, Matcher matcher) {
+		try {
+			List<String> params = getParams(matcher);
+			String javadoc = getJavaDoc(matcher);
+			IOUtils.writeLines(Arrays.asList(new String[] {
+					"<tr><td>" + escapeXdoc(getFunctionName(matcher)) 
+					+ "</td><td>" + escapeXdoc(getReturnType(matcher)) 
+					+ "</td><td>" + StringUtils.join(escapeXdoc(params), "<br />")
+					+ "</td><td>" + javadoc
+					+ "</td></tr>"}), null, new FileOutputStream(outputFile, true));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	static void addAptSeparator(File outputFile) {
 		try {
 			IOUtils.writeLines(Arrays.asList(new String[] {
 				"*-----------+-----------+-----------+-----------+"}), null,
@@ -192,76 +261,142 @@ public class FnsAptFilesGenerator {
 		
 		// TODO Use input parameters instead
 //		String inputFilePrefix = "C:\\Documents and Settings\\Daniel\\workspace\\op4j\\src\\main\\java\\org\\op4j\\functions\\";
-//		String outputFilePrefix = "C:\\Documents and Settings\\Daniel\\workspace\\op4j\\src\\site\\apt\\";
+//		String outputAptFilePrefix = "C:\\Documents and Settings\\Daniel\\workspace\\op4j\\src\\site\\apt\\";
+//		String outputXdocFilePrefix = "C:\\Documents and Settings\\Daniel\\workspace\\op4j\\src\\site\\xdoc\\";
 		
 		String inputFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\main\\java\\org\\op4j\\functions\\";
-		String outputFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\site\\apt\\";
+		String outputAptFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\site\\apt\\";
+		String outputXdocFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\site\\xdoc\\";
 				
-		generateAllFnsDoc(new File(outputFilePrefix, "fnarray.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnArray.java"
-		}));
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnarray.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnArray.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnboolean.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnBoolean.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fncalendar.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnCalendar.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fndate.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnDate.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnlist.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnList.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnmap.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnMap.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnmath.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnMath.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnnumber.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnNumber.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnobject.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnObject.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnset.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnSet.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "fnstring.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnString.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "team.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnMapOf.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "team.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnArrayOf.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "team.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnArray.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "team.apt"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnMapOf.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputAptFilePrefix, "team.apt"), Arrays.asList(new String[] {
+//				"C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\contrib\\executables\\functions\\conversion\\FnJodaTimeUtils.java"
+//		}));
 		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnboolean.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnBoolean.java"
-		}));
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnArray.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnboolean.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnBoolean.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fncalendar.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnCalendar.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fndate.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnDate.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlist.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnList.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnmap.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnMap.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnmath.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnMath.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnnumber.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnNumber.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnobject.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnObject.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnSet.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnstring.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnString.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "team.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnMapOf.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "team.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnArrayOf.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "team.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnArray.java"
+//		}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "team.xml"), Arrays.asList(new String[] {
+//				inputFilePrefix + "FnMapOf.java"
+//		}));
 		
-		generateAllFnsDoc(new File(outputFilePrefix, "fncalendar.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnCalendar.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fndate.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnDate.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnlist.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnList.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnmap.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnMap.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnmath.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnMath.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnnumber.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnNumber.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnobject.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnObject.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnset.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnSet.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "fnstring.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnString.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "team.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnMapOf.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "team.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnArrayOf.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "team.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnArray.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "team.apt"), Arrays.asList(new String[] {
-				inputFilePrefix + "FnMapOf.java"
-		}));
-		
-		generateAllFnsDoc(new File(outputFilePrefix, "team.apt"), Arrays.asList(new String[] {
+		generateAllFnsDoc(new File(outputXdocFilePrefix, "test.xml"), Arrays.asList(new String[] {
 				"C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\contrib\\executables\\functions\\conversion\\FnJodaTimeUtils.java"
 		}));
 		
-		System.out.println("All apt files have been generated");
+		System.out.println("All files have been generated");
 		
 		
 	}
