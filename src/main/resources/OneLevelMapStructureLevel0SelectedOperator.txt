@@ -56,6 +56,7 @@ public interface ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENTKEY%%,%%T
     
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> sort();
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> sort(final Comparator<? super %%TARGETELEMENTINLEVEL%%> comparator);
+    public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> sortBy(final IFunction<? super %%TARGETELEMENTINLEVEL%%,?> by);
     
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> put(final %%TARGETELEMENTKEY%% newKey, final %%TARGETELEMENTVALUE%% newValue);
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> insert(final int position, final %%TARGETELEMENTKEY%% newKey, final %%TARGETELEMENTVALUE%% newValue);

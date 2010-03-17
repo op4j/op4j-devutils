@@ -167,6 +167,7 @@ public class ImplFile {
         paramNames.put("execIfNotNullAsSetOfSet", new String[] {"function"});
         paramNames.put("execAsSetOfSet", new String[] {"function"});
         paramNames.put("sort", new String[] {"comparator"});
+        paramNames.put("sortBy", new String[] {"by"});
         paramNames.put("put", new String[] {"newKey","newValue"});
         paramNames.put("putAll", new String[] {"map"});
         paramNames.put("getAsArrayOf", new String[] {"type"});

@@ -81,6 +81,9 @@ public class MethodImplementor {
         methods.put(
                 "public (.*?)<(.*?)> sort\\(final Comparator<\\? super (Entry<(.*?)>|(.*?))> comparator\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
                 "@SuppressWarnings(\"unchecked\")\n    public $1<$2> sort(final Comparator<? super $3> comparator) {\n        return new $1<$2>(%%ELEMENTTYPE%%getTarget().execute(%%STRUCTUREFUNCS%%.%%SORTCOMPARATORMETHOD%%((Comparator)comparator)));\n    }");
+        methods.put(
+                "public (.*?)<(.*?)> sortBy\\(final IFunction<\\? super (Entry<(.*?)>|(.*?)),\\? extends Object> by\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 
+                "@SuppressWarnings(\"unchecked\")\n    public $1<$2> sortBy(final IFunction<? super $3,?> by) {\n        return new $1<$2>(%%ELEMENTTYPE%%getTarget().execute(%%STRUCTUREFUNCS%%.sortBy((IFunction)by)));\n    }");
         
         methods.put(
                 "public (.*?)<(.*?)> distinct\\(\\) \\{\\s*\\n\\s*return null;\\s*\\n\\s*\\}", 

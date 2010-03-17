@@ -61,6 +61,7 @@ public interface ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%>
     
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> sort();
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> sort(final Comparator<? super %%TARGETELEMENTINLEVEL%%> comparator);
+    public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> sortBy(final IFunction<? super %%TARGETELEMENTINLEVEL%%,?> by);
         
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> add(final %%TARGETELEMENTINLEVEL%% newElement);
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> addAll(final %%TARGETELEMENTINLEVEL%%... newElements);
