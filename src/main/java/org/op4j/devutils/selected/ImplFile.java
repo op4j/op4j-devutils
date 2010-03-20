@@ -24,8 +24,6 @@ import org.op4j.functions.FnMap;
 import org.op4j.functions.FnSet;
 import org.op4j.functions.Function;
 import org.op4j.operators.impl.AbstractOperator;
-import org.op4j.operators.qualities.MultiFnOperator;
-import org.op4j.operators.qualities.MultiOpOperator;
 import org.op4j.operators.qualities.UniqFnOperator;
 import org.op4j.operators.qualities.UniqOpOperator;
 import org.op4j.operators.qualities.UniqOperator;
@@ -520,12 +518,7 @@ public class ImplFile {
         }
         
         try {
-            if (!this.className.contains("GenericMulti")) {
-                interfaceMethods.add(UniqOpOperator.class.getMethod("get"));
-            } else {
-                interfaceMethods.add(MultiOpOperator.class.getMethod("getAsList"));
-                interfaceMethods.add(MultiOpOperator.class.getMethod("getAsArrayOf", org.javaruntype.type.Type.class));
-            }
+            interfaceMethods.add(UniqOpOperator.class.getMethod("get"));
         } catch (NoSuchMethodException e) {
             // nothing to do
         }
@@ -659,9 +652,7 @@ public class ImplFile {
         }
         this.imports.add(AbstractOperator.class.getName());
         this.imports.add(UniqOpOperator.class.getName());
-        this.imports.add(MultiOpOperator.class.getName());
         this.imports.add(UniqFnOperator.class.getName());
-        this.imports.add(MultiFnOperator.class.getName());
         this.imports.add(List.class.getName());
         this.imports.add(Map.class.getName());
         this.imports.add(Set.class.getName());
