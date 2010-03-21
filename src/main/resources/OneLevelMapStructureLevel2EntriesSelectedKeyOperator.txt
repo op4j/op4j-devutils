@@ -24,7 +24,7 @@ import java.util.Map;
 import org.op4j.functions.IFunction;
 import org.op4j.operators.qualities.Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator;
 import org.op4j.operators.qualities.NavigatingMapEntryOperator;
-import org.op4j.operators.qualities.SelectableElementsOperator;
+import org.op4j.operators.qualities.SelectableMapEntryComponentOperator;
 import org.op4j.operators.qualities.UniqOperator;
 import org.op4j.operators.qualities.ReplaceableOperator;
 
@@ -41,18 +41,16 @@ public interface ILevel2%%STRUCTURE%%EntriesSelectedKeyOperator<I,%%TARGETELEMEN
                 NavigatingMapEntryOperator,
                 Executable%%EQUIVALENTSTRUCTURE%%SelectedOperator<%%TARGETTYPEINLEVEL%%>,
                 ReplaceableOperator<%%TARGETTYPEINLEVEL%%>,
-                SelectableElementsOperator<%%TARGETTYPEINLEVEL%%> {
+                SelectableMapEntryComponentOperator<%%TARGETTYPEINLEVEL%%> {
 
 
 
-    public ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndex(final int... indexes);
     public ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifTrue(final IFunction<? super %%TARGETTYPEINLEVEL%%,Boolean> eval);
     public ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifFalse(final IFunction<? super %%TARGETTYPEINLEVEL%%,Boolean> eval);
     public ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrFalse(final IFunction<? super %%TARGETTYPEINLEVEL%%,Boolean> eval);
     public ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndFalse(final IFunction<? super %%TARGETTYPEINLEVEL%%,Boolean> eval);
     public ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNull();
     public ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNullOrTrue(final IFunction<? super %%TARGETTYPEINLEVEL%%,Boolean> eval);
-    public ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifIndexNot(final int... indexes);
     public ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNull();
     public ILevel2%%STRUCTURE%%EntriesSelectedKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> ifNotNullAndTrue(final IFunction<? super %%TARGETTYPEINLEVEL%%,Boolean> eval);
 
