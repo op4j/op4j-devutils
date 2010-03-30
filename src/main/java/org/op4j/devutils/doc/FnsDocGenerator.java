@@ -231,44 +231,44 @@ public class FnsDocGenerator {
 		
 		// Generation
 		
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnstring.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnString.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnboolean.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnBoolean.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fncalendar.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnCalendar.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fndate.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnDate.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnnumber.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnNumber.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlong.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnLong.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnfloat.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnFloat.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fninteger.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnInteger.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fndouble.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnDouble.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnbigdecimal.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnBigDecimal.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnbiginteger.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnBigInteger.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnobject.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "FnObject.java"}));
-
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fn.xml"), Arrays.asList(new String[] {
-		        inputFilePrefix + "Fn.java"}));
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnstring.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnString.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnboolean.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnBoolean.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fncalendar.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnCalendar.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fndate.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnDate.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnnumber.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnNumber.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlong.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnLong.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnfloat.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnFloat.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fninteger.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnInteger.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fndouble.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnDouble.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnbigdecimal.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnBigDecimal.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnbiginteger.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnBigInteger.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnobject.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnObject.java"}));
+//
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fn.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "Fn.java"}));
 		
 		
 		
@@ -292,8 +292,17 @@ public class FnsDocGenerator {
 //              inputFilePrefix + "FnReduceOnShort.java"}));
 //      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"), Arrays.asList(new String[] {
 //              inputFilePrefix + "FnReduceOnString.java"}));
-		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnReduceOn.java"}));
 
+      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
+              inputFilePrefix + "FnArrayOf.java"}));
+      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
+              inputFilePrefix + "FnArrayOfArrayOf.java"}));
+      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
+              inputFilePrefix + "FnArrayOfListOf.java"}));
+      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
+              inputFilePrefix + "FnArrayOfSetOf.java"}));
 		
 		System.out.println("All files have been generated");
 		
