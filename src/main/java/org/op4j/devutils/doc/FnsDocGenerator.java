@@ -26,6 +26,9 @@ public class FnsDocGenerator {
 	
 	private final static String XDOC_EXTENSION = "xml";
 	
+	private final static String EVEN_ROW_CLASS = "b";
+	private final static String ODD_ROW_CLASS = "a";
+	
 	static void generateAllFnsDoc(File outputFile, List<String> fileNames) {
 		for (String fileName : fileNames) {
 			generateFnsDoc(outputFile, new File(fileName));
@@ -41,7 +44,7 @@ public class FnsDocGenerator {
 					"(?:\\<[\\w\\,\\?\\s\\[\\]]*\\>){0,1}" + // type parameters
 					"\\s+((?:\\<[\\w\\,\\?\\s\\<\\>\\[\\]]+\\>|[a-zA-Z\\[\\]])+)" + //return type
 					"\\s+([\\w]+)" + //function name
-					"\\s*\\(\\s*([\\w\\?\\<\\>\\,\\s\\[\\]]*)\\)\\s*\\{"); //parameters
+					"\\s*\\(\\s*([\\w\\?\\<\\>\\,\\s\\[\\]\\.]*)\\)\\s*\\{"); //parameters
 			
 			Matcher matcher = pattern.matcher(FileUtils
 					.readFileToString(file));
@@ -75,13 +78,15 @@ public class FnsDocGenerator {
 				createXdocTableHeader(outputFile);
 				IOUtils.writeLines(Arrays.asList(new String[] {"<tbody>"}), null, new FileOutputStream(outputFile, true));
 				String fnName = null;
+				int index = 0;				
 				for (Line line : linesSorted) {				
 					if (fnName != null && !StringUtils.equals(fnName, line.getFunctionName())) {
-						IOUtils.writeLines(Arrays.asList(new String[] {"<tr bgcolor=\"#A4A4A4\"><td bgcolor=\"#A4A4A4\" colspan=\"4\"></td></tr>"}), 
+						IOUtils.writeLines(Arrays.asList(new String[] {"<tr bgcolor=\"#A4A4A4\" class=\"\"><td bgcolor=\"#A4A4A4\" colspan=\"4\"></td></tr>"}), 
 								null, new FileOutputStream(outputFile, true));
 					} 
 					fnName = line.getFunctionName();
-					addXdocLine(line, outputFile);
+					addXdocLine(line, outputFile, index % 2 == 0 ? EVEN_ROW_CLASS : ODD_ROW_CLASS);
+					index++;
 				}		
 				IOUtils.writeLines(Arrays.asList(new String[] {"</tbody></table>"}), null, 
 				        new FileOutputStream(outputFile, true));				
@@ -193,10 +198,10 @@ public class FnsDocGenerator {
 	}
 
 	
-	static void addXdocLine(Line line, File outputFile) {
+	static void addXdocLine(Line line, File outputFile, String rowClass) {
 		try {
 			IOUtils.writeLines(Arrays.asList(new String[] {
-					"<tr><td><b>" + line.getFunctionName() 
+					"<tr class=\"" + rowClass + "\"><td><b>" + line.getFunctionName() 
 					+ "</b></td><td>" + line.getType() 
 					+ "</td><td>" + StringUtils.join(line.getParams(), "<br />")
 					+ "</td><td>" + line.getJavadoc()
@@ -232,7 +237,10 @@ public class FnsDocGenerator {
 		// Generation
 		
 //		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnstring.xml"), Arrays.asList(new String[] {
-//		        inputFilePrefix + "FnString.java"}));
+//              inputFilePrefix + "FnString.java"}));
+//		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnfunc.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnFunc.java"}));
 //
 //		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnboolean.xml"), Arrays.asList(new String[] {
 //		        inputFilePrefix + "FnBoolean.java"}));
@@ -267,8 +275,7 @@ public class FnsDocGenerator {
 //		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnobject.xml"), Arrays.asList(new String[] {
 //		        inputFilePrefix + "FnObject.java"}));
 //
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fn.xml"), Arrays.asList(new String[] {
-//		        inputFilePrefix + "Fn.java"}));
+
 		
 		
 		
@@ -292,7 +299,7 @@ public class FnsDocGenerator {
 //              inputFilePrefix + "FnReduceOnShort.java"}));
 //      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"), Arrays.asList(new String[] {
 //              inputFilePrefix + "FnReduceOnString.java"}));
-//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"), Arrays.asList(new String[] {
+//	  generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"), Arrays.asList(new String[] {
 //		        inputFilePrefix + "FnReduceOn.java"}));
 
 //      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
