@@ -295,15 +295,34 @@ public class FnsDocGenerator {
 //		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"), Arrays.asList(new String[] {
 //		        inputFilePrefix + "FnReduceOn.java"}));
 
-      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
-              inputFilePrefix + "FnArrayOf.java"}));
-      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
-              inputFilePrefix + "FnArrayOfArrayOf.java"}));
-      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
-              inputFilePrefix + "FnArrayOfListOf.java"}));
-      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
-              inputFilePrefix + "FnArrayOfSetOf.java"}));
+//      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
+//              inputFilePrefix + "FnArrayOf.java"}));
+//      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
+//              inputFilePrefix + "FnArrayOfArrayOf.java"}));
+//      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
+//              inputFilePrefix + "FnArrayOfListOf.java"}));
+//      generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"), Arrays.asList(new String[] {
+//              inputFilePrefix + "FnArrayOfSetOf.java"}));
 		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlist.all.xml"), Arrays.asList(new String[] {
+//	              inputFilePrefix + "FnListOf.java"}));
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlist.all.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnListOfArrayOf.java"}));
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlist.all.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnListOfListOf.java"}));
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlist.all.xml"), Arrays.asList(new String[] {
+//	              inputFilePrefix + "FnListOfSetOf.java"}));
+		
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.all.xml"), Arrays.asList(new String[] {
+//                inputFilePrefix + "FnSetOf.java"}));
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.all.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnSetOfArrayOf.java"}));
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.all.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnSetOfListOf.java"}));
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.all.xml"), Arrays.asList(new String[] {
+//		        inputFilePrefix + "FnSetOfSetOf.java"}));
+      
+      
 		System.out.println("All files have been generated");
 		
 		
