@@ -329,8 +329,8 @@ public class FnsDocGenerator {
 //		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.all.xml"), Arrays.asList(new String[] {
 //		        inputFilePrefix + "FnSetOfSetOf.java"}));
 
-		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnmap.xml"), Arrays.asList(new String[] {
-              inputFilePrefix + "FnMapOf.java"}));
+//		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnmap.xml"), Arrays.asList(new String[] {
+//              inputFilePrefix + "FnMapOf.java"}));
       
 		System.out.println("All files have been generated");
 		
