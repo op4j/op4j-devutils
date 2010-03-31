@@ -44,7 +44,7 @@ public class FnsDocGenerator {
 					"(?:\\<[\\w\\,\\?\\s\\[\\]]*\\>){0,1}" + // type parameters
 					"\\s+((?:\\<[\\w\\,\\?\\s\\<\\>\\[\\]]+\\>|[a-zA-Z\\[\\]])+)" + //return type
 					"\\s+([\\w]+)" + //function name
-					"\\s*\\(\\s*([\\w\\?\\<\\>\\,\\s\\[\\]\\.]*)\\)\\s*\\{"); //parameters
+					"\\s*\\(\\s*([\\w\\d\\?\\<\\>\\,\\s\\[\\]\\.]*)\\)\\s*\\{"); //parameters
 			
 			Matcher matcher = pattern.matcher(FileUtils
 					.readFileToString(file));
@@ -328,7 +328,9 @@ public class FnsDocGenerator {
 //		        inputFilePrefix + "FnSetOfListOf.java"}));
 //		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.all.xml"), Arrays.asList(new String[] {
 //		        inputFilePrefix + "FnSetOfSetOf.java"}));
-      
+
+		generateAllFnsDoc(new File(outputXdocFilePrefix, "fnmap.xml"), Arrays.asList(new String[] {
+              inputFilePrefix + "FnMapOf.java"}));
       
 		System.out.println("All files have been generated");
 		
