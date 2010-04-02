@@ -57,6 +57,13 @@
       <scope>compile</scope>
     </dependency>
     
+    <dependency>
+      <groupId>org.op4j</groupId>
+      <artifactId>op4j-ognl</artifactId>
+      <version>${version}</version>
+      <scope>compile</scope>
+    </dependency>
+    
   </dependencies>
 
 </project>

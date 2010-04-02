@@ -18,7 +18,7 @@ import org.op4j.Op;
 import org.op4j.functions.ExecCtx;
 import org.op4j.functions.FnString;
 import org.op4j.functions.IFunction;
-import org.op4j.functions.Ognl;
+import org.op4j.functions.ognl.FnOgnl;
 
 public class FnsDocGenerator {
 
@@ -161,7 +161,7 @@ public class FnsDocGenerator {
 			output.addAll(Op.onArrayOf(Types.STRING, remaining.toString().split(",")).toList().get());
 		}
 		
-		return Op.onList(output).forEach().exec(Ognl.asString("trim()"))
+		return Op.onList(output).forEach().exec(FnOgnl.asString("trim()"))
 			.exec(new IFunction<String, String>() {
 				public String execute(String object, ExecCtx ctx)
 				throws Exception {
