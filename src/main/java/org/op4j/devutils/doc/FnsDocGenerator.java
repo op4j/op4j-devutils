@@ -18,7 +18,7 @@ import org.op4j.Op;
 import org.op4j.functions.ExecCtx;
 import org.op4j.functions.FnString;
 import org.op4j.functions.IFunction;
-import org.op4j.functions.ognl.FnOgnl;
+import org.op4j.ognl.functions.FnOgnl;
 
 public class FnsDocGenerator {
 
