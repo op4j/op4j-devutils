@@ -45,8 +45,6 @@ public interface ILevel1%%STRUCTURE%%ElementsSelectedOperator<I,%%TARGETELEMENT%
 
     public ILevel1%%STRUCTURE%%ElementsOperator<I,%%TARGETELEMENT%%> endIf();
 
-    
-    public ILevel1%%STRUCTURE%%ElementsSelectedOperator<I,%%TARGETELEMENT%%> execIfNotNull(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
 
     public ILevel1%%STRUCTURE%%ElementsSelectedOperator<I,%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 

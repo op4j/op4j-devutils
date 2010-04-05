@@ -49,6 +49,4 @@ public interface ILevel2%%STRUCTURE%%SelectedEntriesKeySelectedOperator<I,%%TARG
 
     public ILevel2%%STRUCTURE%%SelectedEntriesKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> exec(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
     
-    public ILevel2%%STRUCTURE%%SelectedEntriesKeySelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> execIfNotNull(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
-    
-    }
+}

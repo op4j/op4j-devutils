@@ -45,8 +45,6 @@ public interface ILevel2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TA
 
     public ILevel2%%STRUCTURE%%SelectedEntriesValueOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> endIf();
 
-    
-    public ILevel2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> execIfNotNull(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
 
     public ILevel2%%STRUCTURE%%SelectedEntriesValueSelectedOperator<I,%%TARGETELEMENTKEY%%,%%TARGETELEMENTVALUE%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 

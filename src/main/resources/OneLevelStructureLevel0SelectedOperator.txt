@@ -79,8 +79,6 @@ public interface ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%>
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> removeAllIndexesNot(final int... indexes);
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> removeAllNull();
     
-    
-    public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> execIfNotNullAs%%EQUIVALENTSTRUCTURE%%(final IFunction<? super %%TARGETTYPEINLEVEL%%,? extends %%FLEXIBLETARGETTYPEINLEVEL%%> function);
 
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> replaceWith(final %%TARGETTYPEINLEVEL%% replacement);
 
@@ -88,8 +86,6 @@ public interface ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%>
 
 
     public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> map(final IFunction<? super %%TARGETELEMENTINLEVEL%%,? extends %%TARGETELEMENTINLEVEL%%> function);
-
-    public ILevel0%%STRUCTURE%%SelectedOperator<I,%%TARGETELEMENT%%> mapIfNotNull(final IFunction<? super %%TARGETELEMENTINLEVEL%%,? extends %%TARGETELEMENTINLEVEL%%> function);
     
     
 }
