@@ -105,9 +105,9 @@ public class FnsDocGenerator {
 		if (StringUtils.isEmpty(matcher.group(1))) {
 			return "";
 		}
-		return StringUtils
-				.substringBefore(StringUtils
-						.substringBefore(matcher.group(1), "@param"), "@return") 
+		return StringUtils.substringBefore(
+                    StringUtils.substringBefore(
+                            StringUtils.substringBefore(matcher.group(1), "@param"), "@return"), "@since") 
 			.replaceFirst("\\/\\*\\*", "")
 			.replaceFirst("\\*\\/", "")
 			.replaceAll("\\n\\s*\\*", "\n")
