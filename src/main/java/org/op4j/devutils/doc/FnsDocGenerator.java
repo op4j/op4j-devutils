@@ -22,7 +22,7 @@ import org.op4j.ognl.functions.FnOgnl;
 
 public class FnsDocGenerator {
 
-    //JavaDoc: will include only data before either @param or @return. Any text after that tokens will be ignored
+    //JavaDoc: will include only data before either @param, @since or @return. Any text after that tokens will be ignored
 
     private final static String XDOC_EXTENSION = "xml";
 
@@ -237,10 +237,10 @@ public class FnsDocGenerator {
         
 
         // op4j Generation
-        String op4jInputFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\main\\java\\org\\op4j\\functions\\";
-        
-        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnstring.xml"), Arrays.asList(new String[] {
-                op4jInputFilePrefix + "FnString.java"}));
+//        String op4jInputFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\main\\java\\org\\op4j\\functions\\";
+//        
+//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnstring.xml"), Arrays.asList(new String[] {
+//                op4jInputFilePrefix + "FnString.java"}));
 //
 //        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnfunc.xml"), Arrays.asList(new String[] {
 //                op4jInputFilePrefix + "FnFunc.java"}));
@@ -336,8 +336,8 @@ public class FnsDocGenerator {
 //                op4jInputFilePrefix + "FnMapOf.java"}));
 
         // op4j-jodatime generation
-//        String jodatimeInputFilePrefix = "C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\jodatime\\functions\\";
-//
+        String jodatimeInputFilePrefix = "C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\jodatime\\functions\\";
+
 //        generateAllFnsDoc(new File(outputXdocFilePrefix, "jodatime-fnjodatimeutils.xml"), Arrays.asList(new String[] {
 //                jodatimeInputFilePrefix + "FnJodaTimeUtils.java"}));
 //
