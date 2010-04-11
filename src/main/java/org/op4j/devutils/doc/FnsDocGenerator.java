@@ -39,7 +39,10 @@ public class FnsDocGenerator {
         try {
             System.out.println("Working with file: " + file.getName());
 
-            Pattern pattern = Pattern.compile("[\\{|\\}]\\s*(?://.*?)*?\\s*(\\/\\*[\\w\\W]*?\\*\\/)?" +
+//          Pattern pattern = Pattern.compile("[\\{|\\}]\\s*(?://.*?)*?\\s*(\\/\\*[\\w\\W]*?\\*\\/)?" +
+            
+            
+            Pattern pattern = Pattern.compile("[\\{|\\}]\\s*(?:\\/\\/.*?\\s*)*?\\s*(\\/\\*[\\w\\W]*?\\*\\/)?" +
                     "\\s*public\\s+(?:static|final)?\\s*(?:static|final)?\\s*" + //public static final
                     "(?:\\<[\\w\\,\\?\\s\\[\\]]*\\>){0,1}" + // type parameters
                     "\\s+((?:\\<[\\w\\,\\?\\s\\<\\>\\[\\]]+\\>|[a-zA-Z\\[\\]])+)" + //return type
@@ -57,6 +60,7 @@ public class FnsDocGenerator {
                     lines.add(getLine(matcher));
                 }
                 // Sort lines
+                System.out.println("Sorting lines...");
                 List<Line> linesSorted = Op.on(lines).sort(new Comparator<Line>() {
                     public int compare(Line o1, Line o2) {
                         if (o2 == null) {
@@ -72,7 +76,8 @@ public class FnsDocGenerator {
                         return o1.getFunctionName().compareTo(o2.getFunctionName());                                              
                     }
                 }).get();
-
+                System.out.println("Lines sorted");
+                
                 IOUtils.writeLines(Arrays.asList(new String[] {"\r\n"}), null, new FileOutputStream(outputFile, true));
                 IOUtils.writeLines(Arrays.asList(new String[] {"<table border=\"0\">"}), null, new FileOutputStream(outputFile, true));				
                 createXdocTableHeader(outputFile);
@@ -338,7 +343,7 @@ public class FnsDocGenerator {
         // op4j-jodatime generation
         String jodatimeInputFilePrefix = "C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\jodatime\\functions\\";
 
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "jodatime-fnjodatimeutils.xml"), Arrays.asList(new String[] {
+//        generateAllFnsDoc(new File(outputXdocFilePrefix, "jodatime-fnjodatimeutils.all.xml"), Arrays.asList(new String[] {
 //                jodatimeInputFilePrefix + "FnJodaTimeUtils.java"}));
 //
 //        generateAllFnsDoc(new File(outputXdocFilePrefix, "jodatime-fnjodatostring.xml"), Arrays.asList(new String[] {
