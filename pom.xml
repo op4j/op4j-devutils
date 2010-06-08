@@ -6,7 +6,7 @@
   <groupId>org.op4j</groupId>
   <artifactId>op4j-devutils</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-beta4-SNAPSHOT</version>
+  <version>1.1-SNAPSHOT</version>
   <name>op4j</name>
   <url>http://www.op4j.org</url>
 
@@ -53,14 +53,14 @@
     <dependency>
       <groupId>org.op4j</groupId>
       <artifactId>op4j</artifactId>
-      <version>1.0-beta4-SNAPSHOT</version>
+      <version>${version}</version>
       <scope>compile</scope>
     </dependency>
     
     <dependency>
       <groupId>org.op4j</groupId>
       <artifactId>op4j-ognl</artifactId>
-      <version>1.0-beta4-SNAPSHOT</version>
+      <version>${version}</version>
       <scope>compile</scope>
     </dependency>
     
