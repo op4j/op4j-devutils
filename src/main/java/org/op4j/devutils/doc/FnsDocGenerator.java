@@ -61,7 +61,7 @@ public class FnsDocGenerator {
                 // Get lines
                 List<Line> lines = new ArrayList<Line>();
                 while (matcher.find()) {
-                    System.out.println("Match: " + matcher.group());
+                    System.out.println("Match " + matcher.group() + " is valid.");
                     lines.add(getLine(matcher));
                 }
                 // Sort lines
@@ -244,6 +244,7 @@ public class FnsDocGenerator {
         }
     }
 
+
     static Line getLine(Matcher matcher) {
         Line line = new Line(escapeXdoc(getFunctionName(matcher)),
                 escapeXdoc(getType(matcher)), escapeXdoc(getParams(matcher)),
@@ -401,39 +402,43 @@ public class FnsDocGenerator {
         // op4j-jodatime generation
         String jodatimeInputFilePrefix = "C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\jodatime\\functions\\";
 
+//        generateAllFnsDoc(new File(outputXdocFilePrefix,
+//            "jodatime-fndatemidnight.xml"), Arrays.asList(new String[] {
+//                jodatimeInputFilePrefix + "FnDateMidnight.java"}));
+//
+//        generateAllFnsDoc(new File(outputXdocFilePrefix,
+//            "jodatime-fndatetime.xml"), Arrays.asList(new String[] {
+//                    jodatimeInputFilePrefix + "FnDateTime.java"}));
+//       
+//        generateAllFnsDoc(new File(outputXdocFilePrefix,
+//            "jodatime-fninterval.xml"), Arrays.asList(new String[] {
+//                    jodatimeInputFilePrefix + "FnInterval.java"}));
+//       
+//        generateAllFnsDoc(new File(outputXdocFilePrefix,
+//            "jodatime-fnjodastring.xml"), Arrays.asList(new String[] {
+//                    jodatimeInputFilePrefix + "FnJodaString.java"}));
+//       
 //         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//         "jodatime-fnjodatimeutils.all.xml"), Arrays.asList(new String[] {
-//         jodatimeInputFilePrefix + "FnJodaTimeUtils.java"}));
+//             "jodatime-fnjodatimeutils.all.xml"), Arrays.asList(new String[] {
+//                     jodatimeInputFilePrefix + "FnJodaTimeUtils.java"}));
 //        
 //         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//         "jodatime-fnjodatostring.xml"), Arrays.asList(new String[] {
-//         jodatimeInputFilePrefix + "FnJodaToString.java"}));
+//             "jodatime-fnlocaldate.xml"), Arrays.asList(new String[] {
+//                     jodatimeInputFilePrefix + "FnLocalDate.java"}));
 //        
 //         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//         "jodatime-fntodatemidnight.xml"), Arrays.asList(new String[] {
-//         jodatimeInputFilePrefix + "FnToDateMidnight.java"}));
-//        
+//             "jodatime-fnlocaltime.xml"), Arrays.asList(new String[] {
+//                     jodatimeInputFilePrefix + "FnLocalTime.java"}));
+        
+         generateAllFnsDoc(new File(outputXdocFilePrefix,
+             "jodatime-fnmutabledatetime.xml"), Arrays.asList(new String[] {
+                 jodatimeInputFilePrefix + "FnMutableDateTime.java"}));
+    
 //         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//         "jodatime-fntodatetime.xml"), Arrays.asList(new String[] {
-//         jodatimeInputFilePrefix + "FnToDateTime.java"}));
-//        
-//         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//         "jodatime-fntointerval.xml"), Arrays.asList(new String[] {
-//         jodatimeInputFilePrefix + "FnToInterval.java"}));
-//        
-//         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//         "jodatime-fntolocaldate.xml"), Arrays.asList(new String[] {
-//         jodatimeInputFilePrefix + "FnToLocalDate.java"}));
-//        
-//         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//         "jodatime-fntolocaltime.xml"), Arrays.asList(new String[] {
-//         jodatimeInputFilePrefix + "FnToLocalTime.java"}));
-//        
-//         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//         "jodatime-fntoperiod.xml"), Arrays.asList(new String[] {
-//         jodatimeInputFilePrefix + "FnToPeriod.java"}));
+//             "jodatime-fnperiod.xml"), Arrays.asList(new String[] {
+//                     jodatimeInputFilePrefix + "FnPeriod.java"}));
 
-        System.out.println("All files have been generated");
+         System.out.println("All files have been generated");
 
     }
 
