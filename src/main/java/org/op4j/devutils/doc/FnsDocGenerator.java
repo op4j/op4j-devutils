@@ -24,12 +24,29 @@ public class FnsDocGenerator {
 
     // JavaDoc: will include only data before either @param, @since or @return.
     // Any text after that tokens will be ignored
+    // The expression does not match deprecated methods so there is no need to take
+    //that into account when checking the content of the methods javadoc
 
     private final static String XDOC_EXTENSION = "xml";
 
     private final static String EVEN_ROW_CLASS = "b";
     private final static String ODD_ROW_CLASS = "a";
 
+    
+    // Folder where the generated documentation will be stored
+    private final static String OUTPUT_XDOC_FILE_PREFIX = 
+        "C:\\Development\\workspace-galileo\\op4j-dist\\src\\site\\xdoc\\";
+
+    // Location of the op4j files from which documentation must be generated
+    private final static String OP4J_INPUT_FILE_PREFIX = 
+        "C:\\Development\\workspace-galileo\\op4j\\src\\main\\java\\org\\op4j\\functions\\";
+
+    // Location of the op4j-jodatime files from which documentation must be generated
+    private final static String JODATIME_INPUT_FILE_PREFIX = 
+        "C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\jodatime\\functions\\";
+
+    
+    
     static void generateAllFnsDoc(File outputFile, List<String> fileNames) {
         for (String fileName : fileNames) {
             generateFnsDoc(outputFile, new File(fileName));
@@ -257,189 +274,200 @@ public class FnsDocGenerator {
      */
     public static void main(String[] args) {
 
-        // TODO Use input parameters instead
-        // String inputFilePrefix =
-        // "C:\\Documents and Settings\\Daniel\\workspace\\op4j\\src\\main\\java\\org\\op4j\\functions\\";
+        System.out.println("******** OP4J *********");
+//        generateOp4jDocumentation();
+        System.out.println("***********************");
+        
+        System.out.println("**** OP4J-JODATIME ****");
+        generateOp4jJodaTimeDocumentation();
+        System.out.println("***********************");
 
-        String outputXdocFilePrefix = "C:\\Development\\workspace-galileo\\op4j-dist\\src\\site\\xdoc\\";
 
-        // op4j Generation
-        String op4jInputFilePrefix = "C:\\Development\\workspace-galileo\\op4j\\src\\main\\java\\org\\op4j\\functions\\";
-
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnstring.xml"),
-//                Arrays.asList(new String[] { op4jInputFilePrefix
-//                        + "FnString.java" }));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnfunc.xml"),
-//                Arrays.asList(new String[] {
-//                        op4jInputFilePrefix + "FnFunc.java"}));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnboolean.xml"),
-//                Arrays.asList(new String[] { op4jInputFilePrefix
-//                        + "FnBoolean.java" }));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fncalendar.xml"),
-//                Arrays.asList(new String[] {
-//                        op4jInputFilePrefix + "FnCalendar.java"}));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fndate.xml"),
-//                Arrays.asList(new String[] {
-//                        op4jInputFilePrefix + "FnDate.java"}));
-//
-//
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnnumber.xml"),
-//                Arrays.asList(new String[] { op4jInputFilePrefix +
-//                "FnNumber.java"}));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlong.xml"),
-//                Arrays.asList(new String[] { op4jInputFilePrefix + "FnLong.java"}));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnfloat.xml"),
-//                Arrays.asList(new String[] { op4jInputFilePrefix + "FnFloat.java"}));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fninteger.xml"),
-//                Arrays.asList(new String[] { op4jInputFilePrefix +
-//                "FnInteger.java"}));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fndouble.xml"),
-//                Arrays.asList(new String[] { op4jInputFilePrefix +
-//                "FnDouble.java"}));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnbigdecimal.xml"),
-//                Arrays.asList(new String[] { op4jInputFilePrefix +
-//                "FnBigDecimal.java"}));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix, "fnbiginteger.xml"),
-//                Arrays.asList(new String[] { op4jInputFilePrefix +
-//                "FnBigInteger.java"}));
-//         
-//        
-//          generateAllFnsDoc(new File(outputXdocFilePrefix,
-//          "fnobject.xml"), Arrays.asList(new String[] { op4jInputFilePrefix +
-//          "FnObject.java"}));
          
 
-        //
-        //
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOnBigDecimal.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOnBigInteger.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOnBoolean.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOnByte.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOnDouble.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOnFloat.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOnInteger.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOnLong.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOnShort.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOnString.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnreduce.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnReduceOn.java"}));
-        //
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnArrayOf.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnArrayOfArrayOf.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnArrayOfListOf.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnarray.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnArrayOfSetOf.java"}));
-        //
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlist.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnListOf.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlist.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnListOfArrayOf.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlist.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnListOfListOf.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnlist.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnListOfSetOf.java"}));
-        //
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnSetOf.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnSetOfArrayOf.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnSetOfListOf.java"}));
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnset.all.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnSetOfSetOf.java"}));
-        //
-        // generateAllFnsDoc(new File(outputXdocFilePrefix, "fnmap.xml"),
-        // Arrays.asList(new String[] {
-        // op4jInputFilePrefix + "FnMapOf.java"}));
-
-        // op4j-jodatime generation
-        String jodatimeInputFilePrefix = "C:\\Development\\workspace-galileo\\op4j-jodatime\\src\\main\\java\\org\\op4j\\jodatime\\functions\\";
-
-//        generateAllFnsDoc(new File(outputXdocFilePrefix,
-//            "jodatime-fndatemidnight.xml"), Arrays.asList(new String[] {
-//                jodatimeInputFilePrefix + "FnDateMidnight.java"}));
-//
-//        generateAllFnsDoc(new File(outputXdocFilePrefix,
-//            "jodatime-fndatetime.xml"), Arrays.asList(new String[] {
-//                    jodatimeInputFilePrefix + "FnDateTime.java"}));
-//       
-//        generateAllFnsDoc(new File(outputXdocFilePrefix,
-//            "jodatime-fninterval.xml"), Arrays.asList(new String[] {
-//                    jodatimeInputFilePrefix + "FnInterval.java"}));
-//       
-//        generateAllFnsDoc(new File(outputXdocFilePrefix,
-//            "jodatime-fnjodastring.xml"), Arrays.asList(new String[] {
-//                    jodatimeInputFilePrefix + "FnJodaString.java"}));
-//       
-//         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//             "jodatime-fnjodatimeutils.all.xml"), Arrays.asList(new String[] {
-//                     jodatimeInputFilePrefix + "FnJodaTimeUtils.java"}));
-//        
-//         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//             "jodatime-fnlocaldate.xml"), Arrays.asList(new String[] {
-//                     jodatimeInputFilePrefix + "FnLocalDate.java"}));
-//        
-//         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//             "jodatime-fnlocaltime.xml"), Arrays.asList(new String[] {
-//                     jodatimeInputFilePrefix + "FnLocalTime.java"}));
-        
-         generateAllFnsDoc(new File(outputXdocFilePrefix,
-             "jodatime-fnmutabledatetime.xml"), Arrays.asList(new String[] {
-                 jodatimeInputFilePrefix + "FnMutableDateTime.java"}));
+    }
     
-//         generateAllFnsDoc(new File(outputXdocFilePrefix,
-//             "jodatime-fnperiod.xml"), Arrays.asList(new String[] {
-//                     jodatimeInputFilePrefix + "FnPeriod.java"}));
+    /**
+     * It generates all the op4j related stuff
+     */
+    static void generateOp4jDocumentation() {
+        
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnstring.xml"),
+                Arrays.asList(new String[] { 
+                        OP4J_INPUT_FILE_PREFIX + "FnString.java" }));
 
-         System.out.println("All files have been generated");
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnfunc.xml"),
+                Arrays.asList(new String[] {
+                        OP4J_INPUT_FILE_PREFIX + "FnFunc.java"}));
 
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnboolean.xml"),
+                Arrays.asList(new String[] { 
+                        OP4J_INPUT_FILE_PREFIX + "FnBoolean.java" }));
+
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fncalendar.xml"),
+                Arrays.asList(new String[] {
+                        OP4J_INPUT_FILE_PREFIX + "FnCalendar.java"}));
+
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fndate.xml"),
+                Arrays.asList(new String[] {
+                        OP4J_INPUT_FILE_PREFIX + "FnDate.java"}));
+
+
+
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnnumber.xml"),
+                Arrays.asList(new String[] { 
+                        OP4J_INPUT_FILE_PREFIX + "FnNumber.java"}));
+
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnlong.xml"),
+                Arrays.asList(new String[] { 
+                        OP4J_INPUT_FILE_PREFIX + "FnLong.java"}));
+
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnfloat.xml"),
+                Arrays.asList(new String[] { 
+                        OP4J_INPUT_FILE_PREFIX + "FnFloat.java"}));
+
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fninteger.xml"),
+                Arrays.asList(new String[] { 
+                        OP4J_INPUT_FILE_PREFIX + "FnInteger.java"}));
+
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fndouble.xml"),
+                Arrays.asList(new String[] { 
+                        OP4J_INPUT_FILE_PREFIX + "FnDouble.java"}));
+
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnbigdecimal.xml"),
+                Arrays.asList(new String[] { 
+                        OP4J_INPUT_FILE_PREFIX + "FnBigDecimal.java"}));
+
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnbiginteger.xml"),
+                Arrays.asList(new String[] { 
+                        OP4J_INPUT_FILE_PREFIX + "FnBigInteger.java"}));
+         
+        
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnobject.xml"), 
+                Arrays.asList(new String[] { 
+                        OP4J_INPUT_FILE_PREFIX + "FnObject.java"}));
+
+
+
+        
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"), 
+                Arrays.asList(new String[] {
+                        OP4J_INPUT_FILE_PREFIX + "FnReduceOnBigDecimal.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"),
+                Arrays.asList(new String[] {
+                        OP4J_INPUT_FILE_PREFIX + "FnReduceOnBigInteger.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"),
+                Arrays.asList(new String[] {
+                        OP4J_INPUT_FILE_PREFIX + "FnReduceOnBoolean.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnReduceOnByte.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnReduceOnDouble.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnReduceOnFloat.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnReduceOnInteger.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnReduceOnLong.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnReduceOnShort.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnReduceOnString.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnreduce.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnReduceOn.java"}));
+
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnarray.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnArrayOf.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnarray.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnArrayOfArrayOf.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnarray.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnArrayOfListOf.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnarray.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnArrayOfSetOf.java"}));
+
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnlist.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnListOf.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnlist.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnListOfArrayOf.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnlist.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnListOfListOf.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnlist.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnListOfSetOf.java"}));
+
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnset.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnSetOf.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnset.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnSetOfArrayOf.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnset.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnSetOfListOf.java"}));
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnset.all.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnSetOfSetOf.java"}));
+
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnmap.xml"),
+                 Arrays.asList(new String[] {
+                         OP4J_INPUT_FILE_PREFIX + "FnMapOf.java"}));
+    }
+    
+    /**
+     * It generates all the op4j-jodatime related stuff
+     */
+    static void generateOp4jJodaTimeDocumentation() {
+        
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX,
+            "jodatime-fndatemidnight.xml"), Arrays.asList(new String[] {
+                    JODATIME_INPUT_FILE_PREFIX + "FnDateMidnight.java"}));
+
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX,
+            "jodatime-fndatetime.xml"), Arrays.asList(new String[] {
+                    JODATIME_INPUT_FILE_PREFIX + "FnDateTime.java"}));
+       
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX,
+            "jodatime-fninterval.xml"), Arrays.asList(new String[] {
+                    JODATIME_INPUT_FILE_PREFIX + "FnInterval.java"}));
+       
+        generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX,
+            "jodatime-fnjodastring.xml"), Arrays.asList(new String[] {
+                    JODATIME_INPUT_FILE_PREFIX + "FnJodaString.java"}));
+       
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX,
+             "jodatime-fnjodatimeutils.all.xml"), Arrays.asList(new String[] {
+                     JODATIME_INPUT_FILE_PREFIX + "FnJodaTimeUtils.java"}));
+        
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX,
+             "jodatime-fnlocaldate.xml"), Arrays.asList(new String[] {
+                     JODATIME_INPUT_FILE_PREFIX + "FnLocalDate.java"}));
+        
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX,
+             "jodatime-fnlocaltime.xml"), Arrays.asList(new String[] {
+                     JODATIME_INPUT_FILE_PREFIX + "FnLocalTime.java"}));
+        
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX,
+             "jodatime-fnmutabledatetime.xml"), Arrays.asList(new String[] {
+                     JODATIME_INPUT_FILE_PREFIX + "FnMutableDateTime.java"}));
+    
+         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX,
+             "jodatime-fnperiod.xml"), Arrays.asList(new String[] {
+                     JODATIME_INPUT_FILE_PREFIX + "FnPeriod.java"}));
     }
 
 }
