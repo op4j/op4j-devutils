@@ -62,7 +62,7 @@ public class FnsDocGenerator {
             // +
 
             Pattern pattern = Pattern
-                    .compile("[\\{|\\}]\\s*(?:\\/\\/.*?\\s*)*?\\s*(\\/\\*[\\w\\W]*?\\*\\/)?"
+                    .compile("[\\{|\\}|;]\\s*(?:\\/\\/.*?\\s*)*?\\s*(\\/\\*[\\w\\W]*?\\*\\/)?"
                             + "\\s*public\\s+(?:static|final)?\\s*(?:static|final)?\\s*"
                             + // public static final
                             "(?:\\<[\\w\\,\\?\\s\\[\\]]*\\>){0,1}"
@@ -273,18 +273,13 @@ public class FnsDocGenerator {
      * @param args
      */
     public static void main(String[] args) {
-
         System.out.println("******** OP4J *********");
         generateOp4jDocumentation();
         System.out.println("***********************");
         
         System.out.println("**** OP4J-JODATIME ****");
-//        generateOp4jJodaTimeDocumentation();
+        generateOp4jJodaTimeDocumentation();
         System.out.println("***********************");
-
-
-         
-
     }
     
     /**
@@ -306,7 +301,6 @@ public class FnsDocGenerator {
                 Arrays.asList(new String[] {
                         OP4J_INPUT_FILE_PREFIX + "FnArrayOfSetOf.java"}));
         //
-        
         
         // FnBigDecimal
         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnbigdecimal.xml"),
@@ -402,14 +396,14 @@ public class FnsDocGenerator {
                 Arrays.asList(new String[] { 
                         OP4J_INPUT_FILE_PREFIX + "FnNumber.java"}));
         //
-        
+
         // FnObject
         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnobject.xml"), 
                 Arrays.asList(new String[] { 
                         OP4J_INPUT_FILE_PREFIX + "FnObject.java"}));
         //
         
-        
+      
         // FnSet
         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnset.all.xml"),
                 Arrays.asList(new String[] {
@@ -425,6 +419,7 @@ public class FnsDocGenerator {
                         OP4J_INPUT_FILE_PREFIX + "FnSetOfSetOf.java"}));
         //
         
+        
         // FnShort
         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fnshort.xml"),
                 Arrays.asList(new String[] { 
@@ -437,7 +432,7 @@ public class FnsDocGenerator {
                 Arrays.asList(new String[] { 
                         OP4J_INPUT_FILE_PREFIX + "FnString.java" }));
         //
-        
+
         
         // FnTuple
         generateAllFnsDoc(new File(OUTPUT_XDOC_FILE_PREFIX, "fntuple.xml"),
@@ -445,6 +440,7 @@ public class FnsDocGenerator {
                         OP4J_INPUT_FILE_PREFIX + "FnTuple.java" }));
         //
         
+              
     }
     
     /**
