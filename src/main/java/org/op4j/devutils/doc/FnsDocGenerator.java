@@ -24,8 +24,8 @@ public class FnsDocGenerator {
 
     // JavaDoc: will include only data before either @param, @since or @return.
     // Any text after that tokens will be ignored
-    // The expression does not match deprecated methods so there is no need to take
-    //that into account when checking the content of the methods javadoc
+    // The expression matches also deprecated methods though they will be 
+    //ignored later on
 
     private final static String XDOC_EXTENSION = "xml";
 
@@ -57,12 +57,10 @@ public class FnsDocGenerator {
         try {
             System.out.println("Working with file: " + file.getName());
 
-            // Pattern pattern =
-            // Pattern.compile("[\\{|\\}]\\s*(?://.*?)*?\\s*(\\/\\*[\\w\\W]*?\\*\\/)?"
-            // +
-
             Pattern pattern = Pattern
-                    .compile("[\\{|\\}|;]\\s*(?:\\/\\/.*?\\s*)*?\\s*(\\/\\*[\\w\\W]*?\\*\\/)?"
+                    .compile(
+                            "[\\{|\\}|;]\\s*(?:\\/\\/.*?\\s*)*?\\s*(\\/\\*\\*(?:\\s*\\*.*?)*?\\s*\\*\\/){0,1}"
+                            + "(?:\\s*@Deprecated){0,1}"   
                             + "\\s*public\\s+(?:static|final)?\\s*(?:static|final)?\\s*"
                             + // public static final
                             "(?:\\<[\\w\\,\\?\\s\\[\\]]*\\>){0,1}"
@@ -79,7 +77,11 @@ public class FnsDocGenerator {
                 List<Line> lines = new ArrayList<Line>();
                 while (matcher.find()) {
                     System.out.println("Match " + matcher.group() + " is valid.");
-                    lines.add(getLine(matcher));
+                    if (!StringUtils.containsIgnoreCase(matcher.group(), "@deprecated")) {
+                        lines.add(getLine(matcher));
+                    } else {
+                        System.out.println("DEPRECATED. Previous printed match will be ignored");
+                    }
                 }
                 // Sort lines
                 System.out.println("Sorting lines...");
@@ -278,7 +280,7 @@ public class FnsDocGenerator {
         System.out.println("***********************");
         
         System.out.println("**** OP4J-JODATIME ****");
-        generateOp4jJodaTimeDocumentation();
+//        generateOp4jJodaTimeDocumentation();
         System.out.println("***********************");
     }
     
