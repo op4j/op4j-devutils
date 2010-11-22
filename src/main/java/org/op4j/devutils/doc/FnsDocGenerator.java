@@ -280,7 +280,7 @@ public class FnsDocGenerator {
         System.out.println("***********************");
         
         System.out.println("**** OP4J-JODATIME ****");
-//        generateOp4jJodaTimeDocumentation();
+        generateOp4jJodaTimeDocumentation();
         System.out.println("***********************");
     }
     
